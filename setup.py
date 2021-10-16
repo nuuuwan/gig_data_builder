@@ -2,7 +2,7 @@
 
 import setuptools
 
-DIST_NAME = 'gh_template_py'
+DIST_NAME = 'gig_data_builder'
 version = '1.0.0'
 
 setuptools.setup(
