@@ -1,8 +1,6 @@
-# gig_data_builder
+# GIG-Data Builder
 
-## Release History
+GitHub repo [https://github.com/nuuuwan/gig](https://github.com/nuuuwan/gig) (GIG - Generalized Information Graph, containing various data about Sri Lanka) uses data stored in [https://github.com/nuuuwan/gig-data](https://github.com/nuuuwan/gig-data).
 
-### 1.0.0 (PRE-RELEASE)
-  * Basic changes
-  * Lint
-  *  [2021-10-16 07:03AM] Initial files
+This repo contains various utility functions that populate [https://github.com/nuuuwan/gig-data](https://github.com/nuuuwan/gig-data), and their raw data sources.
+  *  [2021-10-16 07:05AM] Updated README
