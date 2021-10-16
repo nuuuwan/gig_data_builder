@@ -10,6 +10,8 @@ This repo contains various utility functions that populate [https://github.com/n
 
 * [region_id_map](src/gig_data_builder/raw_data/region_id_map) contains known mappings between various types of regions.
 
+* [elections](src/gig_data_builder/raw_data/elections) contains Electoral District (ED) and Polling Division (PD) basic information.
+
 ---
 
 # Planned Change History
@@ -21,5 +23,7 @@ This repo contains various utility functions that populate [https://github.com/n
 # Change History
 * [2021-10-16 07:14AM] Added Raw Data: statslmap
 * [2021-10-16 07:26AM] Build Basic Province, District, DSD, GND data
-  *  [2021-10-16 08:02AM]
-  *  [2021-10-16 09:42AM] Basic Region ID Map Complete
+* [2021-10-16] Added Raw Data: region_id_map  
+* [2021-10-16] Build Basic PD, ED, MOH, LG Data (Incomplete)
+* [2021-10-16] Added Raw Data: elections
+  *  [2021-10-16 09:46AM] Added Raw Data: elections
