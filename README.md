@@ -11,11 +11,13 @@ This repo contains various utility functions that populate [https://github.com/n
 ---
 
 # Planned Change History
-* Build Province, District, DSD, GND data
-* Build PD, ED, MOH, LG Data
-* Build Census Data
+* Build Basic Province, District, DSD, GND data
+* Build Basic PD, ED, MOH, LG Data
+* Build Census Data for Admin Regions
+* Expand Census Data for Other Regions
+* Expand Data with aux fields
 
 # Change History
 * [2021-10-16 07:14AM] Added Raw Data: statslmap
-* [2021-10-16 07:26AM] Build Province, District, DSD, GND data
-  *  [2021-10-16 07:27AM] 
+* [2021-10-16 07:26AM] Build Basic Province, District, DSD, GND data
+  *  [2021-10-16 08:02AM] Updated Readme
