@@ -3,8 +3,9 @@ import os
 import geopandas
 from utils import tsv
 
-from gig_data_builder._constants import DIR_DATA, DIR_STATSL
+from gig_data_builder._constants import DIR_STATSL
 from gig_data_builder._utils import log
+from gig_data_builder.basic_data import get_basic_data_file
 from gig_data_builder.build_init import build_dirs
 
 # id	name	country_id	province_id	area
@@ -103,7 +104,7 @@ def build_region(region_type, file_only, func_map_regions):
         key=lambda d: d['id'],
     )
 
-    region_file = os.path.join(DIR_DATA, f'{region_type}.basic.tsv')
+    region_file = get_basic_data_file(region_type)
     tsv.write(region_file, data_list)
     n_data_list = len(data_list)
     log.info(f'Wrote {n_data_list} rows to {region_file}')

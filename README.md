@@ -8,6 +8,8 @@ This repo contains various utility functions that populate [https://github.com/n
 
 * [statslmap](src/gig_data_builder/raw_data/statslmap) contains TopoJSON files for each of Sri Lanka's Provinces, Administrative Districts, Divisional Secretariat Divisions and Grama Niladhari Divisions, and 2012 Census data for these regions.
 
+* [region_id_map](src/gig_data_builder/raw_data/region_id_map) contains known mappings between various types of regions.
+
 ---
 
 # Planned Change History
@@ -19,4 +21,5 @@ This repo contains various utility functions that populate [https://github.com/n
 # Change History
 * [2021-10-16 07:14AM] Added Raw Data: statslmap
 * [2021-10-16 07:26AM] Build Basic Province, District, DSD, GND data
-  *  [2021-10-16 08:02AM] 
+  *  [2021-10-16 08:02AM]
+  *  [2021-10-16 09:42AM] Basic Region ID Map Complete
