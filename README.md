@@ -20,3 +20,5 @@ This repo contains various utility functions that populate [https://github.com/n
   *  [2021-10-16 07:14AM] Added statslmap
   *  [2021-10-16 07:16AM] Updated README
   *  [2021-10-16 07:22AM] 
+* [2021-10-16 07:26AM] Build Province, District, DSD, GND data
+  *  [2021-10-16 07:26AM] Updated README
