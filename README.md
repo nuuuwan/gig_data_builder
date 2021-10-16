@@ -6,6 +6,12 @@ This repo contains various utility functions that populate [https://github.com/n
 
 ---
 
+# Planned Change History
+* Build Province, District, DSD, GND data
+* Build PD, ED, MOH, LG Data
+* Build Census Data
+
 # Change History
   *  [2021-10-16 07:13AM] Copied open http://map.statistics.gov.lk/apps/wb/
   *  [2021-10-16 07:14AM] Added statslmap
+  *  [2021-10-16 07:16AM] Updated README
