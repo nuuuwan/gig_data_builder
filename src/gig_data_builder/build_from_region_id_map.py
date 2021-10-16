@@ -33,6 +33,11 @@ def get_parent_to_field_to_ids(region_type, parent_region_type, field_key):
 
 
 def fuzzy_match(cand_field_value, field_to_ids):
+    if cand_field_value == '':
+        log.error('Invalid cand_field_value: %s', cand_field_value)
+        log.error(list(field_to_ids.items())[0])
+        return None
+
     field_values = field_to_ids.keys()
     matches = process.extract(cand_field_value, field_values, limit=1)
     if matches:
@@ -41,7 +46,7 @@ def fuzzy_match(cand_field_value, field_to_ids):
     return None
 
 
-def get_map_data_list():
+def build_map_data_list():
     raw_map_file = os.path.join(
         DIR_REGION_ID_MAP, '00-Data_PD_LA_DSD_Ward_GND.tsv'
     )
@@ -61,6 +66,10 @@ def get_map_data_list():
     )
     parent_to_gnd_num_to_ids = get_parent_to_field_to_ids(
         'gnd', 'dsd', 'gnd_num'
+    )
+
+    parent_to_pd_name_to_ids = get_parent_to_field_to_ids(
+        'pd', 'district', 'name'
     )
 
     def map_map_data(d):
@@ -120,7 +129,19 @@ def get_map_data_list():
             )
 
         if gnd_id is None:
-            log.error('Could not find GND_ID for: %s', json.dumps(d))
+            log.error('Could not find gnd_id for: %s', json.dumps(d))
+
+
+        pd_id = fuzzy_match(
+            d['Polling_D'],
+            parent_to_pd_name_to_ids[district_id],
+        )
+
+        if pd_id is None:
+            log.error('Could not find pd_id for: %s', json.dumps(d))
+            ed_id = None
+        else:
+            ed_id = pd_id[:5]
 
         new_d = {
             'country_id': country_id,
@@ -128,6 +149,8 @@ def get_map_data_list():
             'district_id': district_id,
             'dsd_id': dsd_id,
             'gnd_id': gnd_id,
+            'pd_id': pd_id,
+            'ed_id': ed_id,
         }
 
         if random.random() < 1 / 1000:
@@ -143,5 +166,6 @@ def get_map_data_list():
     )
     return cleaned_map_data
 
+
 if __name__ == '__main__':
-    get_map_data_list()
+    build_map_data_list()
