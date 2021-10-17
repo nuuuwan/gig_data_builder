@@ -15,7 +15,6 @@ This repo contains various utility functions that populate [https://github.com/n
 ---
 
 # Planned Change History
-* Add MOH Data
 * Build Census Data for Admin Regions
 * Expand Census Data for Other Regions
 * Expand Data with aux fields
@@ -27,5 +26,5 @@ This repo contains various utility functions that populate [https://github.com/n
 * [2021-10-16] Build Basic PD, ED, MOH, LG Data (Incomplete)
 * [2021-10-16] Added Raw Data: elections
 * [2021-10-17 04:39PM] Add LG Data
-  *  [2021-10-17 04:53PM] 
-  *  [2021-10-17 04:53PM] Pre-Merge
+* [2021-10-17] Add MOH Data
+  *  [2021-10-17 06:13PM] Added MOH Data
