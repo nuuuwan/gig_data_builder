@@ -34,7 +34,7 @@ from utils import tsv
 from gig_data_builder._constants import DIR_DATA, DIR_REGION_ID_MAP
 from gig_data_builder._utils import log
 from gig_data_builder.basic_data import (fuzzy_match, get_basic_data,
-                                         get_parent_to_field_to_ids)
+                                         get_parent_to_field_to_ids, get_basic_data_file)
 
 REGION_ID_MAP_FILE = os.path.join(
     DIR_DATA,
@@ -243,7 +243,30 @@ def expand():
         f'Wrote {n_expanded_data_list} rows to {EXPANDED_REGION_ID_MAP_FILE}'
     )
 
+def build_basic_lg_data():
+    expanded_data_list = tsv.read(EXPANDED_REGION_ID_MAP_FILE)
+    lg_id_to_d = {}
+    for d in expanded_data_list:
+        lg_id = d['lg_id']
+        lg_name = d['lg_name']
+        if lg_id not in lg_id_to_d:
+            lg_id_to_d[lg_id] = {
+                'id': lg_id,
+                'lg_id': lg_id,
+                'name': lg_name,
+            }
+    basic_data_list = sorted(
+        lg_id_to_d.values(),
+        key=lambda d: d['lg_id'],
+    )
+    n_basic_data_list = len(basic_data_list)
+    basic_data_file = get_basic_data_file('lg')
+
+    tsv.write(basic_data_file, basic_data_list)
+    log.info(f'Wrote {n_basic_data_list} rows to {basic_data_file}')
+
 
 if __name__ == '__main__':
     # build_map_data_list_list()
-    expand()
+    # expand()
+    build_basic_lg_data()
