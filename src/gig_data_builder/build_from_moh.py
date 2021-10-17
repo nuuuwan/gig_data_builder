@@ -30,10 +30,11 @@ from utils import tsv
 
 from gig_data_builder._constants import DIR_DATA, DIR_MOH
 from gig_data_builder._utils import log
-from gig_data_builder.basic_data import fuzzy_match, get_parent_to_field_to_ids
+from gig_data_builder.basic_data import (fuzzy_match, get_basic_data_file,
+                                         get_parent_to_field_to_ids)
 
 MOH_GEOJSON_FILE = os.path.join(DIR_DATA, 'SL_MOH_GN.geo.json')
-MOH_DATA_FILE = os.path.join(DIR_DATA, 'moh.tsv')
+MOH_REGION_ID_MAP = os.path.join(DIR_DATA, 'moh.region_id_map.tsv')
 
 
 def convert_shp_to_geojson():
@@ -107,11 +108,35 @@ def parse():
         key=lambda d: d['gnd_id'],
     )
 
-    tsv.write(MOH_DATA_FILE, moh_data_list)
+    tsv.write(MOH_REGION_ID_MAP, moh_data_list)
     n_moh_data_list = len(moh_data_list)
-    log.info(f'Wrote {n_moh_data_list} rows to {MOH_DATA_FILE}')
+    log.info(f'Wrote {n_moh_data_list} rows to {MOH_REGION_ID_MAP}')
+
+
+def build_basic_moh_data():
+    moh_data_list = tsv.read(MOH_REGION_ID_MAP)
+    moh_id_to_d = {}
+    for d in moh_data_list:
+        moh_id = d['moh_id']
+        moh_name = d['moh_name']
+        if moh_id not in moh_id_to_d:
+            moh_id_to_d[moh_id] = {
+                'id': moh_id,
+                'moh_id': moh_id,
+                'name': moh_name,
+            }
+    basic_data_list = sorted(
+        moh_id_to_d.values(),
+        key=lambda d: d['moh_id'],
+    )
+    n_basic_data_list = len(basic_data_list)
+    basic_data_file = get_basic_data_file('moh')
+
+    tsv.write(basic_data_file, basic_data_list)
+    log.info(f'Wrote {n_basic_data_list} rows to {basic_data_file}')
 
 
 if __name__ == '__main__':
     # convert_shp_to_geojson()
-    parse()
+    # parse()
+    build_basic_moh_data()
