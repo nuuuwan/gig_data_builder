@@ -137,6 +137,6 @@ def build_basic_moh_data():
 
 
 if __name__ == '__main__':
-    # convert_shp_to_geojson()
-    # parse()
+    convert_shp_to_geojson()
+    parse()
     build_basic_moh_data()
