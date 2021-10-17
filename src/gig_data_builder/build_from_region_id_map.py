@@ -41,9 +41,9 @@ REGION_ID_MAP_FILE = os.path.join(
     'region_id_map.tsv',
 )
 
-FIXED_REGION_ID_MAP_FILE = os.path.join(
+EXPANDED_REGION_ID_MAP_FILE = os.path.join(
     DIR_DATA,
-    'region_id_map.fixed.tsv',
+    'region_id_map.expanded.tsv',
 )
 
 
@@ -155,11 +155,10 @@ def build_map_data_list_list():
             'district_id': district_id,
             'dsd_id': dsd_id,
             'gnd_id': gnd_id,
-
             'ed_id': ed_id,
             'pd_id': pd_id,
+            'lg_name': d['Local_Gov'],
             'source_type': 'original',
-
         }
         return new_d
 
@@ -178,10 +177,12 @@ def build_map_data_list_list():
     log.info(f'Wrote {n_cleaned_map_data_list} rows to {REGION_ID_MAP_FILE}')
 
 
-def fix_missing_values():
+def expand():
+    # Fix missing values
     cleaned_map_data_list = tsv.read(REGION_ID_MAP_FILE)
     all_gnd_ids = set(map(lambda d: d['gnd_id'], get_basic_data('gnd')))
-    dsd_to_pds_to_n = {}
+    dsd_to_pd_to_n = {}
+    dsd_to_lg_to_n = {}
     gnds_without_pds = set()
     map_gnd_ids = set()
     new_fixed_data_index = {}
@@ -190,15 +191,22 @@ def fix_missing_values():
         map_gnd_ids.add(gnd_id)
         dsd_id = d['dsd_id']
         pd_id = d['pd_id']
+        lg_name = d['lg_name']
 
         if pd_id is None:
             gnds_without_pds.add(gnd_id)
         else:
-            if dsd_id not in dsd_to_pds_to_n:
-                dsd_to_pds_to_n[dsd_id] = {}
-            if pd_id not in dsd_to_pds_to_n[dsd_id]:
-                dsd_to_pds_to_n[dsd_id][pd_id] = 0
-            dsd_to_pds_to_n[dsd_id][pd_id] += 1
+            if dsd_id not in dsd_to_pd_to_n:
+                dsd_to_pd_to_n[dsd_id] = {}
+            if pd_id not in dsd_to_pd_to_n[dsd_id]:
+                dsd_to_pd_to_n[dsd_id][pd_id] = 0
+            dsd_to_pd_to_n[dsd_id][pd_id] += 1
+
+        if dsd_id not in dsd_to_lg_to_n:
+            dsd_to_lg_to_n[dsd_id] = {}
+        if lg_name not in dsd_to_lg_to_n[dsd_id]:
+            dsd_to_lg_to_n[dsd_id][lg_name] = 0
+        dsd_to_lg_to_n[dsd_id][lg_name] += 1
 
         new_fixed_data_index[gnd_id] = d
 
@@ -212,9 +220,14 @@ def fix_missing_values():
     for gnd_id in list(all_not_map) + list(gnds_without_pds):
         dsd_id = gnd_id[:7]
         pd_id = sorted(
-            dsd_to_pds_to_n.get(dsd_id).items(),
+            dsd_to_pd_to_n.get(dsd_id).items(),
             key=lambda x: -x[1],
         )[0][0]
+        lg_name = sorted(
+            dsd_to_lg_to_n.get(dsd_id).items(),
+            key=lambda x: -x[1],
+        )[0][0]
+
         ed_id = pd_id[:5]
 
         district_id = dsd_id[:5]
@@ -228,6 +241,7 @@ def fix_missing_values():
             'gnd_id': gnd_id,
             'pd_id': pd_id,
             'ed_id': ed_id,
+            'lg_name': lg_name,
             'source_type': 'fixed',
         }
         new_fixed_data_index[gnd_id] = new_d
@@ -236,13 +250,34 @@ def fix_missing_values():
         new_fixed_data_index.values(),
         key=lambda x: x['gnd_id'],
     )
-    fixed_map_data_list = new_fixed_data_list
-    n_fixed_map_data_list = len(fixed_map_data_list)
-    tsv.write(FIXED_REGION_ID_MAP_FILE, fixed_map_data_list)
+
+    # expand with lg_ids
+    lg_name_to_lg_id = {}
+    district_to_n = {}
+
+    def expand_lg_ids(d):
+        lg_name = d['lg_name']
+        if lg_name not in lg_name_to_lg_id:
+            district_id = d['district_id']
+            if district_id not in district_to_n:
+                district_to_n[district_id] = 0
+            district_to_n[district_id] += 1
+            district_id_end = district_id[-2:]
+            lg_id = 'LG-%s%03d' % (district_id_end, district_to_n[district_id])
+            lg_name_to_lg_id[lg_name] = lg_id
+        d['lg_id'] = lg_name_to_lg_id[lg_name]
+        return d
+
+    expanded_data_list = list(map(expand_lg_ids, new_fixed_data_list))
+
+    # store
+    n_expanded_data_list = len(expanded_data_list)
+    tsv.write(EXPANDED_REGION_ID_MAP_FILE, expanded_data_list)
     log.info(
-        f'Wrote {n_fixed_map_data_list} rows to {FIXED_REGION_ID_MAP_FILE}'
+        f'Wrote {n_expanded_data_list} rows to {EXPANDED_REGION_ID_MAP_FILE}'
     )
+
 
 if __name__ == '__main__':
     # build_map_data_list_list()
-    fix_missing_values()
+    expand()
