@@ -12,6 +12,8 @@ This repo contains various utility functions that populate [https://github.com/n
 
 * [elections](src/gig_data_builder/raw_data/elections) contains Electoral District (ED) and Polling Division (PD) basic information.
 
+* [moh](src/gig_data_builder/raw_data/moh) contains Medical Officers of Health (MOH) Region Information.
+
 ---
 
 # Planned Change History
@@ -27,4 +29,4 @@ This repo contains various utility functions that populate [https://github.com/n
 * [2021-10-16] Added Raw Data: elections
 * [2021-10-17 04:39PM] Add LG Data
 * [2021-10-17] Add MOH Data
-  *  [2021-10-17 06:13PM] Added MOH Data
+  *  [2021-10-17 06:14PM] README
