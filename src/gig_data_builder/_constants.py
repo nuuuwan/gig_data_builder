@@ -5,6 +5,10 @@ CACHE_NAME = 'gig_data_builder'
 CACHE_TIMEOUT = 3600
 
 DIR_DATA = '/tmp/gig_data_builder'
+DIR_DATA_GEO = os.path.join(
+    DIR_DATA,
+    'geo',
+)
 
 DIR_RAW_DATA = 'src/gig_data_builder/raw_data'
 DIR_STATSL = os.path.join(DIR_RAW_DATA, 'statslmap-selection/app/shape')

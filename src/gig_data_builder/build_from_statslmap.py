@@ -1,9 +1,10 @@
 import os
 
 import geopandas
-from utils import tsv
+from shapely.geometry import MultiPolygon, Polygon
+from utils import jsonx, tsv
 
-from gig_data_builder._constants import DIR_STATSL
+from gig_data_builder._constants import DIR_DATA_GEO, DIR_STATSL
 from gig_data_builder._utils import log
 from gig_data_builder.basic_data import get_basic_data_file
 from gig_data_builder.build_init import build_dirs
@@ -13,7 +14,7 @@ from gig_data_builder.build_init import build_dirs
 # fips	subs	supers	eqs	ints	centroid	centroid_altitude
 
 
-def add_parent_ids(d):
+def expand_d(d):
     region_id = d['id']
     n_region_id = len(region_id)
     for parent_type, n_parent_id in [
@@ -94,15 +95,33 @@ def build_region(region_type, file_only, func_map_regions):
     topojson_file = os.path.join(DIR_STATSL, file_only)
     df = geopandas.read_file(topojson_file)
 
-    data_list = sorted(
-        list(
-            map(
-                lambda d: add_parent_ids(func_map_regions(d)),
-                df.to_dict('records'),
+    dir_data_geo_region = os.path.join(DIR_DATA_GEO, region_type)
+    if not os.path.exists(dir_data_geo_region):
+        os.mkdir(dir_data_geo_region)
+
+    data_list = []
+    for d in df.to_dict('records'):
+        new_d = expand_d(func_map_regions(d))
+        data_list.append(new_d)
+
+        shape = d['geometry']
+        if isinstance(shape, Polygon):
+            geo_data = [list(shape.exterior.coords)]
+        elif isinstance(shape, MultiPolygon):
+            geo_data = list(
+                map(
+                    lambda polygon: list(polygon.exterior.coords),
+                    shape,
+                )
             )
-        ),
-        key=lambda d: d['id'],
-    )
+        else:
+            log.error('Unknown shapely shape: %s' + type(shape))
+
+        geo_file = os.path.join(dir_data_geo_region, '%s.json' % new_d['id'])
+        jsonx.write(geo_file, geo_data)
+        log.info(f'Wrote {geo_file}')
+
+    data_list = sorted(data_list, key=lambda d: d['id'])
 
     region_file = get_basic_data_file(region_type)
     tsv.write(region_file, data_list)
