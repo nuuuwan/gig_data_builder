@@ -301,7 +301,7 @@ def combine_expanded_and_moh():
 
 
 if __name__ == '__main__':
-    # build_map_data_list_list()
-    # expand()
-    # build_basic_lg_data()
+    build_map_data_list_list()
+    expand()
+    build_basic_lg_data()
     combine_expanded_and_moh()
