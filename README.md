@@ -33,3 +33,4 @@ This repo contains various utility functions that populate [https://github.com/n
   *  [2021-10-17 06:28PM] Added Build MOH
   *  [2021-10-17 06:29PM] 
   *  [2021-10-17 06:31PM] Added LG Basic
+  *  [2021-10-17 06:36PM] Final Region Map Complete

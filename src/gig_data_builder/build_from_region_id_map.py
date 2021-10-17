@@ -34,7 +34,9 @@ from utils import tsv
 from gig_data_builder._constants import DIR_DATA, DIR_REGION_ID_MAP
 from gig_data_builder._utils import log
 from gig_data_builder.basic_data import (fuzzy_match, get_basic_data,
-                                         get_parent_to_field_to_ids, get_basic_data_file)
+                                         get_basic_data_file,
+                                         get_parent_to_field_to_ids)
+from gig_data_builder.build_from_moh import MOH_REGION_ID_MAP
 
 REGION_ID_MAP_FILE = os.path.join(
     DIR_DATA,
@@ -44,6 +46,11 @@ REGION_ID_MAP_FILE = os.path.join(
 EXPANDED_REGION_ID_MAP_FILE = os.path.join(
     DIR_DATA,
     'region_id_map.expanded.tsv',
+)
+
+FINAL_REGION_ID_MAP_FILE = os.path.join(
+    DIR_DATA,
+    'region_id_map.final.tsv',
 )
 
 
@@ -243,6 +250,7 @@ def expand():
         f'Wrote {n_expanded_data_list} rows to {EXPANDED_REGION_ID_MAP_FILE}'
     )
 
+
 def build_basic_lg_data():
     expanded_data_list = tsv.read(EXPANDED_REGION_ID_MAP_FILE)
     lg_id_to_d = {}
@@ -266,7 +274,34 @@ def build_basic_lg_data():
     log.info(f'Wrote {n_basic_data_list} rows to {basic_data_file}')
 
 
+def combine_expanded_and_moh():
+    moh_data_list = tsv.read(MOH_REGION_ID_MAP)
+    gnd_to_moh = dict(
+        list(
+            map(
+                lambda d: (d['gnd_id'], d['moh_id']),
+                moh_data_list,
+            )
+        )
+    )
+    expanded_data_list = tsv.read(EXPANDED_REGION_ID_MAP_FILE)
+
+    def combine(d):
+        d['moh_id'] = gnd_to_moh.get(d['gnd_id'], None)
+        return d
+
+    combined_data_list = sorted(
+        list(map(combine, expanded_data_list)), key=lambda d: d['gnd_id']
+    )
+    n_combined_data_list = len(combined_data_list)
+    tsv.write(FINAL_REGION_ID_MAP_FILE, combined_data_list)
+    log.info(
+        f'Wrote {n_combined_data_list} rows to {FINAL_REGION_ID_MAP_FILE}'
+    )
+
+
 if __name__ == '__main__':
     # build_map_data_list_list()
     # expand()
-    build_basic_lg_data()
+    # build_basic_lg_data()
+    combine_expanded_and_moh()
