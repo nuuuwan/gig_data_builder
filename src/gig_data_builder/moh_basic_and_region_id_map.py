@@ -28,10 +28,10 @@ import os
 import geopandas
 from utils import tsv
 
+from gig_data_builder._basic import (fuzzy_match, get_basic_data_file,
+                                     get_parent_to_field_to_ids)
 from gig_data_builder._constants import DIR_DATA, DIR_MOH
 from gig_data_builder._utils import log
-from gig_data_builder._basic import (fuzzy_match, get_basic_data_file,
-                                         get_parent_to_field_to_ids)
 
 MOH_GEOJSON_FILE = os.path.join(DIR_DATA, 'SL_MOH_GN.geo.json')
 MOH_REGION_ID_MAP = os.path.join(DIR_DATA, 'moh.region_id_map.tsv')

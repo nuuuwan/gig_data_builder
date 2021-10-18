@@ -1,12 +1,12 @@
 import os
 
 import geopandas
-from shapely.geometry import MultiPolygon, Polygon
-from utils import jsonx, tsv
+from utils import tsv
 
-from gig_data_builder._constants import DIR_DATA_GEO, DIR_STATSL_SHAPE
-from gig_data_builder._utils import log
 from gig_data_builder._basic import get_basic_data_file
+from gig_data_builder._constants import DIR_STATSL_SHAPE
+from gig_data_builder._geo import get_geo_dir_for_region, save_geo
+from gig_data_builder._utils import log
 from gig_data_builder.init_dirs import build_dirs
 
 # id	name	country_id	province_id	area
@@ -95,9 +95,7 @@ def build_region(region_type, file_only, func_map_regions):
     topojson_file = os.path.join(DIR_STATSL_SHAPE, file_only)
     df = geopandas.read_file(topojson_file)
 
-    dir_data_geo_region = os.path.join(DIR_DATA_GEO, region_type)
-    if not os.path.exists(dir_data_geo_region):
-        os.mkdir(dir_data_geo_region)
+    get_geo_dir_for_region(region_type)
 
     data_list = []
     for d in df.to_dict('records'):
@@ -107,21 +105,8 @@ def build_region(region_type, file_only, func_map_regions):
         shape = d['geometry']
         lng, lat = list(shape.centroid.coords[0])
         new_d['centroid'] = '%f,%f' % (lat, lng)
-        if isinstance(shape, Polygon):
-            geo_data = [list(shape.exterior.coords)]
-        elif isinstance(shape, MultiPolygon):
-            geo_data = list(
-                map(
-                    lambda polygon: list(polygon.exterior.coords),
-                    shape,
-                )
-            )
-        else:
-            log.error('Unknown shapely shape: %s' + type(shape))
 
-        geo_file = os.path.join(dir_data_geo_region, '%s.json' % new_d['id'])
-        jsonx.write(geo_file, geo_data)
-        log.info(f'Wrote {geo_file}')
+        save_geo(region_type, new_d['id'], shape)
 
     data_list = sorted(data_list, key=lambda d: d['id'])
 

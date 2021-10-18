@@ -1,7 +1,7 @@
 import os
 
-from gig_data_builder._constants import DIR_ELECTIONS
 from gig_data_builder._basic import get_basic_data_file
+from gig_data_builder._constants import DIR_ELECTIONS
 from gig_data_builder._utils import log
 
 if __name__ == '__main__':
