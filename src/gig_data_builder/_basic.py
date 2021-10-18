@@ -16,7 +16,7 @@ def get_basic_data(region_type):
     return tsv.read(basic_data_file)
 
 
-def save_basic_data(region_type, data_list):
+def store_basic_data(region_type, data_list):
     basic_data_file = get_basic_data_file(region_type)
     tsv.write(basic_data_file, data_list)
     n_data_list = len(data_list)
