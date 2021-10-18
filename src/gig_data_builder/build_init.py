@@ -1,6 +1,6 @@
 import os
 
-from gig_data_builder._constants import DIR_DATA, DIR_DATA_GEO, DIR_DATA_CENSUS
+from gig_data_builder._constants import DIR_DATA, DIR_DATA_CENSUS, DIR_DATA_GEO
 
 
 def build_dirs():
