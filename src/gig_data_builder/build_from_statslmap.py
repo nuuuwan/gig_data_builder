@@ -105,6 +105,8 @@ def build_region(region_type, file_only, func_map_regions):
         data_list.append(new_d)
 
         shape = d['geometry']
+        lng, lat = list(shape.centroid.coords[0])
+        new_d['centroid'] = '%f,%f' % (lat, lng)
         if isinstance(shape, Polygon):
             geo_data = [list(shape.exterior.coords)]
         elif isinstance(shape, MultiPolygon):

@@ -29,10 +29,5 @@ This repo contains various utility functions that populate [https://github.com/n
 * [2021-10-16] Added Raw Data: elections
 * [2021-10-17 04:39PM] Add LG Data
 * [2021-10-17] Add MOH Data
-  *  [2021-10-17 06:14PM] README
-  *  [2021-10-17 06:28PM] Added Build MOH
-  *  [2021-10-17 06:29PM] 
-  *  [2021-10-17 06:31PM] Added LG Basic
-  *  [2021-10-17 06:36PM] Final Region Map Complete
-  *  [2021-10-17 06:36PM] 
-  *  [2021-10-17 07:00PM] 
+* [2021-10-17] Add Geo Data for Admin Regions
+  *  [2021-10-18 08:31AM] Unknown
