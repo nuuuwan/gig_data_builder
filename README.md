@@ -35,3 +35,4 @@ This repo contains various utility functions that populate [https://github.com/n
 * [2021-10-17] Add Geo Data for Admin Regions
 * [2021-10-18 08:32AM] Add Census Data
   *  [2021-10-18 09:06AM] 
+  *  [2021-10-18 09:21AM] Added single pipeline

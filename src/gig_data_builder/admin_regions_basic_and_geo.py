@@ -4,9 +4,9 @@ import geopandas
 from shapely.geometry import MultiPolygon, Polygon
 from utils import jsonx, tsv
 
-from gig_data_builder._constants import DIR_DATA_GEO, DIR_STATSL
+from gig_data_builder._constants import DIR_DATA_GEO, DIR_STATSL_SHAPE
 from gig_data_builder._utils import log
-from gig_data_builder.basic import get_basic_data_file
+from gig_data_builder._basic import get_basic_data_file
 from gig_data_builder.init_dirs import build_dirs
 
 # id	name	country_id	province_id	area
@@ -92,7 +92,7 @@ REGION_CONFIG_LIST = [
 
 
 def build_region(region_type, file_only, func_map_regions):
-    topojson_file = os.path.join(DIR_STATSL, file_only)
+    topojson_file = os.path.join(DIR_STATSL_SHAPE, file_only)
     df = geopandas.read_file(topojson_file)
 
     dir_data_geo_region = os.path.join(DIR_DATA_GEO, region_type)

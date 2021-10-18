@@ -4,7 +4,7 @@ from utils import dt, jsonx, tsv
 
 from gig_data_builder._constants import DIR_DATA_CENSUS, DIR_STATSL_DATA
 from gig_data_builder._utils import log
-from gig_data_builder.all_region_id_map import get_region_id_index
+from gig_data_builder.all_region_id_map_and_lg_basic import get_region_id_index
 
 METADATA_TABLES_FILE = os.path.join(DIR_STATSL_DATA, 'tables.json')
 METADATA_FIELDS_FILE = os.path.join(DIR_STATSL_DATA, 'fields.json')
