@@ -3,11 +3,11 @@ import os
 from gig_data_builder._constants import DIR_DATA, DIR_DATA_CENSUS, DIR_DATA_GEO
 
 
-def build_dirs():
-    os.mkdir(DIR_DATA)
-    os.mkdir(DIR_DATA_GEO)
-    os.mkdir(DIR_DATA_CENSUS)
+def __build_dirs__():
+    for dir in [DIR_DATA, DIR_DATA_GEO, DIR_DATA_CENSUS]:
+        os.system(f'rm -rf {dir}')
+        os.mkdir(dir)
 
 
 if __name__ == '__main__':
-    build_dirs()
+    __build_dirs__()

@@ -7,7 +7,6 @@ from gig_data_builder._basic import get_basic_data_file
 from gig_data_builder._constants import DIR_STATSL_SHAPE
 from gig_data_builder._geo import get_geo_dir_for_region, save_geo
 from gig_data_builder._utils import log
-from gig_data_builder.init_dirs import build_dirs
 
 # id	name	country_id	province_id	area
 # population	province_capital
@@ -92,10 +91,9 @@ REGION_CONFIG_LIST = [
 
 
 def build_region(region_type, file_only, func_map_regions):
+    log.info(f'Building region {region_type}...')
     topojson_file = os.path.join(DIR_STATSL_SHAPE, file_only)
     df = geopandas.read_file(topojson_file)
-
-    get_geo_dir_for_region(region_type)
 
     data_list = []
     for d in df.to_dict('records'):
@@ -126,5 +124,4 @@ def build_all_regions():
 
 
 if __name__ == '__main__':
-    build_dirs()
     build_all_regions()

@@ -7,7 +7,7 @@ from gig_data_builder._constants import DIR_DATA
 
 
 def get_basic_data_file(region_type):
-    return os.path.join(DIR_DATA, f'{region_type}.basic.tsv')
+    return os.path.join(DIR_DATA, f'{region_type}.tsv')
 
 
 def get_basic_data(region_type):
