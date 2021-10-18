@@ -302,10 +302,12 @@ def combine_expanded_and_moh():
 
 def get_region_id_index():
     data_list = tsv.read(FINAL_REGION_ID_MAP_FILE)
-    return dict(zip(
-        list(map(lambda d: d['gnd_id'], data_list)),
-        data_list,
-    ))
+    return dict(
+        zip(
+            list(map(lambda d: d['gnd_id'], data_list)),
+            data_list,
+        )
+    )
 
 
 if __name__ == '__main__':

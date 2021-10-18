@@ -47,8 +47,6 @@ def build():
                 log.error('No region info for gnd: %s', gnd_id)
                 continue
 
-
-
             for region_type in [
                 'country',
                 'province',
@@ -86,7 +84,6 @@ def build():
         table_file = os.path.join(DIR_DATA_CENSUS, 'data.%s.tsv' % table_name)
         tsv.write(table_file, table_data_list)
         log.info(f'Writing {n_table_data_list} rows to {table_file}')
-
 
 
 if __name__ == '__main__':
