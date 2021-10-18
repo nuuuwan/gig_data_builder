@@ -21,9 +21,6 @@ This repo contains various utility functions that populate [https://github.com/n
 
 ---
 
-# Planned Change History
-* Expand Data with aux fields
-
 # Change History
 * [2021-10-16 07:14AM] Added Raw Data: statslmap
 * [2021-10-16 07:26AM] Build Basic Province, District, DSD, GND data
@@ -34,6 +31,6 @@ This repo contains various utility functions that populate [https://github.com/n
 * [2021-10-17] Add MOH Data
 * [2021-10-17] Add Geo Data for Admin Regions
 * [2021-10-18 08:32AM] Add Census Data
-  *  [2021-10-18 09:06AM] 
-  *  [2021-10-18 09:21AM] Added single pipeline
-  *  [2021-10-18 10:36AM] Added Non-Admin Region Geos
+* [2021-10-18 09:21AM] Added single pipeline
+* [2021-10-18 10:36AM] Added Non-Admin Region Geos
+  *  [2021-10-18 10:36AM] 
