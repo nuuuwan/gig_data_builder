@@ -14,11 +14,14 @@ This repo contains various utility functions that populate [https://github.com/n
 
 * [moh](src/gig_data_builder/raw_data/moh) contains Medical Officers of Health (MOH) Region Information.
 
+# Excluded Data
+
+* Alternate region codes
+* Altitude
+
 ---
 
 # Planned Change History
-* Build Census Data for Admin Regions
-* Expand Census Data for Other Regions
 * Expand Data with aux fields
 
 # Change History
@@ -30,9 +33,5 @@ This repo contains various utility functions that populate [https://github.com/n
 * [2021-10-17 04:39PM] Add LG Data
 * [2021-10-17] Add MOH Data
 * [2021-10-17] Add Geo Data for Admin Regions
-  *  [2021-10-18 08:31AM] Unknown
-* [2021-10-18 08:32AM] census
-  *  [2021-10-18 08:32AM] Updated README
-  *  [2021-10-18 08:46AM] Census Done
-  *  [2021-10-18 08:46AM] Pre-Merge
-  *  [2021-10-18 08:49AM] Lint
+* [2021-10-18 08:32AM] Add Census Data
+  *  [2021-10-18 09:06AM] 

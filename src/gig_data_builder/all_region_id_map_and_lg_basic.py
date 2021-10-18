@@ -33,10 +33,10 @@ from utils import tsv
 
 from gig_data_builder._constants import DIR_DATA, DIR_REGION_ID_MAP
 from gig_data_builder._utils import log
-from gig_data_builder.basic_data import (fuzzy_match, get_basic_data,
+from gig_data_builder._basic import (fuzzy_match, get_basic_data,
                                          get_basic_data_file,
                                          get_parent_to_field_to_ids)
-from gig_data_builder.build_from_moh import MOH_REGION_ID_MAP
+from gig_data_builder.moh_basic_and_region_id_map import MOH_REGION_ID_MAP
 
 REGION_ID_MAP_FILE = os.path.join(
     DIR_DATA,

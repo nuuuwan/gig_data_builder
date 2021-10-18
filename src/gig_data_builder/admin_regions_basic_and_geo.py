@@ -6,8 +6,8 @@ from utils import jsonx, tsv
 
 from gig_data_builder._constants import DIR_DATA_GEO, DIR_STATSL
 from gig_data_builder._utils import log
-from gig_data_builder.basic_data import get_basic_data_file
-from gig_data_builder.build_init import build_dirs
+from gig_data_builder.basic import get_basic_data_file
+from gig_data_builder.init_dirs import build_dirs
 
 # id	name	country_id	province_id	area
 # population	province_capital
