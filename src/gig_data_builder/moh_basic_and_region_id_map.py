@@ -28,13 +28,13 @@ import os
 import geopandas
 from utils import tsv
 
-from gig_data_builder._basic import (fuzzy_match, get_basic_data_file,
-                                     get_parent_to_field_to_ids)
-from gig_data_builder._constants import DIR_DATA, DIR_MOH
+from gig_data_builder._basic import (fuzzy_match, get_parent_to_field_to_ids,
+                                     store_basic_data)
+from gig_data_builder._constants import DIR_MOH, DIR_TMP_DATA
 from gig_data_builder._utils import log
 
-MOH_GEOJSON_FILE = os.path.join(DIR_DATA, 'SL_MOH_GN.geo.json')
-MOH_REGION_ID_MAP = os.path.join(DIR_DATA, 'moh.region_id_map.tsv')
+MOH_GEOJSON_FILE = os.path.join(DIR_TMP_DATA, 'SL_MOH_GN.geo.json')
+MOH_REGION_ID_MAP = os.path.join(DIR_TMP_DATA, 'moh.region_id_map.tsv')
 
 
 def convert_shp_to_geojson():
@@ -129,11 +129,7 @@ def build_basic_moh_data():
         moh_id_to_d.values(),
         key=lambda d: d['moh_id'],
     )
-    n_basic_data_list = len(basic_data_list)
-    basic_data_file = get_basic_data_file('moh')
-
-    tsv.write(basic_data_file, basic_data_list)
-    log.info(f'Wrote {n_basic_data_list} rows to {basic_data_file}')
+    store_basic_data('moh', basic_data_list)
 
 
 if __name__ == '__main__':

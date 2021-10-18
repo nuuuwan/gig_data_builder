@@ -1,11 +1,11 @@
+import json
 import os
 
 import geopandas
-from utils import tsv
 
-from gig_data_builder._basic import get_basic_data_file
+from gig_data_builder._basic import store_basic_data
 from gig_data_builder._constants import DIR_STATSL_SHAPE
-from gig_data_builder._geo import get_geo_dir_for_region, save_geo
+from gig_data_builder._geo import save_geo
 from gig_data_builder._utils import log
 
 # id	name	country_id	province_id	area
@@ -102,16 +102,25 @@ def build_region(region_type, file_only, func_map_regions):
 
         shape = d['geometry']
         lng, lat = list(shape.centroid.coords[0])
-        new_d['centroid'] = '%f,%f' % (lat, lng)
+        new_d['centroid'] = json.dumps([lat, lng])
 
         save_geo(region_type, new_d['id'], shape)
 
     data_list = sorted(data_list, key=lambda d: d['id'])
+    store_basic_data(region_type, data_list)
 
-    region_file = get_basic_data_file(region_type)
-    tsv.write(region_file, data_list)
-    n_data_list = len(data_list)
-    log.info(f'Wrote {n_data_list} rows to {region_file}')
+
+def build_country():
+    store_basic_data(
+        'country',
+        [
+            {
+                'id': 'LK',
+                'country_id': 'LK',
+                'name': 'Sri Lanka',
+            }
+        ],
+    )
 
 
 def build_all_regions():
@@ -124,4 +133,5 @@ def build_all_regions():
 
 
 if __name__ == '__main__':
+    build_country()
     build_all_regions()

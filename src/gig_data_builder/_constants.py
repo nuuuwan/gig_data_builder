@@ -4,7 +4,9 @@ import os
 CACHE_NAME = 'gig_data_builder'
 CACHE_TIMEOUT = 3600
 
-DIR_DATA = '/tmp/gig_data_builder'
+DIR_DATA = '/Users/nuwan.senaratna/Not.Dropbox/_CODING/data/gig-data'
+DIR_TMP_DATA = '/tmp'
+
 DIR_DATA_GEO = os.path.join(
     DIR_DATA,
     'geo',
