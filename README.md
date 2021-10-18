@@ -39,3 +39,4 @@ This repo contains various utility functions that populate [https://github.com/n
   *  [2021-10-18 01:26PM] Added utils
   *  [2021-10-18 01:45PM] 
   *  [2021-10-18 01:45PM] Pre-Merge
+  *  [2021-10-18 01:55PM] Reverse downloaded election results
