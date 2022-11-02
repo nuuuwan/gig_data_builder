@@ -87,7 +87,6 @@ def build_map_data_list_list():
             d['PROVINCE_N'],
             parent_to_province_name_to_ids[country_id],
         )
-
         district_id = fuzzy_match(
             d['DISTRICT_N'],
             parent_to_district_name_to_ids[province_id],
@@ -118,7 +117,16 @@ def build_map_data_list_list():
         )
 
         if pd_id is None:
-            log.error('Could not find pd_id for gnd: %s', gnd_id)
+            if dsd_id == 'LK-4112':
+                pd_id = 'EC-10C'
+            elif dsd_id == 'LK-4127':
+                pd_id = 'EC-10G'
+            elif dsd_id == 'LK-4124':
+                pd_id = 'EC-10G'
+            else:
+                log.error('Could not find pd_id for gnd: %s', gnd_id)
+
+        if pd_id is None:
             ed_id = None
         else:
             ed_id = pd_id[:5]
@@ -237,7 +245,10 @@ def expand():
                 district_to_n[district_id] = 0
             district_to_n[district_id] += 1
             district_id_end = district_id[-2:]
-            lg_id = 'LG-%s%03d' % (district_id_end, district_to_n[district_id])
+            lg_id = 'LG-%s%03d' % (
+                district_id_end,
+                district_to_n[district_id],
+            )
             lg_name_to_lg_id[lg_name] = lg_id
         d['lg_id'] = lg_name_to_lg_id[lg_name]
         return d

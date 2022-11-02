@@ -13,3 +13,9 @@ python3 $DIR_SRC/census.py
 python3 $DIR_SRC/non_admin_region_geo.py
 
 python3 $DIR_SRC/basic_expand.py
+
+DIR_DATA=/Users/nuwan.senaratna/Not.Dropbox/_CODING/data/gig-data
+cd $DIR_DATA
+git add .
+git commit -m "More Updates"
+git push origin master

@@ -16,6 +16,16 @@ def get_basic_data(region_type):
     return tsv.read(basic_data_file)
 
 
+def get_basic_data_index(region_type):
+    data_list = get_basic_data(region_type)
+    return dict(
+        zip(
+            list(map(lambda d: d['id'], data_list)),
+            data_list,
+        )
+    )
+
+
 def store_basic_data(region_type, data_list):
     basic_data_file = get_basic_data_file(region_type)
     tsv.write(basic_data_file, data_list)

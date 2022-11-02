@@ -14,6 +14,8 @@ This repo contains various utility functions that populate [https://github.com/n
 
 * [moh](src/gig_data_builder/raw_data/moh) contains Medical Officers of Health (MOH) Region Information.
 
+* [elections_results](src/gig_data_builder/raw_data/elections_results) results of presidential and parliamentary elections after 1978.
+
 # Excluded Data
 
 * Alternate region codes
@@ -34,9 +36,4 @@ This repo contains various utility functions that populate [https://github.com/n
 * [2021-10-18 09:21AM] Added single pipeline
 * [2021-10-18 10:36AM] Added Non-Admin Region Geos
 * [2021-10-18 10:37AM] expand with ints etc
-  *  [2021-10-18 10:37AM] Updated README
-  *  [2021-10-18 11:28AM] Tested Pipeline
-  *  [2021-10-18 01:26PM] Added utils
-  *  [2021-10-18 01:45PM] 
-  *  [2021-10-18 01:45PM] Pre-Merge
-  *  [2021-10-18 01:55PM] Reverse downloaded election results
+* [2021-10-18 01:55PM] Added Election Results

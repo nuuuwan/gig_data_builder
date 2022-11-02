@@ -12,6 +12,7 @@ DIR_DATA_GEO = os.path.join(
     'geo',
 )
 DIR_DATA_CENSUS = os.path.join(DIR_DATA, 'census')
+DIR_DATA_ELECTIONS = os.path.join(DIR_DATA, 'elections')
 
 DIR_RAW_DATA = 'src/gig_data_builder/raw_data'
 DIR_STATSL = os.path.join(DIR_RAW_DATA, 'statslmap_selection')

@@ -3442,8 +3442,8 @@ Palachcholai"	197C	950	1328	0	1324	4	0	0	0	0	0	0	1328	0
 3435	Southern	Galle	Hiniduma	Niyagama	Niyagama PS	Godamuna		Godamuna South	33A	899	1055	1052	2	1	0	0	0	0	0	0	3	0
 3436	Southern	Galle	Hiniduma	Niyagama	Niyagama PS	Hattaka		Hattaka	33	855	1085	1080	5	0	0	0	0	0	0	0	5	0
 3437	Southern	Galle	Hiniduma	Niyagama	Niyagama PS	Horangalla		Horangalla Thalawa	37	802	1045	1044	1	0	0	0	0	0	0	0	1	0
-3438	Southern	Galle	Hiniduma	Niyagama	Niyagama PS	Horangalla		Horangalla West	Mar-37	297	396	396	0	0	0	0	0	0	0	0	0	0
-3439	Southern	Galle	Hiniduma	Niyagama	Niyagama PS	Horangalla		Horangalla(Akulavila)	Feb-37	538	674	670	4	0	0	0	0	0	0	0	4	0
+3438	Southern	Galle	Hiniduma	Niyagama	Niyagama PS	Horangalla		Horangalla West	37/3	297	396	396	0	0	0	0	0	0	0	0	0	0
+3439	Southern	Galle	Hiniduma	Niyagama	Niyagama PS	Horangalla		Horangalla(Akulavila)	37/2	538	674	670	4	0	0	0	0	0	0	0	4	0
 3440	Southern	Galle	Hiniduma	Niyagama	Niyagama PS	Pitigala		Kaluarachchigoda	30E	985	1287	1234	49	4	0	0	0	0	0	0	53	0
 3441	Southern	Galle	Hiniduma	Niyagama	Niyagama PS	Pitigala		Karawwa	30D	990	1252	1250	2	0	0	0	0	0	0	0	2	0
 3442	Southern	Galle	Hiniduma	Niyagama	Niyagama PS	Weihena		Kimbulawala	32B	680	840	838	0	2	0	0	0	0	0	0	2	0
@@ -4425,7 +4425,7 @@ Palachcholai"	197C	950	1328	0	1324	4	0	0	0	0	0	0	1328	0
 4418	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Horampella		Horampella North	105/1	1404	1798	1792	0	0	1	1	4	0	0	0	0	6
 4419	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Horampella		Horampella South	105	787	1080	1079	0	0	0	0	0	0	0	1	0	0
 4420	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Udugampola		Ihala Udugampala	131/4	1194	1571	1558	0	0	0	2	11	0	0	0	0	13
-4421	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Mabodala		Ihala Vithanamulla	Apr-98	862	1033	1018	11	0	0	0	3	0	0	1	11	3
+4421	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Mabodala		Ihala Vithanamulla	98/4	862	1033	1018	11	0	0	0	3	0	0	1	11	3
 4422	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Galloluwa		Kalahugoda	122/1	1059	1451	1446	2	0	0	2	0	0	0	1	2	2
 4423	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Mathammana		Kalawana	114	1082	1422	1411	10	0	0	0	1	0	0	0	10	1
 4424	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Watinapaha		Kamaragoda	103/3	971	1208	1200	2	0	0	4	0	0	0	2	2	4
@@ -4439,9 +4439,9 @@ Palachcholai"	197C	950	1328	0	1324	4	0	0	0	0	0	0	1328	0
 4432	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Kotugoda		Kotugoda 2	119/1	821	1235	1187	39	0	0	4	5	0	0	0	39	9
 4433	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Horampella		Kudagoda	105/6	817	1079	1079	0	0	0	0	0	0	0	0	0	0
 4434	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Mabodala		Mabodala East	98	805	1096	1091	5	0	0	0	0	0	0	0	5	0
-4435	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Mabodala		Mabodala North	Jan-98	986	1192	1161	19	2	4	6	0	0	0	0	21	10
-4436	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Mabodala		Mabodala South	Feb-98	628	793	789	4	0	0	0	0	0	0	0	4	0
-4437	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Mabodala		Mabodala West	Mar-98	1329	1751	1751	0	0	0	0	0	0	0	0	0	0
+4435	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Mabodala		Mabodala North	98/1	986	1192	1161	19	2	4	6	0	0	0	0	21	10
+4436	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Mabodala		Mabodala South	98/2	628	793	789	4	0	0	0	0	0	0	0	4	0
+4437	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Mabodala		Mabodala West	98/3	1329	1751	1751	0	0	0	0	0	0	0	0	0	0
 4438	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Madelgamuwa		Madelgamuwa East	137	855	1131	1119	7	5	0	0	0	0	0	0	12	0
 4439	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Madelgamuwa		Madelgamuwa West	137/1	995	1313	1309	2	0	0	2	0	0	0	0	2	2
 4440	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Nedagamuwa		Maduruvita	138/1	1203	1640	1629	7	3	0	1	0	0	0	0	10	1
@@ -4455,10 +4455,10 @@ Palachcholai"	197C	950	1328	0	1324	4	0	0	0	0	0	0	1328	0
 4448	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda UC	Minuwangoda East 02/ Minu. East 01/ Meda Minu.	Multiple	Minuwangoda East	125/3	1692	2072	2059	6	2	3	0	2	0	0	0	8	5
 4449	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda UC	Darmarajarama Pedesa/ Mi. N/ Mi. E2/ Burullapitiya	Multiple	Minuwangoda North	125/2	1037	1154	1117	8	2	26	0	0	0	0	1	10	26
 4450	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda UC	Minuwangoda West/ Darmarajarama Pedesa	Multiple	Minuwangoda West	125/1	1028	1200	1164	5	1	29	0	0	0	0	1	6	29
-4451	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Naiwala		Naiwala East	Feb-99	937	1311	1293	13	0	0	2	1	0	0	2	13	3
+4451	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Naiwala		Naiwala East	99/2	937	1311	1293	13	0	0	2	1	0	0	2	13	3
 4452	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Naiwala		Naiwala North	99	1200	1598	1565	22	1	0	2	8	0	0	0	23	10
-4453	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Naiwala		Naiwala West	Jan-99	1046	1496	1461	13	1	5	1	14	0	0	1	14	20
-4454	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Wadumulla		Nalapaha	Mar-99	607	779	773	0	6	0	0	0	0	0	0	6	0
+4453	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Naiwala		Naiwala West	99/1	1046	1496	1461	13	1	5	1	14	0	0	1	14	20
+4454	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Wadumulla		Nalapaha	99/3	607	779	773	0	6	0	0	0	0	0	0	6	0
 4455	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Nedagamuwa		Nedagamuwa North	139/1	1334	1737	1704	15	1	3	5	7	2	0	0	16	17
 4456	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Nedagamuwa		Nedagamuwa South	139	824	980	979	0	0	0	0	1	0	0	0	0	1
 4457	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Kotugoda		Nedagamuwa West	139/2	1268	1704	1692	10	1	0	0	0	1	0	0	11	1
@@ -4470,7 +4470,7 @@ Palachcholai"	197C	950	1328	0	1324	4	0	0	0	0	0	0	1328	0
 4463	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Udugampola		Pahala Udugampola North	131	1294	1669	1654	10	0	0	1	0	0	0	4	10	1
 4464	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Dombawala		Pahala Udugampola South	131/2	996	1283	1260	12	0	0	3	5	0	0	3	12	8
 4465	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Udugampola		Pahala Udugampola West	131/3	1224	1466	1459	3	1	2	0	0	0	0	1	4	2
-4466	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Mabodala		Pahala Vithanamulla	May-98	553	661	661	0	0	0	0	0	0	0	0	0	0
+4466	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Mabodala		Pahala Vithanamulla	98/5	553	661	661	0	0	0	0	0	0	0	0	0	0
 4467	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Mathammana		Pansilgoda	126/1	908	1154	1154	0	0	0	0	0	0	0	0	0	0
 4468	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Pattanduwana		Pattanduwana	118	877	1213	1193	12	2	5	1	0	0	0	0	14	6
 4469	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Pattanduwana		Pattanduwana North	118/2	879	1145	1027	20	3	86	0	9	0	0	0	23	95
@@ -4506,7 +4506,7 @@ Palachcholai"	197C	950	1328	0	1324	4	0	0	0	0	0	0	1328	0
 4499	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Yagodamulla		Yagodamulla	119/2	884	1201	1197	3	0	0	1	0	0	0	0	3	1
 4500	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Yagodamulla		Yagodamulla North	119/3	1592	2077	2066	1	0	3	2	1	0	0	4	1	6
 4501	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Yagodamulla		Yagodamulla South	119/4	805	1014	1006	1	0	0	6	1	0	0	0	1	7
-4502	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Wadumulla		Yatagama	Apr-99	669	768	767	0	0	0	0	0	0	0	1	0	0
+4502	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Wadumulla		Yatagama	99/4	669	768	767	0	0	0	0	0	0	0	1	0	0
 4503	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Yatiyana		Yatiyana	123	1758	2177	2160	3	0	7	0	5	0	0	2	3	12
 4504	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Unnaruwa		Yatiyana Central	123/4	1066	1530	1520	6	0	4	0	0	0	0	0	6	4
 4505	Western	Gampaha	Minuwangoda	Minuwangoda	Minuwangoda PS	Yatiyana		Yatiyana East	123/3	1432	2004	1921	8	9	4	3	59	0	0	0	17	66
@@ -5741,8 +5741,8 @@ Palachcholai"	197C	950	1328	0	1324	4	0	0	0	0	0	0	1328	0
 5733	Northern	Jaffna	Vaddukoddai	Valikamam West (Chankanai)	Valikamam West PS	Chulipuram East		Chulipuram  East	J/174	1307	2747	3	2739	5	0	0	0	0	0	0	2744	0
 5734	Northern	Jaffna	Vaddukoddai	Valikamam West (Chankanai)	Valikamam West PS	Chulipuram West and Chulipuram Central		Chulipuram West	J/172	1582	2122	1	2098	23	0	0	0	0	0	0	2121	0
 5735	Northern	Jaffna	Vaddukoddai	Valikamam West (Chankanai)	Valikamam West PS	Moolai		Moolai	J/171	2222	3178	2	3170	6	0	0	0	0	0	0	3176	0
-5736	Northern	Jaffna	Vaddukoddai	Valikamam West (Chankanai)	Valikamam West PS	Pannakam - Pan�ippulam		Pan�ippulam	J/176	925	1293	2	1288	2	1	0	0	0	0	0	1290	0
-5737	Northern	Jaffna	Vaddukoddai	Valikamam West (Chankanai)	Valikamam West PS	Pannakam - Pan�ippulam		Pannakam	J/175	1256	1602	4	1593	5	0	0	0	0	0	0	1598	0
+5736	Northern	Jaffna	Vaddukoddai	Valikamam West (Chankanai)	Valikamam West PS	Pannakam - Pan_ippulam		Pan_ippulam	J/176	925	1293	2	1288	2	1	0	0	0	0	0	1290	0
+5737	Northern	Jaffna	Vaddukoddai	Valikamam West (Chankanai)	Valikamam West PS	Pannakam - Pan_ippulam		Pannakam	J/175	1256	1602	4	1593	5	0	0	0	0	0	0	1598	0
 5738	Northern	Jaffna	Vaddukoddai	Valikamam West (Chankanai)	Valikamam West PS	Ponnalai		Ponnalai	J/170	1145	1166	1	1165	0	0	0	0	0	0	0	1165	0
 5739	Northern	Jaffna	Vaddukoddai	Valikamam West (Chankanai)	Valikamam West PS	Sangarathai		Sangarathai	J/159	1418	1851	1	1845	5	0	0	0	0	0	0	1850	0
 5740	Northern	Jaffna	Vaddukoddai	Valikamam West (Chankanai)	Valikamam West PS	Vaddukoddai East - Siththankerni		Siththankerni	J/177	1023	1370	0	1366	2	1	0	0	0	0	1	1368	1
@@ -6148,9 +6148,9 @@ Palachcholai"	197C	950	1328	0	1324	4	0	0	0	0	0	0	1328	0
 6135	Western	Kalutara	Kaluthara	Kalutara	Kalutara PS	Kalamulla		Kalamulla East	731B	855	1209	1200	3	2	0	2	1	0	0	1	5	4
 6136	Western	Kalutara	Kaluthara	Kalutara	Kalutara PS	Kalamulla		Kalamulla North	731	1443	1993	1964	21	1	0	6	1	0	0	0	22	7
 6137	Western	Kalutara	Kaluthara	Kalutara	Kalutara PS	Kalamulla		Kalamulla South	731A	1167	1543	1537	2	2	0	2	0	0	0	0	4	2
-6138	Western	Kalutara	Kaluthara	Kalutara	Kalutara PS	Kalapugama		"Kalapugama 
+6138	Western	Kalutara	Kaluthara	Kalutara	Kalutara PS	Kalapugama		"Kalapugama
 "	709	1114	1485	1478	7	0	0	0	0	0	0	0	7	0
-6139	Western	Kalutara	Kaluthara	Kalutara	Kalutara PS	Kalapugama		"Kalapugama West 
+6139	Western	Kalutara	Kaluthara	Kalutara	Kalutara PS	Kalapugama		"Kalapugama West
 "	709C	1253	1714	1704	9	0	0	1	0	0	0	0	9	1
 6140	Western	Kalutara	Kaluthara	Kalutara	Kalutara UC	Katukurunda - Kalapuwa		Kalapuwa	730A	1210	1632	1377	18	7	228	1	0	0	0	1	25	2
 6141	Western	Kalutara	Kaluthara	Kalutara	Kalutara UC	Kalutara - South		Kalutara South	725	1586	1721	1449	33	8	223	2	4	0	2	0	41	8
@@ -8084,7 +8084,7 @@ Palachcholai"	197C	950	1328	0	1324	4	0	0	0	0	0	0	1328	0
 8068	Sabaragamuwa	Kegalle	Mawanella	Mawanella	Mawanella PS	Madulbowa		Madulbowa	39B	1038	1373	2	3	4	1362	0	1	0	0	1	7	2
 8069	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kudagama		Dombemada East	1B	430	520	520	0	0	0	0	0	0	0	0	0	0
 8070	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kudagama		Dombemada West	1A	351	405	390	15	0	0	0	0	0	0	0	15	0
-8071	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Hewadiiwela		Udanvita	1	459	557	557	0	0	0	0	0	0	0	0	0	0
+8071	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Hewadiiwela		Udanvita	01	459	557	557	0	0	0	0	0	0	0	0	0	0
 8072	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Hewadiiwela		Maligathenna	3J	515	646	645	0	0	0	1	0	0	0	0	0	1
 8073	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Hewadiiwela		Alugolla	3C	417	511	509	1	1	0	0	0	0	0	0	2	0
 8074	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Gabbala		Gabbala North	3H	847	1092	1092	0	0	0	0	0	0	0	0	0	0
@@ -8098,27 +8098,27 @@ Palachcholai"	197C	950	1328	0	1324	4	0	0	0	0	0	0	1328	0
 8082	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kudagama		Kudagama North	2A	516	626	626	0	0	0	0	0	0	0	0	0	0
 8083	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kudagama		Medagaladeniya	2B	368	496	496	0	0	0	0	0	0	0	0	0	0
 8084	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kudagama		Kudagama South	2D	465	568	566	2	0	0	0	0	0	0	0	2	0
-8085	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Deliwala		Nattambura	3	597	725	725	0	0	0	0	0	0	0	0	0	0
-8086	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kudagama		Udagaladeniya	2	388	458	457	1	0	0	0	0	0	0	0	1	0
+8085	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Deliwala		Nattambura	03	597	725	725	0	0	0	0	0	0	0	0	0	0
+8086	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kudagama		Udagaladeniya	02	388	458	457	1	0	0	0	0	0	0	0	1	0
 8087	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Deliwala		Dambulla	2C	390	466	463	3	0	0	0	0	0	0	0	3	0
 8088	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Parape		Parape South	3F	793	983	982	0	0	0	1	0	0	0	0	0	1
 8089	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Parape		Kossinna	7C	573	683	683	0	0	0	0	0	0	0	0	0	0
 8090	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Weligamuwa		Ihala Walpola	6B	478	577	575	1	0	1	0	0	0	0	0	1	0
-8091	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kansalagamuwa		Heenabowa	7	568	687	687	0	0	0	0	0	0	0	0	0	0
+8091	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kansalagamuwa		Heenabowa	07	568	687	687	0	0	0	0	0	0	0	0	0	0
 8092	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kansalagamuwa		Walalgoda	7A	769	952	948	4	0	0	0	0	0	0	0	4	0
 8093	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Diyasunnatha		Eriyagolla	8G	846	1071	1065	6	0	0	0	0	0	0	0	6	0
 8094	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kansalagamuwa		Kansalagamuwa	7B	936	1113	1108	5	0	0	0	0	0	0	0	5	0
 8095	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Diyasunnatha		Kiriwallapitiya	8F	552	674	617	24	6	27	0	0	0	0	0	30	0
 8096	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Diyasunnatha		Werellapatha	8C	452	607	607	0	0	0	0	0	0	0	0	0	0
 8097	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Diyasunnatha		Madawala	8I	722	865	811	14	0	34	0	1	0	0	5	14	6
-8098	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Weligamuwa		Weligamuwa	6	654	809	807	0	2	0	0	0	0	0	0	2	0
+8098	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Weligamuwa		Weligamuwa	06	654	809	807	0	2	0	0	0	0	0	0	2	0
 8099	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Weligamuwa		Thaldewa	6A	836	1077	1033	6	0	38	0	0	0	0	0	6	0
 8100	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Weligamuwa		Hangawela	6C	401	486	486	0	0	0	0	0	0	0	0	0	0
-8101	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Deliwala		Deliwala	5	1059	1304	1300	4	0	0	0	0	0	0	0	4	0
+8101	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Deliwala		Deliwala	05	1059	1304	1300	4	0	0	0	0	0	0	0	4	0
 8102	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Rambukkana		Wahawa	6D	1035	1381	1332	0	0	49	0	0	0	0	0	0	0
 8103	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Rambukkana		Eriyawa	8D	975	1224	983	26	0	199	0	0	0	0	16	26	16
 8104	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Diyasunnatha		Diyasunnatha	8A	589	750	730	0	0	0	0	0	0	0	20	0	20
-8105	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kansalagamuwa		Godagandeniya	8	569	751	751	0	0	0	0	0	0	0	0	0	0
+8105	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kansalagamuwa		Godagandeniya	08	569	751	751	0	0	0	0	0	0	0	0	0	0
 8106	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Rambukkana		Rambukkana Town	8H	631	896	636	36	1	223	0	0	0	0	0	37	0
 8107	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Diyasunnatha		Beligodapitiya	8E	424	534	533	0	0	1	0	0	0	0	0	0	0
 8108	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Pinnawala		Daluggala	8J	359	427	423	4	0	0	0	0	0	0	0	4	0
@@ -8131,7 +8131,7 @@ Palachcholai"	197C	950	1328	0	1324	4	0	0	0	0	0	0	1328	0
 8115	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kadigamuwa		Yatiwaldeniya	22B	651	852	599	0	0	253	0	0	0	0	0	0	0
 8116	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Beddawela		Gangoda	22A	938	1175	1059	115	1	0	0	0	0	0	0	116	0
 8117	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Beddawela		Henepola	22E	875	1160	1046	110	0	4	0	0	0	0	0	110	0
-8118	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Walgama		Walgama	4	770	859	858	0	0	1	0	0	0	0	0	0	0
+8118	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Walgama		Walgama	04	770	859	858	0	0	1	0	0	0	0	0	0	0
 8119	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Walgama		Puwakmote	4A	571	750	750	0	0	0	0	0	0	0	0	0	0
 8120	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Walgama		Udugama	4C	423	568	568	0	0	0	0	0	0	0	0	0	0
 8121	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Walgama		Thismalpola	4B	473	601	601	0	0	0	0	0	0	0	0	0	0
@@ -8148,7 +8148,7 @@ Palachcholai"	197C	950	1328	0	1324	4	0	0	0	0	0	0	1328	0
 8132	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kadigamuwa		Kempitiya	21D	203	287	138	149	0	0	0	0	0	0	0	149	0
 8133	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kiriwandeniya		Halagiriya	21A	653	790	790	0	0	0	0	0	0	0	0	0	0
 8134	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kiriwandeniya		Netiyapana	21C	413	518	518	0	0	0	0	0	0	0	0	0	0
-8135	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kiriwandeniya		Kiriwandeniya	9	890	1115	1113	0	1	1	0	0	0	0	0	1	0
+8135	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kiriwandeniya		Kiriwandeniya	09	890	1115	1113	0	1	1	0	0	0	0	0	1	0
 8136	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Hiriwadunna		Kotagama	9A	884	1095	1094	0	0	1	0	0	0	0	0	0	0
 8137	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Mangalagama		Kivulpana	12A	840	899	898	1	0	0	0	0	0	0	0	1	0
 8138	Sabaragamuwa	Kegalle	Rambukkana	Rambukkana	Rambukkana PS	Kiriwandeniya		Minwana	12C	479	623	623	0	0	0	0	0	0	0	0	0	0

@@ -14,7 +14,6 @@ EC-01L	Homagama	LK	LK-1	LK-11	EC-01	EC-01L
 EC-01M	Maharagama	LK	LK-1	LK-11	EC-01	EC-01M
 EC-01N	Kesbewa	LK	LK-1	LK-11	EC-01	EC-01N
 EC-01O	Moratuwa	LK	LK-1	LK-11	EC-01	EC-01O
-EC-01P	Postal Votes Colombo	LK	None	None	EC-01	EC-01P
 EC-02A	Wattala	LK	LK-1	LK-12	EC-02	EC-02A
 EC-02B	Negombo	LK	LK-1	LK-12	EC-02	EC-02B
 EC-02C	Katana	LK	LK-1	LK-12	EC-02	EC-02C
@@ -28,7 +27,6 @@ EC-02J	Mahara	LK	LK-1	LK-12	EC-02	EC-02J
 EC-02K	Dompe	LK	LK-1	LK-12	EC-02	EC-02K
 EC-02L	Biyagama	LK	LK-1	LK-12	EC-02	EC-02L
 EC-02M	Kelaniya	LK	LK-1	LK-12	EC-02	EC-02M
-EC-02P	Postal Votes Gampaha	LK	None	None	EC-02	EC-02P
 EC-03A	Panadura	LK	LK-1	LK-13	EC-03	EC-03A
 EC-03B	Bandaragama	LK	LK-1	LK-13	EC-03	EC-03B
 EC-03C	Horana	LK	LK-1	LK-13	EC-03	EC-03C
@@ -37,7 +35,6 @@ EC-03E	Mathugama	LK	LK-1	LK-13	EC-03	EC-03E
 EC-03F	Kalutara	LK	LK-1	LK-13	EC-03	EC-03F
 EC-03G	Beruwala	LK	LK-1	LK-13	EC-03	EC-03G
 EC-03H	Agalawatta	LK	LK-1	LK-13	EC-03	EC-03H
-EC-03P	Postal Votes Kalutara	LK	None	None	EC-03	EC-03P
 EC-04A	Galagedara	LK	LK-2	LK-21	EC-04	EC-04A
 EC-04B	Harispattuwa	LK	LK-2	LK-21	EC-04	EC-04B
 EC-04C	Pathadumbara	LK	LK-2	LK-21	EC-04	EC-04C
@@ -51,17 +48,14 @@ EC-04J	Yatinuwara	LK	LK-2	LK-21	EC-04	EC-04J
 EC-04K	Udunuwara	LK	LK-2	LK-21	EC-04	EC-04K
 EC-04L	Gampola	LK	LK-2	LK-21	EC-04	EC-04L
 EC-04M	Nawalapitiya	LK	LK-2	LK-21	EC-04	EC-04M
-EC-04P	Postal Votes Kandy	LK	None	None	EC-04	EC-04P
 EC-05A	Dambulla	LK	LK-2	LK-22	EC-05	EC-05A
 EC-05B	Laggala	LK	LK-2	LK-22	EC-05	EC-05B
 EC-05C	Matale	LK	LK-2	LK-22	EC-05	EC-05C
 EC-05D	Rattota	LK	LK-2	LK-22	EC-05	EC-05D
-EC-05P	Postal Votes Matale	LK	None	None	EC-05	EC-05P
 EC-06A	Nuwara Eliya Maskeliya	LK	LK-2	LK-23	EC-06	EC-06A
 EC-06B	Kothmale	LK	LK-2	LK-23	EC-06	EC-06B
 EC-06C	Hanguranketha	LK	LK-2	LK-23	EC-06	EC-06C
 EC-06D	Walapane	LK	LK-2	LK-23	EC-06	EC-06D
-EC-06P	Postal Votes Nuwara-Eliya	LK	None	None	EC-06	EC-06P
 EC-07A	Balapitiya	LK	LK-3	LK-31	EC-07	EC-07A
 EC-07B	Ambalangoda	LK	LK-3	LK-31	EC-07	EC-07B
 EC-07C	Karandeniya	LK	LK-3	LK-31	EC-07	EC-07C
@@ -72,7 +66,6 @@ EC-07G	Ratgama	LK	LK-3	LK-31	EC-07	EC-07G
 EC-07H	Galle	LK	LK-3	LK-31	EC-07	EC-07H
 EC-07I	Akmeemana	LK	LK-3	LK-31	EC-07	EC-07I
 EC-07J	Habaraduwa	LK	LK-3	LK-31	EC-07	EC-07J
-EC-07P	Postal Votes Galle	LK	None	None	EC-07	EC-07P
 EC-08A	Deniyaya	LK	LK-3	LK-32	EC-08	EC-08A
 EC-08B	Hakmana	LK	LK-3	LK-32	EC-08	EC-08B
 EC-08C	Akuressa	LK	LK-3	LK-32	EC-08	EC-08C
@@ -80,12 +73,10 @@ EC-08D	Kamburupitiya	LK	LK-3	LK-32	EC-08	EC-08D
 EC-08E	Devinuwara	LK	LK-3	LK-32	EC-08	EC-08E
 EC-08F	Matara	LK	LK-3	LK-32	EC-08	EC-08F
 EC-08G	Weligama	LK	LK-3	LK-32	EC-08	EC-08G
-EC-08P	Postal Votes Matara	LK	None	None	EC-08	EC-08P
 EC-09A	Mulkirigala	LK	LK-3	LK-33	EC-09	EC-09A
 EC-09B	Beliatta	LK	LK-3	LK-33	EC-09	EC-09B
 EC-09C	Tangalle	LK	LK-3	LK-33	EC-09	EC-09C
 EC-09D	Thissamaharama	LK	LK-3	LK-33	EC-09	EC-09D
-EC-09P	Postal Votes Hambantota	LK	None	None	EC-09	EC-09P
 EC-10A	Kayts	LK	LK-4	LK-41	EC-10	EC-10A
 EC-10B	Vaddukoddai	LK	LK-4	LK-41	EC-10	EC-10B
 EC-10C	Kankesanthurai	LK	LK-4	LK-41	EC-10	EC-10C
@@ -97,24 +88,19 @@ EC-10H	Chavakachcheri	LK	LK-4	LK-41	EC-10	EC-10H
 EC-10I	Nallur	LK	LK-4	LK-41	EC-10	EC-10I
 EC-10J	Jaffna	LK	LK-4	LK-41	EC-10	EC-10J
 EC-10K	Kilinochchi	LK	LK-4	LK-45	EC-10	EC-10K
-EC-10P	Postal Votes Jaffna	LK	None	None	EC-10	EC-10P
 EC-11A	Mannar	LK	LK-4	LK-42	EC-11	EC-11A
 EC-11B	Vavuniya	LK	LK-4	LK-43	EC-11	EC-11B
 EC-11C	Mullaitivu	LK	LK-4	LK-44	EC-11	EC-11C
-EC-11P	Postal Votes Vanni	LK	None	None	EC-11	EC-11P
 EC-12A	Kalkudah	LK	LK-5	LK-51	EC-12	EC-12A
 EC-12B	Batticaloa	LK	LK-5	LK-51	EC-12	EC-12B
 EC-12C	Paddiruppu	LK	LK-5	LK-51	EC-12	EC-12C
-EC-12P	Postal Votes Batticaloa	LK	None	None	EC-12	EC-12P
 EC-13A	Ampara	LK	LK-5	LK-52	EC-13	EC-13A
 EC-13B	Samanthurai	LK	LK-5	LK-52	EC-13	EC-13B
 EC-13C	Kalmunai	LK	LK-5	LK-52	EC-13	EC-13C
 EC-13D	Pothuvil	LK	LK-5	LK-52	EC-13	EC-13D
-EC-13P	Postal Votes Digamadulla	LK	None	None	EC-13	EC-13P
 EC-14A	Seruvila	LK	LK-5	LK-53	EC-14	EC-14A
 EC-14B	Trincomalee	LK	LK-5	LK-53	EC-14	EC-14B
 EC-14C	Muttur	LK	LK-5	LK-53	EC-14	EC-14C
-EC-14P	Postal Votes Trincomalee	LK	None	None	EC-14	EC-14P
 EC-15A	Galgamuwa	LK	LK-6	LK-61	EC-15	EC-15A
 EC-15B	Nikaweratiya	LK	LK-6	LK-61	EC-15	EC-15B
 EC-15C	Yapahuwa	LK	LK-6	LK-61	EC-15	EC-15C
@@ -129,13 +115,11 @@ EC-15K	Polgahawela	LK	LK-6	LK-61	EC-15	EC-15K
 EC-15L	Kurunegala	LK	LK-6	LK-61	EC-15	EC-15L
 EC-15M	Mawathagama	LK	LK-6	LK-61	EC-15	EC-15M
 EC-15N	Dodangaslanda	LK	LK-6	LK-61	EC-15	EC-15N
-EC-15P	Postal Votes Kurunegala	LK	None	None	EC-15	EC-15P
 EC-16A	Puttalam	LK	LK-6	LK-62	EC-16	EC-16A
 EC-16B	Anamaduwa	LK	LK-6	LK-62	EC-16	EC-16B
 EC-16C	Chilaw	LK	LK-6	LK-62	EC-16	EC-16C
 EC-16D	Nattandiya	LK	LK-6	LK-62	EC-16	EC-16D
 EC-16E	Wennappuwa	LK	LK-6	LK-62	EC-16	EC-16E
-EC-16P	Postal Votes Puttalam	LK	None	None	EC-16	EC-16P
 EC-17A	Medawachchiya	LK	LK-7	LK-71	EC-17	EC-17A
 EC-17B	Horowpothana	LK	LK-7	LK-71	EC-17	EC-17B
 EC-17C	Anuradhapura East	LK	LK-7	LK-71	EC-17	EC-17C
@@ -143,11 +127,9 @@ EC-17D	Anuradhapura West	LK	LK-7	LK-71	EC-17	EC-17D
 EC-17E	Kalawewa	LK	LK-7	LK-71	EC-17	EC-17E
 EC-17F	Mihinthale	LK	LK-7	LK-71	EC-17	EC-17F
 EC-17G	Kekirawa	LK	LK-7	LK-71	EC-17	EC-17G
-EC-17P	Postal Votes Anuradhapura	LK	None	None	EC-17	EC-17P
 EC-18A	Minneriya	LK	LK-7	LK-72	EC-18	EC-18A
 EC-18B	Medirigiriya	LK	LK-7	LK-72	EC-18	EC-18B
 EC-18C	Polonnaruwa	LK	LK-7	LK-72	EC-18	EC-18C
-EC-18P	Postal Votes Polonnaruwa	LK	None	None	EC-18	EC-18P
 EC-19A	Mahiyanganaya	LK	LK-8	LK-81	EC-19	EC-19A
 EC-19B	Viyaluwa	LK	LK-8	LK-81	EC-19	EC-19B
 EC-19C	Passara	LK	LK-8	LK-81	EC-19	EC-19C
@@ -157,11 +139,9 @@ EC-19F	Uva Paranagama	LK	LK-8	LK-81	EC-19	EC-19F
 EC-19G	Welimada	LK	LK-8	LK-81	EC-19	EC-19G
 EC-19H	Bandarawela	LK	LK-8	LK-81	EC-19	EC-19H
 EC-19I	Haputale	LK	LK-8	LK-81	EC-19	EC-19I
-EC-19P	Postal Votes Badulla	LK	None	None	EC-19	EC-19P
 EC-20A	Bibile	LK	LK-8	LK-82	EC-20	EC-20A
 EC-20B	Monaragala	LK	LK-8	LK-82	EC-20	EC-20B
 EC-20C	Wellawaya	LK	LK-8	LK-82	EC-20	EC-20C
-EC-20P	Postal Votes Moneragala	LK	None	None	EC-20	EC-20P
 EC-21A	Eheliyagoda	LK	LK-9	LK-91	EC-21	EC-21A
 EC-21B	Ratnapura	LK	LK-9	LK-91	EC-21	EC-21B
 EC-21C	Pelmadulla	LK	LK-9	LK-91	EC-21	EC-21C
@@ -170,7 +150,6 @@ EC-21E	Rakwana	LK	LK-9	LK-91	EC-21	EC-21E
 EC-21F	Nivithigala	LK	LK-9	LK-91	EC-21	EC-21F
 EC-21G	Kalawana	LK	LK-9	LK-91	EC-21	EC-21G
 EC-21H	Kolonna	LK	LK-9	LK-91	EC-21	EC-21H
-EC-21P	Postal Votes Ratnapura	LK	None	None	EC-21	EC-21P
 EC-22A	Dedigama	LK	LK-9	LK-92	EC-22	EC-22A
 EC-22B	Galigamuwa	LK	LK-9	LK-92	EC-22	EC-22B
 EC-22C	Kegalle	LK	LK-9	LK-92	EC-22	EC-22C
@@ -180,4 +159,3 @@ EC-22F	Aranayaka	LK	LK-9	LK-92	EC-22	EC-22F
 EC-22G	Yatiyanthota	LK	LK-9	LK-92	EC-22	EC-22G
 EC-22H	Ruwanwella	LK	LK-9	LK-92	EC-22	EC-22H
 EC-22I	Deraniyagala	LK	LK-9	LK-92	EC-22	EC-22I
-EC-22P	Postal Votes Kegalle	LK	None	None	EC-22	EC-22P

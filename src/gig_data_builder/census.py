@@ -3,11 +3,15 @@ import os
 from utils import dt, jsonx, tsv
 
 from gig_data_builder._constants import DIR_DATA_CENSUS, DIR_STATSL_DATA
-from gig_data_builder._utils import log
+from gig_data_builder._utils import get_data_index, get_data_list, log
 from gig_data_builder.all_region_id_map_and_lg_basic import get_region_id_index
 
 METADATA_TABLES_FILE = os.path.join(DIR_STATSL_DATA, 'tables.json')
 METADATA_FIELDS_FILE = os.path.join(DIR_STATSL_DATA, 'fields.json')
+
+
+def get_census_table_file(table_name):
+    return os.path.join(DIR_DATA_CENSUS, 'data.%s.tsv' % table_name)
 
 
 def build():
@@ -81,9 +85,17 @@ def build():
         n_table_data_list = len(table_data_list)
 
         table_name = dt.to_snake(table_metadata['Title'])
-        table_file = os.path.join(DIR_DATA_CENSUS, 'data.%s.tsv' % table_name)
+        table_file = get_census_table_file(table_name)
         tsv.write(table_file, table_data_list)
         log.info(f'Writing {n_table_data_list} rows to {table_file}')
+
+
+def get_census_data_list(table_name):
+    return get_data_list(get_census_table_file(table_name))
+
+
+def get_census_data_index(table_name):
+    return get_data_index(get_census_table_file(table_name))
 
 
 if __name__ == '__main__':
