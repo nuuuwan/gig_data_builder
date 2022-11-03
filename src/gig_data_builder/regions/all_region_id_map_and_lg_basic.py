@@ -1,31 +1,3 @@
-"""
-{
-    'Index': '1',
-    'PROVINCE_N': 'Eastern',
-    'DISTRICT_N': 'Ampara',
-    'Polling_D': 'Potuvil',
-    'DSD_N': 'Addalachchenai',
-    'Local_Gov': 'Addalachchenai PS',
-    'Ward': 'Arafa',
-    'Type_Ward': '',
-    'GND_N': 'Addalachchenai 01',
-    'GND_NO': 'AD/33',
-
-    'Votes': '772',
-    'TOT_POP': '1108',
-    'E_Sinhales': '13',
-    'E_SLTamil': '0',
-    'E_IndTamil': '2',
-    'E_SLMoor': '1108',
-    'E_Burgher': '0',
-    'E_Malay': '0',
-    'E_SLChetty': '0',
-    'E_Bharatha': '0',
-    'E_Other': '0',
-    'E_AllTamil': '2',
-    'E_AllOther': '0'
-}
-"""
 import json
 import os
 
