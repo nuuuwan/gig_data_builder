@@ -1,27 +1,32 @@
 function run { python3 src/gig_data_builder/$1; }
+function echo_line { echo "--------------------------------"; }
+function comment { echo_line; echo "$1" ; echo_line; }
 
-# tmp-precensus-[country|province|dsd|gnd].tsv
+comment before
+run init_dirs.py
+
+comment "tmp-precensus-[country|province|dsd|gnd].tsv"
 run regions/admin_regions_basic_and_geo.py
 
-# tmp-precensus-pregeo-[ed|pd].tsv
-run elections/elections_basic.py
+comment "tmp-precensus-pregeo-[ed|pd].tsv"
+run regions/elections_basic.py
 
-# tmp-precensus-pregeo-moh.tsv
+comment "tmp-precensus-pregeo-moh.tsv"
 run regions/moh_basic_and_region_id_map.py
 
-# tmp-precensus-pregeo-lg.tsv, tmp-precensus-region_id_map.tsv
+comment "tmp-precensus-pregeo-lg.tsv, tmp-precensus-region_id_map.tsv"
 run regions/all_region_id_map_and_lg_basic.py
 
-# tmp-precensus-[ed|pd|moh|lg].tsv
+comment "tmp-precensus-[ed|pd|moh|lg].tsv"
 run regions/non_admin_region_geo.py
 
-# census/data.*.tsv etc.
+comment "census/data.*.tsv etc."
 run census/census.py
 
-# [country|province|dsd|gnd|ed|pd|moh|lg].tsv
+comment "[country|province|dsd|gnd|ed|pd|moh|lg].tsv"
 run census-regions/expand_regions_with_census_info.py
 
-# elections/parliamentary_election_*.tsv, elections/presidential_election_*.tsv
+comment "elections/parliamentary_election_*.tsv, elections/presidential_election_*.tsv"
 run elections/elections_results.py
 
 echo '----------------------------------------------------------------'
