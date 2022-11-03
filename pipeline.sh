@@ -1,6 +1,6 @@
 function run { python3 src/gig_data_builder/$1; }
 
-# country.tsv, province.tsv, district.tsv, dsd.tsv, gnd.tsv
+# tmp-precensus-[country|province|dsd|gnd].tsv
 run regions/admin_regions/admin_regions_basic_and_geo.py
 
 # ed.tsv, pd.tsv
