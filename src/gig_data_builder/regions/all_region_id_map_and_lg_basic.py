@@ -117,6 +117,7 @@ def build_map_data_list_list():
         )
 
         if pd_id is None:
+            # Jaffna Electoral District (EC-10) special cases ???
             if dsd_id == 'LK-4112':
                 pd_id = 'EC-10C'
             elif dsd_id == 'LK-4127':
