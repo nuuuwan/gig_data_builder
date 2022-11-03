@@ -34,7 +34,7 @@ def expand_all():
                 get_basic_data('_tmp/precensus-', region_type),
             )
         )
-        store_basic_data('', region_type, data_list)
+        store_basic_data('ents/', region_type, data_list)
         log.info(f'Expanded {region_type}')
 
 
