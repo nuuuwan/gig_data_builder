@@ -26,6 +26,7 @@ def expand_all():
         'pd',
         'moh',
         'lg',
+        'region_id_map',
     ]:
         data_list = list(
             map(
