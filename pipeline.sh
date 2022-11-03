@@ -3,7 +3,7 @@ function run { python3 src/gig_data_builder/$1; }
 # tmp-precensus-[country|province|dsd|gnd].tsv
 run regions/admin_regions/admin_regions_basic_and_geo.py
 
-# ed.tsv, pd.tsv
+# tmp-precensus-pregeo-[ed|pd].tsv
 run elections/elections_basic.py
 
 # moh.tsv
