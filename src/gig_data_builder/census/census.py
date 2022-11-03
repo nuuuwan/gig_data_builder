@@ -1,9 +1,10 @@
 import os
 
-from utils import dt, jsonx, tsv
+from utils import TSVFile, dt, jsonx, tsv
 
-from gig_data_builder._constants import DIR_DATA_CENSUS, DIR_STATSL_DATA
-from gig_data_builder._utils import get_data_index, get_data_list, log
+from gig_data_builder._constants import (DIR_DATA_GIG2, DIR_RAW_DATA,
+                                         DIR_STATSL_DATA)
+from gig_data_builder._utils import log
 from gig_data_builder.regions.all_region_id_map_and_lg_basic import \
     get_region_id_index
 
@@ -11,14 +12,27 @@ METADATA_TABLES_FILE = os.path.join(DIR_STATSL_DATA, 'tables.json')
 METADATA_FIELDS_FILE = os.path.join(DIR_STATSL_DATA, 'fields.json')
 
 
-def get_census_table_file(table_name):
-    return os.path.join(DIR_DATA_CENSUS, 'data.%s.tsv' % table_name)
+def get_table_name_to_file_name():
+    data = TSVFile(os.path.join(DIR_RAW_DATA, 'census', 'census-met.tsv'))
+    table_name_to_file_name = {}
+    for d in data:
+        table_name = d['table_name']
+        m1 = d['measurement1']
+        m2 = d['measurement2']
+        e = d['entity']
+        t = d['time']
+        file_name_only = f'{m1}-{m2}.{e}.{t}.tsv'
+        table_name_to_file_name[table_name] = os.path.join(
+            DIR_DATA_GIG2, file_name_only
+        )
+    return table_name_to_file_name
 
 
 def build():
     metadata_tables = jsonx.read(METADATA_TABLES_FILE)
     metadata_fields = jsonx.read(METADATA_FIELDS_FILE)
     region_id_index = get_region_id_index()
+    table_name_to_file_name = get_table_name_to_file_name()
 
     for table_id, table_metadata in metadata_tables.items():
         field_metadata = metadata_fields[table_metadata['Filename']]
@@ -86,17 +100,9 @@ def build():
         n_table_data_list = len(table_data_list)
 
         table_name = dt.to_snake(table_metadata['Title'])
-        table_file = get_census_table_file(table_name)
+        table_file = table_name_to_file_name[table_name]
         tsv.write(table_file, table_data_list)
         log.debug(f'Writing {n_table_data_list} rows to {table_file}')
-
-
-def get_census_data_list(table_name):
-    return get_data_list(get_census_table_file(table_name))
-
-
-def get_census_data_index(table_name):
-    return get_data_index(get_census_table_file(table_name))
 
 
 if __name__ == '__main__':
