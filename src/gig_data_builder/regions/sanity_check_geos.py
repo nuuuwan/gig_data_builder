@@ -1,11 +1,14 @@
 import os
 import random
+
 import matplotlib.pyplot as plt
 from shapely.geometry import Polygon
 from utils import JSONFile, colorx
 
 from gig_data_builder._constants import DIR_DATA_GEO
+
 random.seed(1)
+
 
 def get_region_file_names(region_type):
     dir_region_type = os.path.join(DIR_DATA_GEO, region_type)
@@ -27,8 +30,9 @@ def save_geo_image(region_type, func_filter=None, image_file_prefix=None):
             x, y = polygon.exterior.xy
             plt.fill(x, y, color=color)
 
-
-    image_file_prefix = image_file_prefix if image_file_prefix else region_type
+    image_file_prefix = (
+        image_file_prefix if image_file_prefix else region_type
+    )
     image_file = f'sanity_check_examples/geo.{image_file_prefix}.png'
     plt.title(image_file_prefix)
     plt.savefig(image_file)
@@ -37,13 +41,32 @@ def save_geo_image(region_type, func_filter=None, image_file_prefix=None):
 
 
 if __name__ == '__main__':
-    save_geo_image('pd', lambda file_name: 'EC-01' in file_name,image_file_prefix="pd-Colombo")
-    save_geo_image('pd', lambda file_name: 'EC-14' in file_name,image_file_prefix="pd-Trinco")
-    save_geo_image('pd', lambda file_name: 'EC-10' in file_name,image_file_prefix="pd-Jaffna")
-    save_geo_image('pd', lambda file_name: 'EC-11' in file_name,image_file_prefix="pd-Vanni")
-    save_geo_image('gnd', lambda file_name: 'LK-1103' in file_name,image_file_prefix="gnd-Colombo-DSD")
+    save_geo_image(
+        'pd',
+        lambda file_name: 'EC-01' in file_name,
+        image_file_prefix="pd-Colombo",
+    )
+    save_geo_image(
+        'pd',
+        lambda file_name: 'EC-14' in file_name,
+        image_file_prefix="pd-Trinco",
+    )
+    save_geo_image(
+        'pd',
+        lambda file_name: 'EC-10' in file_name,
+        image_file_prefix="pd-Jaffna",
+    )
+    save_geo_image(
+        'pd',
+        lambda file_name: 'EC-11' in file_name,
+        image_file_prefix="pd-Vanni",
+    )
+    save_geo_image(
+        'gnd',
+        lambda file_name: 'LK-1103' in file_name,
+        image_file_prefix="gnd-Colombo-DSD",
+    )
 
-    
     for region_type in [
         'province',
         'ed',

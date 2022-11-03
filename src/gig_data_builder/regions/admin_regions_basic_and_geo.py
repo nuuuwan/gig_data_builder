@@ -10,6 +10,7 @@ from gig_data_builder.regions._geo import save_geo
 
 PREFIX = 'tmp-precensus-'
 
+
 def expand_d(d):
     region_id = d['id']
     n_region_id = len(region_id)

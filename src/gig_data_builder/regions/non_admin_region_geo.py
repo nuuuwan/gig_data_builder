@@ -60,7 +60,9 @@ def build_geos():
             )
             valid_polygon_list = list(
                 map(
-                    lambda polygon: polygon if polygon.is_valid else polygon.buffer(0),
+                    lambda polygon: polygon
+                    if polygon.is_valid
+                    else polygon.buffer(0),
                     polygon_list,
                 )
             )

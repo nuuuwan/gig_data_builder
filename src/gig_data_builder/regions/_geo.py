@@ -1,6 +1,5 @@
 import os
 
-import matplotlib.pyplot as plt
 from shapely.geometry import MultiPolygon, Polygon
 from utils import jsonx
 
