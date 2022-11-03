@@ -8,11 +8,6 @@ from gig_data_builder._constants import DIR_STATSL_SHAPE
 from gig_data_builder._geo import save_geo
 from gig_data_builder._utils import log
 
-# id	name	country_id	province_id	area
-# population	province_capital
-# fips	subs	supers	eqs	ints	centroid	centroid_altitude
-
-
 def expand_d(d):
     region_id = d['id']
     n_region_id = len(region_id)
@@ -118,6 +113,7 @@ def build_country():
                 'id': 'LK',
                 'country_id': 'LK',
                 'name': 'Sri Lanka',
+                'population': 20_357_776,
             }
         ],
     )
