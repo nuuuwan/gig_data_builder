@@ -1,12 +1,15 @@
 import init_dirs
 from census import census, expand_regions_with_census_info
-from elections import elections_results
+from elections import elections_results, sanity_check_pop_per_elector
 from regions import (admin_regions_basic_and_geo,
                      all_region_id_map_and_lg_basic, elections_basic,
-                     moh_basic_and_region_id_map, non_admin_region_geo)
+                     moh_basic_and_region_id_map, non_admin_region_geo,
+                     sanity_check_geos)
+
 
 def print_line():
     print('-' * 64)
+
 
 def print_title(text):
     print_line()
@@ -27,7 +30,9 @@ def main():
     print_title("_tmp/precensus-pregeo-moh.tsv")
     moh_basic_and_region_id_map.main()
 
-    print_title("_tmp/precensus-pregeo-lg.tsv _tmp/precensus-region_id_map.tsv")
+    print_title(
+        "_tmp/precensus-pregeo-lg.tsv _tmp/precensus-region_id_map.tsv"
+    )
     all_region_id_map_and_lg_basic.main()
 
     print_title("_tmp/precensus-[ed|pd|moh|lg].tsv")
@@ -44,6 +49,10 @@ def main():
         + ".regions-ec.{year}.tsv"
     )
     elections_results.main()
+
+    print_title("sanity checks")
+    sanity_check_pop_per_elector.main()
+    sanity_check_geos.main()
 
 
 if __name__ == '__main__':

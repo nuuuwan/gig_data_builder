@@ -12,6 +12,7 @@ DIR_DATA_GEO = os.path.join(
     DIR_DATA,
     'geo',
 )
+DIR_DATA_CHECKS = os.path.join(DIR_DATA, '_checks')
 DIR_DATA_GIG2 = os.path.join(DIR_DATA, 'gig2')
 DIR_DATA_CENSUS = os.path.join(DIR_DATA, 'census')
 DIR_DATA_ENTS = os.path.join(DIR_DATA, 'ents')

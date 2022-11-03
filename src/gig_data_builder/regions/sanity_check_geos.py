@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from shapely.geometry import Polygon
 from utils import JSONFile, colorx
 
-from gig_data_builder._constants import DIR_DATA_GEO
+from gig_data_builder._constants import DIR_DATA_GEO, DIR_DATA_CHECKS
 
 random.seed(1)
 
@@ -33,7 +33,7 @@ def save_geo_image(region_type, func_filter=None, image_file_prefix=None):
     image_file_prefix = (
         image_file_prefix if image_file_prefix else region_type
     )
-    image_file = f'sanity_check_examples/geo.{image_file_prefix}.png'
+    image_file = os.path.join(DIR_DATA_CHECKS, f'sanity_check_geos.{image_file_prefix}.png')
     plt.title(image_file_prefix)
     plt.savefig(image_file)
     os.system(f'open -a firefox {image_file}')
