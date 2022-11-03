@@ -5,8 +5,8 @@ import geopandas
 
 from gig_data_builder._basic import store_basic_data
 from gig_data_builder._constants import DIR_STATSL_SHAPE
-from gig_data_builder._geo import save_geo
 from gig_data_builder._utils import log
+from gig_data_builder.regions._geo import save_geo
 
 def expand_d(d):
     region_id = d['id']
