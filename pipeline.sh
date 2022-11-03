@@ -19,8 +19,7 @@ run regions/non_admin_region_geo.py
 
 run census/census.py
 
-# EXPAND all regions with population
-
+# [country|province|dsd|gnd|ed|pd|moh|lg].tsv
 run census-regions/expand_regions_with_census_info.py
 
 # elections/parliamentary_election_*.tsv, elections/presidential_election_*.tsv

@@ -26,15 +26,14 @@ def expand_all():
         'pd',
         'moh',
         'lg',
-        'region_id_map.final',
     ]:
         data_list = list(
             map(
                 expand_row,
-                get_basic_data(region_type),
+                get_basic_data('tmp-precensus-', region_type),
             )
         )
-        store_basic_data(region_type, data_list)
+        store_basic_data('', region_type, data_list)
         log.info(f'Expanded {region_type}')
 
 
