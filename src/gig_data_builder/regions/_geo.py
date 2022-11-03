@@ -36,7 +36,7 @@ def get_geo_index_for_region_type(region_type):
     return geo_index
 
 
-def save_geo(region_type, region_id, shape, show_geo=False):
+def save_geo(region_type, region_id, shape):
     if isinstance(shape, Polygon):
         geo_data = [list(shape.exterior.coords)]
     elif isinstance(shape, MultiPolygon):
@@ -49,12 +49,6 @@ def save_geo(region_type, region_id, shape, show_geo=False):
     else:
         log.error('Unknown shapely shape: %s' + type(shape))
         return None
-
-    if show_geo:
-        for geo_data_item in geo_data:
-            polygon = Polygon(geo_data_item)
-            plt.plot(*polygon.exterior.xy)
-        plt.show()
 
     geo_file = get_geo_file(region_type, region_id)
     jsonx.write(geo_file, geo_data)
