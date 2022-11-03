@@ -37,7 +37,8 @@ from gig_data_builder._basic import (fuzzy_match, get_basic_data,
 from gig_data_builder._constants import (DIR_DATA, DIR_REGION_ID_MAP,
                                          DIR_TMP_DATA)
 from gig_data_builder._utils import log
-from gig_data_builder.regions.moh_basic_and_region_id_map import MOH_REGION_ID_MAP
+from gig_data_builder.regions.moh_basic_and_region_id_map import \
+    MOH_REGION_ID_MAP
 
 REGION_ID_MAP_FILE = os.path.join(
     DIR_TMP_DATA,
@@ -81,7 +82,11 @@ def build_map_data_list_list():
         'pd', 'district', 'name'
     )
 
-    def map_map_data_list(d):
+    def clean(x):
+        [i, d] = x
+        if i % 1_1000 == 0:
+            gnd_id = d['GND_N']
+            log.debug(f'{i + 1} cleaning {gnd_id}')
         country_id = 'LK'
         province_id = fuzzy_match(
             d['PROVINCE_N'],
@@ -148,8 +153,8 @@ def build_map_data_list_list():
     cleaned_map_data_list = sorted(
         list(
             map(
-                map_map_data_list,
-                raw_map_data_list,
+                clean,
+                enumerate(raw_map_data_list),
             )
         ),
         key=lambda d: d['gnd_id'],
