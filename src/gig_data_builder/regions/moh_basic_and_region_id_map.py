@@ -35,6 +35,7 @@ from gig_data_builder._utils import log
 
 MOH_GEOJSON_FILE = os.path.join(DIR_TMP_DATA, 'SL_MOH_GN.geo.json')
 MOH_REGION_ID_MAP = os.path.join(DIR_TMP_DATA, 'moh.region_id_map.tsv')
+PREFIX = 'tmp-precensus-pregeo-'
 
 
 def convert_shp_to_geojson():
@@ -95,7 +96,7 @@ def parse():
             'moh_name': moh_name,
             'moh_id': moh_id,
         }
-        if i % 1000 == 0:
+        if (i + 1) % 1000 == 0:
             log.debug(f'{ i + 1 }/{n_data_list}: {json.dumps(moh_d)}')
         moh_data_list.append(moh_d)
 
@@ -129,7 +130,7 @@ def build_basic_moh_data():
         moh_id_to_d.values(),
         key=lambda d: d['moh_id'],
     )
-    store_basic_data('moh', basic_data_list)
+    store_basic_data(PREFIX, 'moh', basic_data_list)
 
 
 if __name__ == '__main__':

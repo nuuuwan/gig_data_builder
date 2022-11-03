@@ -6,7 +6,7 @@ run regions/admin_regions/admin_regions_basic_and_geo.py
 # tmp-precensus-pregeo-[ed|pd].tsv
 run elections/elections_basic.py
 
-# moh.tsv
+# tmp-precensus-pregeo-moh.tsv
 run regions/moh_basic_and_region_id_map.py
 
 # lg.tsv
