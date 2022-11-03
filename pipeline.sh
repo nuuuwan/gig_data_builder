@@ -12,10 +12,10 @@ run regions/admin_regions_basic_and_geo.py
 comment "_tmp/precensus-pregeo-[ed|pd].tsv"
 run regions/elections_basic.py
 
-comment "_tmp/precensus-pregeo-moh.tsv"
+comment "_tmp/precensus-pregeo-moh.tsv (SLOW)"
 run regions/moh_basic_and_region_id_map.py
 
-comment "_tmp/precensus-pregeo-lg.tsv, _tmp/precensus-region_id_map.tsv"
+comment "_tmp/precensus-pregeo-lg.tsv, _tmp/precensus-region_id_map.tsv (SLOW)"
 run regions/all_region_id_map_and_lg_basic.py
 
 comment "_tmp/precensus-[ed|pd|moh|lg].tsv"
