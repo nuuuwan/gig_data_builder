@@ -3,7 +3,7 @@ import os
 from utils import tsv
 
 from gig_data_builder._basic import get_basic_data_index
-from gig_data_builder._constants import DIR_DATA_GIG2, DIR_TMP_DATA
+from gig_data_builder._constants import DIR_DATA_GIG2, DIR_DATA_TMP
 from gig_data_builder._utils import get_data_index, log
 
 
@@ -36,7 +36,7 @@ def check():
         key=lambda d: d['pop_per_elector'],
     )
     sanity_file = os.path.join(
-        DIR_TMP_DATA, 'gig_data_builder.sanity_check_pop_per_elector.tsv'
+        DIR_DATA_TMP, 'gig_data_builder.sanity_check_pop_per_elector.tsv'
     )
     tsv.write(sanity_file, sanity_data_list)
     log.info(f'Saved {sanity_file}')
