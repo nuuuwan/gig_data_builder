@@ -10,7 +10,10 @@ run elections/elections_basic.py
 run regions/moh_basic_and_region_id_map.py
 
 # lg.tsv
-python src/gig_data_builder/regions/all_region_id_map_and_lg_basic.py
+run regions/all_region_id_map_and_lg_basic.py
+
+# census/data.*.tsv etc.
+run census/census.py
 
 echo '----------------------------------------------------------------'
 ls /Users/nuwan.senaratna/Not.Dropbox/_CODING/data/gig-data
