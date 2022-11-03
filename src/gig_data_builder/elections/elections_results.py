@@ -72,7 +72,7 @@ def get_election_data_file(election_type, year):
 
 
 def build_all():
-    ed_index = get_basic_data_index('', 'ed')
+    ed_index = get_basic_data_index('ents/', 'ed')
     region_id_index = get_region_id_index()
     pd_to_region_id_index = {}
     pd_to_pop = {}
