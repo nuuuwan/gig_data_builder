@@ -1,6 +1,6 @@
 from gig_data_builder._basic import get_basic_data, store_basic_data
 from gig_data_builder._utils import log
-from gig_data_builder.census import get_census_data_index
+from gig_data_builder.census.census import get_census_data_index
 
 
 def expand_all():
