@@ -96,7 +96,7 @@ def parse():
             'moh_id': moh_id,
         }
         if i % 1000 == 0:
-            log.info('%d/%d: %s', i, n_data_list, json.dumps(moh_d))
+            log.debug(f'{ i + 1 }/{n_data_list}: {json.dumps(moh_d)}')
         moh_data_list.append(moh_d)
 
     for moh, districts in moh_to_district.items():
