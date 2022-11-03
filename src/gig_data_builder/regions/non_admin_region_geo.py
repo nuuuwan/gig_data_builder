@@ -1,4 +1,5 @@
 import json
+import logging
 
 from shapely.geometry import Polygon
 from shapely.ops import cascaded_union
@@ -7,6 +8,8 @@ from gig_data_builder._geo import get_geo_index_for_region_type, save_geo
 from gig_data_builder.all_region_id_map_and_lg_basic import (
     get_basic_data, get_region_id_index, store_basic_data)
 
+logger = logging.getLogger('shapely.geos')
+logger.setLevel(logging.WARNING)
 
 def add_centroid_column(region_type, region_to_centroid):
     def add_centroid_to_row(d):
