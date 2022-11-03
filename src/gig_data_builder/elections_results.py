@@ -34,7 +34,7 @@ ELECTION_CONFIGS = {
 }
 
 
-def get_election_raw_data_file(election_type, year):
+def get_election_data_ground_truth_file(election_type, year):
     return os.path.join(
         DIR_ELECTIONS_RESULTS,
         f'{election_type}_election_{year}.json',
@@ -51,13 +51,13 @@ def reverse_download():
                 func_get_file(year),
             )
             data = www.read_json(remote_url)
-            data_file = get_election_raw_data_file(election_type, year)
+            data_file = get_election_data_ground_truth_file(election_type, year)
             jsonx.write(data_file, data)
             log.info(f'Downloaded from {remote_url} to {data_file}')
 
 
-def get_election_raw_data(election_type, year):
-    return jsonx.read(get_election_raw_data_file(election_type, year))
+def get_election_data_ground_truth(election_type, year):
+    return jsonx.read(get_election_data_ground_truth_file(election_type, year))
 
 
 def get_election_data_file(election_type, year):
@@ -85,7 +85,7 @@ def build_all():
     for election_type, config in ELECTION_CONFIGS.items():
         field_key_votes = config['field_key_votes']
         for year in config['year_list']:
-            data_list = get_election_raw_data(election_type, year)
+            data_list = get_election_data_ground_truth(election_type, year)
             table = []
 
             # FOR EACH pd result
