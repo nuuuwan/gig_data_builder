@@ -13,7 +13,9 @@ METADATA_FIELDS_FILE = os.path.join(DIR_STATSL_DATA, 'fields.json')
 
 
 def get_table_name_to_file_name():
-    data_list = TSVFile(os.path.join(DIR_RAW_DATA, 'census', 'census-met.tsv')).read()
+    data_list = TSVFile(
+        os.path.join(DIR_RAW_DATA, 'census', 'census-met.tsv')
+    ).read()
     table_name_to_file_name = {}
     for d in data_list:
         table_name = d['table_name']
