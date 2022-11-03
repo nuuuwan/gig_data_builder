@@ -2,6 +2,7 @@ import os
 
 from fuzzywuzzy import process
 from utils import tsv
+from utils.cache import cache
 
 from gig_data_builder._constants import DIR_DATA
 from gig_data_builder._utils import log
@@ -64,6 +65,7 @@ def get_parent_to_field_to_ids(region_type, parent_region_type, field_key):
     return parent_to_field_to_ids
 
 
+@cache('fuzzy_match', 3600)
 def fuzzy_match(cand_field_value, field_to_ids):
     if cand_field_value == '':
         return None
