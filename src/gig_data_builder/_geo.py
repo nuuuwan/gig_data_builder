@@ -58,4 +58,3 @@ def save_geo(region_type, region_id, shape, show_geo=False):
 
     geo_file = get_geo_file(region_type, region_id)
     jsonx.write(geo_file, geo_data)
-    log.info(f'Wrote {geo_file}')
