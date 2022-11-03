@@ -4,10 +4,10 @@ import os
 from utils import tsv
 
 from gig_data_builder._basic import (fuzzy_match, get_basic_data,
+                                     get_basic_data_file,
                                      get_parent_to_field_to_ids,
                                      store_basic_data)
-from gig_data_builder._constants import (DIR_DATA, DIR_REGION_ID_MAP,
-                                         DIR_TMP_DATA)
+from gig_data_builder._constants import DIR_REGION_ID_MAP, DIR_TMP_DATA
 from gig_data_builder._utils import log
 from gig_data_builder.regions.moh_basic_and_region_id_map import \
     MOH_REGION_ID_MAP
@@ -20,11 +20,6 @@ REGION_ID_MAP_FILE = os.path.join(
 EXPANDED_REGION_ID_MAP_FILE = os.path.join(
     DIR_TMP_DATA,
     'region_id_map.expanded.tsv',
-)
-
-FINAL_REGION_ID_MAP_FILE = os.path.join(
-    DIR_DATA,
-    'region_id_map.final.tsv',
 )
 
 
@@ -283,14 +278,18 @@ def combine_expanded_and_moh():
         list(map(combine, expanded_data_list)), key=lambda d: d['gnd_id']
     )
     n_combined_data_list = len(combined_data_list)
-    tsv.write(FINAL_REGION_ID_MAP_FILE, combined_data_list)
-    log.info(
-        f'Wrote {n_combined_data_list} rows to {FINAL_REGION_ID_MAP_FILE}'
+    region_id_map_file = get_basic_data_file(
+        'tmp-precensus-', 'region_id_map'
     )
+    tsv.write(region_id_map_file, combined_data_list)
+    log.info(f'Wrote {n_combined_data_list} rows to {region_id_map_file}')
 
 
 def get_region_id_index():
-    data_list = tsv.read(FINAL_REGION_ID_MAP_FILE)
+    region_id_map_file = get_basic_data_file(
+        'tmp-precensus-', 'region_id_map'
+    )
+    data_list = tsv.read(region_id_map_file)
     return dict(
         zip(
             list(map(lambda d: d['gnd_id'], data_list)),
