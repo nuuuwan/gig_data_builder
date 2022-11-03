@@ -286,9 +286,7 @@ def combine_expanded_and_moh():
 
 
 def get_region_id_index():
-    region_id_map_file = get_basic_data_file(
-        'tmp-precensus-', 'region_id_map'
-    )
+    region_id_map_file = get_basic_data_file('', 'region_id_map')
     data_list = tsv.read(region_id_map_file)
     return dict(
         zip(
