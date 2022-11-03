@@ -3,14 +3,14 @@ import os
 from utils import tsv
 
 from gig_data_builder._basic import get_basic_data_index
-from gig_data_builder._constants import DIR_DATA_ELECTIONS, DIR_TMP_DATA
+from gig_data_builder._constants import DIR_DATA_GIG2, DIR_TMP_DATA
 from gig_data_builder._utils import get_data_index, log
 
 
 def check():
     election_2020_index = os.path.join(
-        DIR_DATA_ELECTIONS,
-        'parliamentary_election_2020.tsv',
+        DIR_DATA_GIG2,
+        'government-elections-parliamentary.regions-ec.2020.tsv',
     )
 
     pd_index = get_basic_data_index('pd')
