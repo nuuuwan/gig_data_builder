@@ -59,8 +59,8 @@ def build_geos():
                 )
             )
             valid_polygon_list = list(
-                filter(
-                    lambda polygon: polygon.is_valid,
+                map(
+                    lambda polygon: polygon if polygon.is_valid else polygon.buffer(0),
                     polygon_list,
                 )
             )
