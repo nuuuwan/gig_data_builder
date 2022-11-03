@@ -1,11 +1,7 @@
 """Utils."""
 
-import logging
-
-from utils import tsv
-
-logging.basicConfig(level=logging.INFO)
-log = logging.getLogger('gig_data_builder')
+from utils import tsv, logx
+log = logx.get_logger('gig_data_builder')
 
 
 def get_data_list(file_name):
