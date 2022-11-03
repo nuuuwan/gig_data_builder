@@ -6,7 +6,8 @@ from gig_data_builder._basic import get_basic_data_index
 from gig_data_builder._constants import (DIR_DATA_ELECTIONS,
                                          DIR_ELECTIONS_RESULTS)
 from gig_data_builder._utils import log
-from gig_data_builder.all_region_id_map_and_lg_basic import get_region_id_index
+from gig_data_builder.regions.all_region_id_map_and_lg_basic import \
+    get_region_id_index
 
 PARENT_TYPES = ['country', 'province', 'ed', 'district', 'dsd', 'lg', 'moh']
 
