@@ -7,18 +7,18 @@ from gig_data_builder._basic import (fuzzy_match, get_basic_data,
                                      get_basic_data_file,
                                      get_parent_to_field_to_ids,
                                      store_basic_data)
-from gig_data_builder._constants import DIR_REGION_ID_MAP, DIR_TMP_DATA
+from gig_data_builder._constants import DIR_REGION_ID_MAP, DIR_TMP
 from gig_data_builder._utils import log
 from gig_data_builder.regions.moh_basic_and_region_id_map import \
     MOH_REGION_ID_MAP
 
 REGION_ID_MAP_FILE = os.path.join(
-    DIR_TMP_DATA,
+    DIR_TMP,
     'region_id_map.tsv',
 )
 
 EXPANDED_REGION_ID_MAP_FILE = os.path.join(
-    DIR_TMP_DATA,
+    DIR_TMP,
     'region_id_map.expanded.tsv',
 )
 

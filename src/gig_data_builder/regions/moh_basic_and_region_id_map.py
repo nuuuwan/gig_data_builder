@@ -30,11 +30,11 @@ from utils import tsv
 
 from gig_data_builder._basic import (fuzzy_match, get_parent_to_field_to_ids,
                                      store_basic_data)
-from gig_data_builder._constants import DIR_MOH, DIR_TMP_DATA
+from gig_data_builder._constants import DIR_MOH, DIR_TMP
 from gig_data_builder._utils import log
 
-MOH_GEOJSON_FILE = os.path.join(DIR_TMP_DATA, 'SL_MOH_GN.geo.json')
-MOH_REGION_ID_MAP = os.path.join(DIR_TMP_DATA, 'moh.region_id_map.tsv')
+MOH_GEOJSON_FILE = os.path.join(DIR_TMP, 'SL_MOH_GN.geo.json')
+MOH_REGION_ID_MAP = os.path.join(DIR_TMP, 'moh.region_id_map.tsv')
 PREFIX = '_tmp/precensus-pregeo-'
 
 
