@@ -27,7 +27,7 @@ run census/census.py
 comment "[country|province|dsd|gnd|ed|pd|moh|lg].tsv"
 run census-regions/expand_regions_with_census_info.py
 
-comment "elections/parliamentary_election_*.tsv, elections/presidential_election_*.tsv"
+comment "gig2/government-elections-[presidential|parliamentary].regions-ec.{year}.tsv"
 run elections/elections_results.py
 
 comment "git commit"

@@ -3,7 +3,7 @@ import os
 from utils import jsonx, tsv, www
 
 from gig_data_builder._basic import get_basic_data_index
-from gig_data_builder._constants import (DIR_DATA_ELECTIONS,
+from gig_data_builder._constants import (DIR_DATA_GIG2,
                                          DIR_ELECTIONS_RESULTS)
 from gig_data_builder._utils import log
 from gig_data_builder.regions.all_region_id_map_and_lg_basic import \
@@ -67,8 +67,8 @@ def get_election_data_ground_truth(election_type, year):
 
 def get_election_data_file(election_type, year):
     return os.path.join(
-        DIR_DATA_ELECTIONS,
-        f'{election_type}_election_{year}.tsv',
+        DIR_DATA_GIG2,
+        f'government-elections-{election_type}.regions-ec.{year}.tsv'
     )
 
 
