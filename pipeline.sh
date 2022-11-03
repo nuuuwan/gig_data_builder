@@ -1,6 +1,7 @@
 function run { python3 src/gig_data_builder/$1; }
 function echo_line { echo "--------------------------------"; }
 function comment { echo_line; echo "$1" ; echo_line; }
+function time_id { echo $(date +'%Y-%m-%d-%H%M') ; }
 
 comment "before"
 run init_dirs.py
@@ -29,5 +30,9 @@ run census-regions/expand_regions_with_census_info.py
 comment "elections/parliamentary_election_*.tsv, elections/presidential_election_*.tsv"
 run elections/elections_results.py
 
-echo '----------------------------------------------------------------'
-ls /Users/nuwan.senaratna/Not.Dropbox/_CODING/data/gig-data
+comment "git commit"
+DIR_DATA=/Users/nuwan.senaratna/Not.Dropbox/_CODING/data/gig-data
+cd $DIR_DATA;
+git add *
+git commit -m "[gig_data_builder] Ran pipeline $(time_id)"
+git push origin master
