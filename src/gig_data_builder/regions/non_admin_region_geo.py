@@ -2,14 +2,17 @@ import json
 import logging
 
 from shapely.geometry import Polygon
-from shapely.ops import cascaded_union
+from shapely.ops import unary_union
 
-from gig_data_builder._geo import get_geo_index_for_region_type, save_geo
-from gig_data_builder.all_region_id_map_and_lg_basic import (
+from gig_data_builder._utils import log
+from gig_data_builder.regions._geo import (get_geo_index_for_region_type,
+                                           save_geo)
+from gig_data_builder.regions.all_region_id_map_and_lg_basic import (
     get_basic_data, get_region_id_index, store_basic_data)
 
 logger = logging.getLogger('shapely.geos')
 logger.setLevel(logging.WARNING)
+
 
 def add_centroid_column(region_type, region_to_centroid):
     def add_centroid_to_row(d):
@@ -48,21 +51,27 @@ def build_geos():
                     gnd_ids,
                 )
             )
-            combined_geo = []
-            for gnd_geo in gnd_geos:
-                combined_geo += gnd_geo
-            shape = cascaded_union(
-                list(
-                    map(
-                        lambda polygon: Polygon(polygon),
-                        combined_geo,
-                    )
+
+            polygon_list = list(
+                map(
+                    lambda gnd_geo: Polygon(gnd_geo[0]),
+                    gnd_geos,
                 )
             )
-            save_geo(region_type, parent_id, shape)
+            valid_polygon_list = list(
+                filter(
+                    lambda polygon: polygon.is_valid,
+                    polygon_list,
+                )
+            )
 
-            lng, lat = list(shape.centroid.coords[0])
-            region_to_centroid[parent_id] = json.dumps([lat, lng])
+            shape = unary_union(valid_polygon_list)
+            try:
+                save_geo(region_type, parent_id, shape)
+                lng, lat = list(shape.centroid.coords[0])
+                region_to_centroid[parent_id] = json.dumps([lat, lng])
+            except BaseException:
+                log.error(f'Could not build_geo for: {parent_id}')
 
         add_centroid_column(region_type, region_to_centroid)
 
