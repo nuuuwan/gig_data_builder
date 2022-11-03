@@ -8,6 +8,7 @@ from gig_data_builder._constants import DIR_STATSL_SHAPE
 from gig_data_builder._utils import log
 from gig_data_builder.regions._geo import save_geo
 
+PREFIX = 'tmp-precensus-'
 
 def expand_d(d):
     region_id = d['id']
@@ -103,11 +104,12 @@ def build_region(region_type, file_only, func_map_regions):
         save_geo(region_type, new_d['id'], shape)
 
     data_list = sorted(data_list, key=lambda d: d['id'])
-    store_basic_data(region_type, data_list)
+    store_basic_data(PREFIX, region_type, data_list)
 
 
 def build_country():
     store_basic_data(
+        PREFIX,
         'country',
         [
             {
