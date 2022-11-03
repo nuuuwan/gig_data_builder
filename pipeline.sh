@@ -2,7 +2,7 @@ function run { python3 src/gig_data_builder/$1; }
 function echo_line { echo "--------------------------------"; }
 function comment { echo_line; echo "$1" ; echo_line; }
 
-comment before
+comment "before"
 run init_dirs.py
 
 comment "tmp-precensus-[country|province|dsd|gnd].tsv"
