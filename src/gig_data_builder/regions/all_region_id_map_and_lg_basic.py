@@ -37,7 +37,7 @@ from gig_data_builder._basic import (fuzzy_match, get_basic_data,
 from gig_data_builder._constants import (DIR_DATA, DIR_REGION_ID_MAP,
                                          DIR_TMP_DATA)
 from gig_data_builder._utils import log
-from gig_data_builder.moh_basic_and_region_id_map import MOH_REGION_ID_MAP
+from gig_data_builder.regions.moh_basic_and_region_id_map import MOH_REGION_ID_MAP
 
 REGION_ID_MAP_FILE = os.path.join(
     DIR_TMP_DATA,
