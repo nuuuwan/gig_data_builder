@@ -141,6 +141,8 @@ def expand():
     # Fix missing values
     cleaned_map_data_list = tsv.read(REGION_ID_MAP_FILE)
     all_gnd_ids = set(map(lambda d: d['gnd_id'], get_basic_data('gnd')))
+    basic_data = get_basic_data('tmp-precensus-', 'gnd')
+    all_gnd_ids = set(map(lambda d: d['gnd_id'], basic_data))
     dsd_to_pd_to_n = {}
     dsd_to_lg_to_n = {}
     gnds_without_pds = set()
