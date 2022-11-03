@@ -7,17 +7,17 @@ from gig_data_builder._constants import DIR_DATA
 from gig_data_builder._utils import log
 
 
-def get_basic_data_file(region_type):
-    return os.path.join(DIR_DATA, f'{region_type}.tsv')
+def get_basic_data_file(prefix, region_type):
+    return os.path.join(DIR_DATA, f'{prefix}{region_type}.tsv')
 
 
-def get_basic_data(region_type):
-    basic_data_file = get_basic_data_file(region_type)
+def get_basic_data(prefix, region_type):
+    basic_data_file = get_basic_data_file(prefix, region_type)
     return tsv.read(basic_data_file)
 
 
-def get_basic_data_index(region_type):
-    data_list = get_basic_data(region_type)
+def get_basic_data_index(prefix, region_type):
+    data_list = get_basic_data(prefix, region_type)
     return dict(
         zip(
             list(map(lambda d: d['id'], data_list)),
@@ -26,15 +26,14 @@ def get_basic_data_index(region_type):
     )
 
 
-def store_basic_data(region_type, data_list):
-    basic_data_file = get_basic_data_file(region_type)
+def store_basic_data(prefix, region_type, data_list):
+    basic_data_file = get_basic_data_file(prefix, region_type)
     tsv.write(basic_data_file, data_list)
     n_data_list = len(data_list)
     log.info(f'Wrote {n_data_list} rows to {basic_data_file}')
 
 
 def get_parent_to_field_to_ids(region_type, parent_region_type, field_key):
-    get_basic_data(region_type)
     if parent_region_type is not None:
         field_key_parent_id = parent_region_type + '_id'
     else:
