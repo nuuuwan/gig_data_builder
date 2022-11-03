@@ -35,7 +35,7 @@ def check():
         sanity_data_list,
         key=lambda d: d['pop_per_elector'],
     )
-    sanity_file = os.path.join(DIR_TMP_DATA, 'gig_data_builder.sanity.tsv')
+    sanity_file = os.path.join(DIR_TMP_DATA, 'gig_data_builder.sanity_check_pop_per_elector.tsv')
     tsv.write(sanity_file, sanity_data_list)
     log.info(f'Saved {sanity_file}')
 
