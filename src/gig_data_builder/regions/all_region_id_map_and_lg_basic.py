@@ -140,9 +140,10 @@ def build_map_data_list_list():
 def expand():
     # Fix missing values
     cleaned_map_data_list = tsv.read(REGION_ID_MAP_FILE)
-    all_gnd_ids = set(map(lambda d: d['gnd_id'], get_basic_data('gnd')))
+
     basic_data = get_basic_data('tmp-precensus-', 'gnd')
     all_gnd_ids = set(map(lambda d: d['gnd_id'], basic_data))
+
     dsd_to_pd_to_n = {}
     dsd_to_lg_to_n = {}
     gnds_without_pds = set()
@@ -259,7 +260,7 @@ def build_basic_lg_data():
         lg_id_to_d.values(),
         key=lambda d: d['lg_id'],
     )
-    store_basic_data('lg', basic_data_list)
+    store_basic_data('tmp-precensus-pregeo-', 'lg', basic_data_list)
 
 
 def combine_expanded_and_moh():

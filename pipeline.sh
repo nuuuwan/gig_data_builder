@@ -9,7 +9,7 @@ run elections/elections_basic.py
 # tmp-precensus-pregeo-moh.tsv
 run regions/moh_basic_and_region_id_map.py
 
-# lg.tsv
+# tmp-precensus-pregeo-lg.tsv
 run regions/all_region_id_map_and_lg_basic.py
 
 # census/data.*.tsv etc.
