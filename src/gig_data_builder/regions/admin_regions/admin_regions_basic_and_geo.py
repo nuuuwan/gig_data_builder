@@ -8,6 +8,7 @@ from gig_data_builder._constants import DIR_STATSL_SHAPE
 from gig_data_builder._utils import log
 from gig_data_builder.regions._geo import save_geo
 
+
 def expand_d(d):
     region_id = d['id']
     n_region_id = len(region_id)

@@ -1,6 +1,7 @@
 """Utils."""
 
-from utils import tsv, logx
+from utils import logx, tsv
+
 log = logx.get_logger('gig_data_builder')
 
 
