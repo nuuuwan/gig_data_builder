@@ -15,25 +15,3 @@ This repo contains various utility functions that populate [https://github.com/n
 * [moh](src/gig_data_builder/data_ground_truth/moh) contains Medical Officers of Health (MOH) Region Information.
 
 * [elections_results](src/gig_data_builder/data_ground_truth/elections_results) results of presidential and parliamentary elections after 1978.
-
-# Excluded Data
-
-* Alternate region codes
-* Altitude
-
----
-
-# Change History
-* [2021-10-16 07:14AM] Added Raw Data: statslmap
-* [2021-10-16 07:26AM] Build Basic Province, District, DSD, GND data
-* [2021-10-16] Added Raw Data: region_id_map  
-* [2021-10-16] Build Basic PD, ED, MOH, LG Data (Incomplete)
-* [2021-10-16] Added Raw Data: elections
-* [2021-10-17 04:39PM] Add LG Data
-* [2021-10-17] Add MOH Data
-* [2021-10-17] Add Geo Data for Admin Regions
-* [2021-10-18 08:32AM] Add Census Data
-* [2021-10-18 09:21AM] Added single pipeline
-* [2021-10-18 10:36AM] Added Non-Admin Region Geos
-* [2021-10-18 10:37AM] expand with ints etc
-* [2021-10-18 01:55PM] Added Election Results
