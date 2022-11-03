@@ -43,7 +43,7 @@ def save_geo(region_type, region_id, shape):
         geo_data = list(
             map(
                 lambda polygon: list(polygon.exterior.coords),
-                shape,
+                shape.geoms,
             )
         )
     else:
