@@ -4,7 +4,7 @@ from utils import dt, jsonx, tsv
 
 from gig_data_builder._constants import DIR_DATA_CENSUS, DIR_STATSL_DATA
 from gig_data_builder._utils import get_data_index, get_data_list, log
-from gig_data_builder.all_region_id_map_and_lg_basic import get_region_id_index
+from gig_data_builder.regions.all_region_id_map_and_lg_basic import get_region_id_index
 
 METADATA_TABLES_FILE = os.path.join(DIR_STATSL_DATA, 'tables.json')
 METADATA_FIELDS_FILE = os.path.join(DIR_STATSL_DATA, 'fields.json')
@@ -48,7 +48,7 @@ def build():
             gnd_id = d['entity_id']
             regions = region_id_index.get(gnd_id)
             if regions is None:
-                log.error('No region info for gnd: %s', gnd_id)
+                log.error(f'No region info for gnd: {gnd_id}' )
                 continue
 
             for region_type in [
@@ -87,7 +87,7 @@ def build():
         table_name = dt.to_snake(table_metadata['Title'])
         table_file = get_census_table_file(table_name)
         tsv.write(table_file, table_data_list)
-        log.info(f'Writing {n_table_data_list} rows to {table_file}')
+        log.debug(f'Writing {n_table_data_list} rows to {table_file}')
 
 
 def get_census_data_list(table_name):
