@@ -136,7 +136,7 @@ def expand():
     # Fix missing values
     cleaned_map_data_list = tsv.read(REGION_ID_MAP_FILE)
 
-    basic_data = get_basic_data('tmp-precensus-', 'gnd')
+    basic_data = get_basic_data('_tmp/precensus-', 'gnd')
     all_gnd_ids = set(map(lambda d: d['gnd_id'], basic_data))
 
     dsd_to_pd_to_n = {}
@@ -255,7 +255,7 @@ def build_basic_lg_data():
         lg_id_to_d.values(),
         key=lambda d: d['lg_id'],
     )
-    store_basic_data('tmp-precensus-pregeo-', 'lg', basic_data_list)
+    store_basic_data('_tmp/precensus-pregeo-', 'lg', basic_data_list)
 
 
 def combine_expanded_and_moh():
@@ -279,7 +279,7 @@ def combine_expanded_and_moh():
     )
     n_combined_data_list = len(combined_data_list)
     region_id_map_file = get_basic_data_file(
-        'tmp-precensus-', 'region_id_map'
+        '_tmp/precensus-', 'region_id_map'
     )
     tsv.write(region_id_map_file, combined_data_list)
     log.info(f'Wrote {n_combined_data_list} rows to {region_id_map_file}')
@@ -289,7 +289,7 @@ def get_region_id_index():
     region_id_map_file = get_basic_data_file('', 'region_id_map')
     if not os.path.exists(region_id_map_file):
         region_id_map_file = get_basic_data_file(
-            'tmp-precensus-', 'region_id_map'
+            '_tmp/precensus-', 'region_id_map'
         )
     data_list = tsv.read(region_id_map_file)
     return dict(

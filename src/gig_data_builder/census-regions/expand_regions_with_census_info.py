@@ -31,7 +31,7 @@ def expand_all():
         data_list = list(
             map(
                 expand_row,
-                get_basic_data('tmp-precensus-', region_type),
+                get_basic_data('_tmp/precensus-', region_type),
             )
         )
         store_basic_data('', region_type, data_list)

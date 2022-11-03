@@ -6,19 +6,19 @@ function time_id { echo $(date +'%Y-%m-%d-%H%M') ; }
 comment "before"
 run init_dirs.py
 
-comment "tmp-precensus-[country|province|dsd|gnd].tsv"
+comment "_tmp/precensus-[country|province|dsd|gnd].tsv"
 run regions/admin_regions_basic_and_geo.py
 
-comment "tmp-precensus-pregeo-[ed|pd].tsv"
+comment "_tmp/precensus-pregeo-[ed|pd].tsv"
 run regions/elections_basic.py
 
-comment "tmp-precensus-pregeo-moh.tsv"
+comment "_tmp/precensus-pregeo-moh.tsv"
 run regions/moh_basic_and_region_id_map.py
 
-comment "tmp-precensus-pregeo-lg.tsv, tmp-precensus-region_id_map.tsv"
+comment "_tmp/precensus-pregeo-lg.tsv, _tmp/precensus-region_id_map.tsv"
 run regions/all_region_id_map_and_lg_basic.py
 
-comment "tmp-precensus-[ed|pd|moh|lg].tsv"
+comment "_tmp/precensus-[ed|pd|moh|lg].tsv"
 run regions/non_admin_region_geo.py
 
 comment "census/data.*.tsv etc."

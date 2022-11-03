@@ -1,7 +1,7 @@
 import os
 
 from gig_data_builder._utils import log
-from gig_data_builder._constants import (DIR_DATA, DIR_DATA_CENSUS,
+from gig_data_builder._constants import (DIR_DATA, DIR_TMP, DIR_DATA_CENSUS,
                                          DIR_DATA_ELECTIONS, DIR_DATA_GEO, DIR_DATA_GIG2)
 
 

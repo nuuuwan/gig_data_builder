@@ -44,8 +44,8 @@ def get_parent_to_field_to_ids(region_type, parent_region_type, field_key):
 
     parent_to_field_to_ids = {}
     basic_data = get_basic_data(
-        'tmp-precensus-', region_type
-    ) or get_basic_data('tmp-precensus-pregeo-', region_type)
+        '_tmp/precensus-', region_type
+    ) or get_basic_data('_tmp/precensus-pregeo-', region_type)
 
     for d in basic_data:
         id = d['id']

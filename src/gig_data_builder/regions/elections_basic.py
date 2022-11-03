@@ -4,7 +4,7 @@ from gig_data_builder._basic import get_basic_data_file
 from gig_data_builder._constants import DIR_ELECTIONS
 from gig_data_builder._utils import log
 
-PREFIX = 'tmp-precensus-pregeo-'
+PREFIX = '_tmp/precensus-pregeo-'
 
 if __name__ == '__main__':
     pd_basic_file = get_basic_data_file(PREFIX, 'pd')

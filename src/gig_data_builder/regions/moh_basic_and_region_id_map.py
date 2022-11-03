@@ -35,7 +35,7 @@ from gig_data_builder._utils import log
 
 MOH_GEOJSON_FILE = os.path.join(DIR_TMP_DATA, 'SL_MOH_GN.geo.json')
 MOH_REGION_ID_MAP = os.path.join(DIR_TMP_DATA, 'moh.region_id_map.tsv')
-PREFIX = 'tmp-precensus-pregeo-'
+PREFIX = '_tmp/precensus-pregeo-'
 
 
 def convert_shp_to_geojson():
