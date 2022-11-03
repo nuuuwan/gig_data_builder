@@ -301,8 +301,12 @@ def get_region_id_index():
     )
 
 
-if __name__ == '__main__':
+def main():
     build_map_data_list_list()
     expand()
     build_basic_lg_data()
     combine_expanded_and_moh()
+
+
+if __name__ == '__main__':
+    main()

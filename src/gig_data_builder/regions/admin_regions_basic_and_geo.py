@@ -132,6 +132,10 @@ def build_all_regions():
         )
 
 
-if __name__ == '__main__':
+def main():
     build_country()
     build_all_regions()
+
+
+if __name__ == '__main__':
+    main()

@@ -133,7 +133,11 @@ def build_basic_moh_data():
     store_basic_data(PREFIX, 'moh', basic_data_list)
 
 
-if __name__ == '__main__':
+def main():
     convert_shp_to_geojson()
     parse()
     build_basic_moh_data()
+
+
+if __name__ == '__main__':
+    main()

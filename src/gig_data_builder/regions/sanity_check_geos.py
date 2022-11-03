@@ -40,7 +40,7 @@ def save_geo_image(region_type, func_filter=None, image_file_prefix=None):
     plt.close()
 
 
-if __name__ == '__main__':
+def main():
     save_geo_image(
         'pd',
         lambda file_name: 'EC-01' in file_name,
@@ -78,3 +78,7 @@ if __name__ == '__main__':
         'gnd',
     ]:
         save_geo_image(region_type)
+
+
+if __name__ == '__main__':
+    main()

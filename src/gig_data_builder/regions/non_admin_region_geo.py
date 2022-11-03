@@ -29,7 +29,7 @@ def add_centroid_column(region_type, region_to_centroid):
     store_basic_data('_tmp/precensus-', region_type, data_list)
 
 
-def build_geos():
+def main():
     region_id_index = get_region_id_index()
     geo_index = get_geo_index_for_region_type('gnd')
     for region_type in ['ed', 'pd', 'moh', 'lg']:
@@ -80,4 +80,4 @@ def build_geos():
 
 
 if __name__ == '__main__':
-    build_geos()
+    main()

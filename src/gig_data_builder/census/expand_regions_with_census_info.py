@@ -5,7 +5,7 @@ from gig_data_builder._constants import DIR_DATA_GIG2
 from gig_data_builder._utils import get_data_index, log
 
 
-def expand_all():
+def main():
     population_index = get_data_index(
         os.path.join(DIR_DATA_GIG2, 'population-total.regions.2012.tsv')
     )
@@ -43,4 +43,4 @@ def expand_all():
 
 
 if __name__ == '__main__':
-    expand_all()
+    main()

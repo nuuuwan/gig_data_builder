@@ -7,7 +7,7 @@ from gig_data_builder._constants import DIR_DATA_GIG2, DIR_DATA_TMP
 from gig_data_builder._utils import get_data_index, log
 
 
-def check():
+def main():
     election_2020_index = os.path.join(
         DIR_DATA_GIG2,
         'government-elections-parliamentary.regions-ec.2020.tsv',
@@ -43,4 +43,4 @@ def check():
 
 
 if __name__ == '__main__':
-    check()
+    main()

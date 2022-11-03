@@ -30,7 +30,7 @@ def get_table_name_to_file_name():
     return table_name_to_file_name
 
 
-def build():
+def main():
     metadata_tables = jsonx.read(METADATA_TABLES_FILE)
     metadata_fields = jsonx.read(METADATA_FIELDS_FILE)
     region_id_index = get_region_id_index()
@@ -108,4 +108,4 @@ def build():
 
 
 if __name__ == '__main__':
-    build()
+    main()
