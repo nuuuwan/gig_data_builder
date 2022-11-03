@@ -51,13 +51,17 @@ def reverse_download():
                 func_get_file(year),
             )
             data = www.read_json(remote_url)
-            data_file = get_election_data_ground_truth_file(election_type, year)
+            data_file = get_election_data_ground_truth_file(
+                election_type, year
+            )
             jsonx.write(data_file, data)
             log.info(f'Downloaded from {remote_url} to {data_file}')
 
 
 def get_election_data_ground_truth(election_type, year):
-    return jsonx.read(get_election_data_ground_truth_file(election_type, year))
+    return jsonx.read(
+        get_election_data_ground_truth_file(election_type, year)
+    )
 
 
 def get_election_data_file(election_type, year):
