@@ -13,6 +13,8 @@ def get_basic_data_file(prefix, region_type):
 
 def get_basic_data(prefix, region_type):
     basic_data_file = get_basic_data_file(prefix, region_type)
+    if not os.path.exists(basic_data_file):
+        return None
     return tsv.read(basic_data_file)
 
 
@@ -40,7 +42,11 @@ def get_parent_to_field_to_ids(region_type, parent_region_type, field_key):
         parent_id = 'LK'
 
     parent_to_field_to_ids = {}
-    for d in get_basic_data('tmp-precensus-', region_type):
+    basic_data = get_basic_data(
+        'tmp-precensus-', region_type
+    ) or get_basic_data('tmp-precensus-pregeo-', region_type)
+
+    for d in basic_data:
         id = d['id']
         if parent_region_type is not None:
             parent_id = d[field_key_parent_id]
