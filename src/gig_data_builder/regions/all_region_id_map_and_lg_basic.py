@@ -57,8 +57,8 @@ def build_map_data_list_list():
     def clean(x):
         [i, d] = x
         if (i + 1) % 1_000 == 0:
-            gnd_id = d['GND_N']
-            log.debug(f'{i + 1}) cleaning {gnd_id}')
+            gnd_name = d['GND_N']
+            log.debug(f'{i + 1}) Cleaning {gnd_name}')
         country_id = 'LK'
         province_id = fuzzy_match(
             d['PROVINCE_N'],
