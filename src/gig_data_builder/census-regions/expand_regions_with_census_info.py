@@ -1,10 +1,15 @@
-from gig_data_builder._basic import get_basic_data, store_basic_data
+import os
+
+from gig_data_builder._basic import (get_basic_data, get_data_index,
+                                     store_basic_data)
+from gig_data_builder._constants import DIR_DATA_GIG2
 from gig_data_builder._utils import log
-from gig_data_builder.census.census import get_census_data_index
 
 
 def expand_all():
-    population_index = get_census_data_index('total_population')
+    population_index = get_data_index(
+        os.path.join(DIR_DATA_GIG2, 'population-total.regions.2012.tsv')
+    )
 
     def expand_row(d):
         if 'id' in d:
