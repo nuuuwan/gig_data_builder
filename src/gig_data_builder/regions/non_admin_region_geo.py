@@ -19,13 +19,14 @@ def add_centroid_column(region_type, region_to_centroid):
         d['centroid'] = region_to_centroid.get(d['id'])
         return d
 
+    basic_data = get_basic_data('tmp-precensus-pregeo-', region_type)
     data_list = list(
         map(
             add_centroid_to_row,
-            get_basic_data(region_type),
+            basic_data,
         )
     )
-    store_basic_data(region_type, data_list)
+    store_basic_data('tmp-precensus-', region_type, data_list)
 
 
 def build_geos():

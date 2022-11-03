@@ -12,6 +12,9 @@ run regions/moh_basic_and_region_id_map.py
 # tmp-precensus-pregeo-lg.tsv
 run regions/all_region_id_map_and_lg_basic.py
 
+# tmp-precensus-[ed|pd|moh|lg].tsv
+run regions/non_admin_region_geo.py
+
 # census/data.*.tsv etc.
 
 run census/census.py
@@ -23,9 +26,6 @@ run census-regions/expand_regions_with_census_info.py
 # elections/parliamentary_election_*.tsv, elections/presidential_election_*.tsv
 
 run elections/elections_results.py
-
-# geos for ed, pd, moh, lg
-run regions/non_admin_region_geo.py
 
 echo '----------------------------------------------------------------'
 ls /Users/nuwan.senaratna/Not.Dropbox/_CODING/data/gig-data
