@@ -24,5 +24,8 @@ run census-regions/expand_regions_with_census_info.py
 
 run elections/elections_results.py
 
+# geos for ed, pd, moh, lg
+run regions/non_admin_region_geo.py
+
 echo '----------------------------------------------------------------'
 ls /Users/nuwan.senaratna/Not.Dropbox/_CODING/data/gig-data
