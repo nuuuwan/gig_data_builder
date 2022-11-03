@@ -52,6 +52,10 @@ def get_parent_to_field_to_ids(region_type, parent_region_type, field_key):
         if field_value not in parent_to_field_to_ids[parent_id]:
             parent_to_field_to_ids[parent_id][field_value] = []
         parent_to_field_to_ids[parent_id][field_value].append(id)
+    log.debug(
+        'Built parent_to_field_to_ids for'
+        + f' {region_type}/{parent_region_type}'
+    )
     return parent_to_field_to_ids
 
 
