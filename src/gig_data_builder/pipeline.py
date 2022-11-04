@@ -27,8 +27,8 @@ _ = print_title
 def testMain():
     assert TEST_MODE
 
-    _("_tmp/precensus-pregeo-lg.tsv _tmp/precensus-region_id_map.tsv")
-    all_region_id_map_and_lg_basic.main()
+    _("_tmp/precensus-pregeo-moh.tsv")
+    moh_basic_and_region_id_map.main()
 
 
 def main():
@@ -37,7 +37,10 @@ def main():
 
     _("_tmp/precensus-country.tsv")
     build_precensus_ent_for_country.main()
-    _("_tmp/precensus-[province|dsd|gnd].tsv")
+    _(
+        "_tmp/precensus-[province|district|dsd].tsv"
+        + " _tmp/premoh-prelg-precensus-gnd.tsv"
+    )
     build_precensus_ent_for_admin_regions.main()
     _("geo/[country|province|dsd|gnd]/*.json")
     build_geo_for_admin_regions.main()
