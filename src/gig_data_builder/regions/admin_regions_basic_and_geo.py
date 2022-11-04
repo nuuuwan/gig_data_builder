@@ -5,7 +5,6 @@ import geopandas
 
 from gig_data_builder._basic import store_basic_data
 from gig_data_builder._constants import DIR_STATSL_SHAPE
-from gig_data_builder._utils import log
 from gig_data_builder.regions._geo import save_geo
 
 PREFIX = '_tmp/precensus-'
@@ -64,31 +63,31 @@ def map_gnds(d):
     }
 
 
-REGION_CONFIG_LIST = [
-    {
-        'region_type': 'province',
+REGION_CONFIG_IDX = {
+    "province": {
         'file_only': 'Provinces.json',
         'map_regions': map_provinces,
     },
-    {
-        'region_type': 'district',
+    "district": {
         'file_only': 'Districts.json',
         'map_regions': map_districts,
     },
-    {
-        'region_type': 'dsd',
+    "dsd": {
         'file_only': 'DSDivisions.json',
         'map_regions': map_dsds,
     },
-    {
-        'region_type': 'gnd',
+    "gnd": {
         'file_only': 'GNDivisions.json',
         'map_regions': map_gnds,
     },
-]
+}
 
 
-def build_region(region_type, file_only, map_regions):
+def build_region(region_type):
+    config = REGION_CONFIG_IDX[region_type]
+    file_only = config['file_only']
+    map_regions = config['map_regions']
+
     topojson_file = os.path.join(DIR_STATSL_SHAPE, file_only)
     df = geopandas.read_file(topojson_file)
 
@@ -123,12 +122,8 @@ def build_precensus_ent_for_country():
 
 
 def build_all_regions():
-    for config in REGION_CONFIG_LIST:
-        build_region(
-            config['region_type'],
-            config['file_only'],
-            config['map_regions'],
-        )
+    for region_type in ["province", "district", "dsd", "gnd"]:
+        build_region(region_type)
 
 
 def main():
