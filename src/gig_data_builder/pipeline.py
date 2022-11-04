@@ -4,7 +4,8 @@ from elections import elections_results, sanity_check_pop_per_elector
 from regions import (all_region_id_map_and_lg_basic,
                      build_geo_for_admin_regions,
                      build_precensus_ent_for_admin_regions,
-                     build_precensus_ent_for_country, elections_basic,
+                     build_precensus_ent_for_country,
+                     build_precensus_pregeo_ent_for_election_regions,
                      moh_basic_and_region_id_map, non_admin_region_geo,
                      sanity_check_geos)
 
@@ -28,17 +29,17 @@ def main():
         _("initialize dirs")
         init_dirs.main()
 
-    _("_tmp/precensus-country.tsv")
-    build_precensus_ent_for_country.main()
-    _("_tmp/precensus-[province|dsd|gnd].tsv")
-    build_precensus_ent_for_admin_regions.main()
-    _("geo/[country|province|dsd|gnd]/*.json")
-    build_geo_for_admin_regions.main()
+        _("_tmp/precensus-country.tsv")
+        build_precensus_ent_for_country.main()
+        _("_tmp/precensus-[province|dsd|gnd].tsv")
+        build_precensus_ent_for_admin_regions.main()
+        _("geo/[country|province|dsd|gnd]/*.json")
+        build_geo_for_admin_regions.main()
+
+    _("_tmp/precensus-pregeo-[ed|pd].tsv")
+    build_precensus_pregeo_ent_for_election_regions.main()
 
     if not TEST_MODE:
-        _("_tmp/precensus-pregeo-[ed|pd].tsv")
-        elections_basic.main()
-
         _("_tmp/precensus-pregeo-moh.tsv")
         moh_basic_and_region_id_map.main()
 
