@@ -32,7 +32,6 @@ def main():
         'pd',
         'moh',
         'lg',
-        'region_id_map',
     ]:
         data_list = list(
             map(
