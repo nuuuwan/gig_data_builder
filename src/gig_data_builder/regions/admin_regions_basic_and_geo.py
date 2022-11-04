@@ -8,7 +8,7 @@ from gig_data_builder._constants import DIR_STATSL_SHAPE
 from gig_data_builder.regions._geo import save_geo
 
 
-def expand_data(d):
+def add_parent_ids(d):
     region_id = d['id']
     n_region_id = len(region_id)
     for parent_type, n_parent_id in [
@@ -91,7 +91,7 @@ def build_region(region_type):
 
     data_list = []
     for d in df.to_dict('records'):
-        expanded_d = expand_data(map_regions(d))
+        expanded_d = add_parent_ids(map_regions(d))
         data_list.append(expanded_d)
 
         shape = d['geometry']
