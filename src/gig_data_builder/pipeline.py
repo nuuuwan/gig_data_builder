@@ -27,8 +27,8 @@ _ = print_title
 def testMain():
     assert TEST_MODE
 
-    _("_tmp/precensus-pregeo-moh.tsv")
-    moh_basic_and_region_id_map.main()
+    _("_tmp/precensus-pregeo-lg.tsv _tmp/precensus-region_id_map.tsv")
+    all_region_id_map_and_lg_basic.main()
 
 
 def main():
