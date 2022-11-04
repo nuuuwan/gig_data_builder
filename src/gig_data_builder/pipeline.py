@@ -25,11 +25,10 @@ _ = print_title
 
 
 def testMain():
-    assert(TEST_MODE)
+    assert TEST_MODE
 
     _("_tmp/precensus-pregeo-moh.tsv")
     moh_basic_and_region_id_map.main()
-
 
 
 def main():
