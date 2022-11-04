@@ -23,62 +23,27 @@ def get_parent_ids_idx(region_id):
     return d
 
 
-def expand_provinces(d):
-    province_id = 'LK-%s' % d['prov_c']
-    return {
-        'id': province_id,
-        'province_id': province_id,
-        'name': d['prov_n'],
-    }
-
-
-def expand_districts(d):
-    district_id = 'LK-%s' % d['dis_c']
-    province_id = district_id[:-4]
-    return {
-        'id': district_id,
-        'district_id': district_id,
-        'province_id': province_id,
-        'name': d['dis_n'],
-    }
-
-
-def expand_dsds(d):
-    dsd_id = 'LK-%s' % d['dsd_c']
-    return {
-        'id': dsd_id,
-        'dsd_id': dsd_id,
-        'name': d['dsd_n'],
-    }
-
-
-def expand_gnds(d):
-    gnd_id = 'LK-%s' % d['code']
-    gnd_num = d['gnnum']
-    return {
-        'id': gnd_id,
-        'gnd_id': gnd_id,
-        'gnd_num': gnd_num,
-        'name': d['name'],
-    }
-
-
 REGION_CONFIG_IDX = {
     "province": {
         'file_only': 'Provinces.json',
-        'expand_region_custom': expand_provinces,
+        'id_base_key': 'prov_c',
+        'name_key': 'prov_n',
     },
     "district": {
         'file_only': 'Districts.json',
-        'expand_region_custom': expand_districts,
+        'id_base_key': 'dis_c',
+        'name_key': 'dis_n',
     },
     "dsd": {
         'file_only': 'DSDivisions.json',
-        'expand_region_custom': expand_dsds,
+        'id_base_key': 'dsd_c',
+        'name_key': 'dsd_n',
     },
     "gnd": {
         'file_only': 'GNDivisions.json',
-        'expand_region_custom': expand_gnds,
+        'id_base_key': 'code',
+        'name_key': 'name',
+        'other_fields_key_map': {'gnd_num': 'gnnum'},
     },
 }
 
@@ -89,8 +54,15 @@ def get_centroid(d):
     return json.dumps([lat, lng])
 
 
-def expand_region(d, expand_region_custom):
-    expanded_d = expand_region_custom(d)
+def expand_region(d, config):
+    expanded_d = {}
+    expanded_d['id'] = 'LK-' + str(d[config['id_base_key']])
+    expanded_d['name'] = d[config['name_key']]
+    other_fields_key_map = config.get('other_fields_key_map')
+    if other_fields_key_map:
+        for k1, k2 in other_fields_key_map.items():
+            expanded_d[k1] = d[k2]
+
     expanded_d.update(get_parent_ids_idx(expanded_d['id']))
     expanded_d['centroid'] = get_centroid(d)
     return expanded_d
@@ -99,14 +71,13 @@ def expand_region(d, expand_region_custom):
 def build_region(region_type):
     config = REGION_CONFIG_IDX[region_type]
     file_only = config['file_only']
-    expand_region_custom = config['expand_region_custom']
 
     topojson_file = os.path.join(DIR_STATSL_SHAPE, file_only)
     df = geopandas.read_file(topojson_file)
 
     data_list = []
     for d in df.to_dict('records'):
-        expanded_d = expand_region(d, expand_region_custom)
+        expanded_d = expand_region(d, config)
         data_list.append(expanded_d)
         save_geo(region_type, expanded_d['id'], d['geometry'])
 
