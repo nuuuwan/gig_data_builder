@@ -68,21 +68,36 @@ def expand_region(d, config):
     return expanded_d
 
 
-def build_region(region_type):
-    config = REGION_CONFIG_IDX[region_type]
+def get_df(config):
     file_only = config['file_only']
-
     topojson_file = os.path.join(DIR_STATSL_SHAPE, file_only)
-    df = geopandas.read_file(topojson_file)
+    return geopandas.read_file(topojson_file)
 
-    data_list = []
-    for d in df.to_dict('records'):
-        expanded_d = expand_region(d, config)
-        data_list.append(expanded_d)
-        save_geo(region_type, expanded_d['id'], d['geometry'])
 
-    data_list = sorted(data_list, key=lambda d: d['id'])
+def build_precensus_ent_for_regions(region_type):
+    config = REGION_CONFIG_IDX[region_type]
+    df = get_df(config)
+
+    data_list = sorted(
+        list(
+            map(
+                lambda d: expand_region(d, config),
+                df.to_dict('records'),
+            )
+        ),
+        key=lambda d: d['id'],
+    )
+
     store_basic_data('_tmp/precensus-', region_type, data_list)
+
+
+def build_geo_for_regions(region_type):
+    config = REGION_CONFIG_IDX[region_type]
+    df = get_df(config)
+
+    for d in df.to_dict('records'):
+        id = 'LK-' + str(d[config['id_base_key']])
+        save_geo(region_type, id, d['geometry'])
 
 
 def build_precensus_ent_for_country():
@@ -100,14 +115,11 @@ def build_precensus_ent_for_country():
     )
 
 
-def build_all_regions():
-    for region_type in ["province", "district", "dsd", "gnd"]:
-        build_region(region_type)
-
-
 def main():
     build_precensus_ent_for_country()
-    build_all_regions()
+    for region_type in ["province", "district", "dsd", "gnd"]:
+        build_precensus_ent_for_regions(region_type)
+        build_geo_for_regions(region_type)
 
 
 if __name__ == '__main__':
