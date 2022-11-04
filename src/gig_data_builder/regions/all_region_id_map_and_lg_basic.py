@@ -30,23 +30,23 @@ def build_map_data_list_list():
     raw_map_data_list = tsv.read(raw_map_file)
 
     parent_to_province_name_to_ids = get_parent_to_field_to_ids(
-        'province', None, 'name'
+        None, 'name', 'province',
     )
     parent_to_district_name_to_ids = get_parent_to_field_to_ids(
-        'district', 'province', 'name'
+        'province', 'name', 'district',
     )
     parent_to_dsd_name_to_ids = get_parent_to_field_to_ids(
-        'dsd', 'district', 'name'
+        'district', 'name', 'dsd',
     )
     parent_to_gnd_name_to_ids = get_parent_to_field_to_ids(
-        'gnd', 'dsd', 'name'
+        'dsd', 'name', 'gnd',
     )
     parent_to_gnd_num_to_ids = get_parent_to_field_to_ids(
-        'gnd', 'dsd', 'gnd_num'
+        'dsd', 'gnd_num', 'gnd',
     )
 
     parent_to_pd_name_to_ids = get_parent_to_field_to_ids(
-        'pd', 'district', 'name'
+        'district', 'name', 'pd',
     )
 
     def clean(x):

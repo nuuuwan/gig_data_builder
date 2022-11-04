@@ -36,7 +36,7 @@ def store_basic_data(prefix, region_type, data_list):
     log.info(f'Wrote {n_data_list} rows to {basic_data_file}')
 
 
-def get_parent_to_field_to_ids(region_type, parent_region_type, field_key):
+def get_parent_to_field_to_ids(parent_region_type, field_key, region_type):
     if parent_region_type is not None:
         field_key_parent_id = parent_region_type + '_id'
     else:

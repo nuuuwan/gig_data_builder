@@ -30,7 +30,7 @@ def parse():
     data_list = get_raw_moh_data_list()
 
     parent_to_gnd_num_to_ids = get_parent_to_field_to_ids(
-        'gnd', 'district', 'gnd_num'
+        'district', 'gnd_num', 'gnd'
     )
 
     moh_data_list = []
