@@ -7,15 +7,16 @@ from gig_data_builder._basic import store_basic_data
 from gig_data_builder._constants import DIR_STATSL_SHAPE
 from gig_data_builder.regions._geo import save_geo
 
+REGION_TYPE_TO_ID_LEN = {
+    'province': 4,
+    'district': 5,
+    'dsd': 7,
+}
 
 def add_parent_ids(d):
     region_id = d['id']
     n_region_id = len(region_id)
-    for parent_type, n_parent_id in [
-        ['province', 4],
-        ['district', 5],
-        ['dsd', 7],
-    ]:
+    for parent_type, n_parent_id in REGION_TYPE_TO_ID_LEN.items():
         if n_region_id >= n_parent_id:
             d[parent_type + '_id'] = region_id[:n_parent_id]
     return d
