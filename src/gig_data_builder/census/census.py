@@ -2,11 +2,10 @@ import os
 
 from utils import TSVFile, dt, jsonx, tsv
 
+from gig_data_builder import _basic
 from gig_data_builder._constants import (DIR_DATA_GIG2, DIR_RAW_DATA,
                                          DIR_STATSL_DATA)
 from gig_data_builder._utils import log
-from gig_data_builder.regions.all_region_id_map_and_lg_basic import \
-    get_region_id_index
 
 METADATA_TABLES_FILE = os.path.join(DIR_STATSL_DATA, 'tables.json')
 METADATA_FIELDS_FILE = os.path.join(DIR_STATSL_DATA, 'fields.json')
@@ -33,7 +32,7 @@ def get_table_name_to_file_name():
 def main():
     metadata_tables = jsonx.read(METADATA_TABLES_FILE)
     metadata_fields = jsonx.read(METADATA_FIELDS_FILE)
-    region_id_index = get_region_id_index()
+    gnd_data_index = _basic.get_basic_data_index('_tmp/precensus-', 'gnd')
     table_name_to_file_name = get_table_name_to_file_name()
 
     for table_id, table_metadata in metadata_tables.items():
@@ -63,8 +62,8 @@ def main():
         parent_to_k_to_v = {}
         for d in table_data_list:
             gnd_id = d['entity_id']
-            regions = region_id_index.get(gnd_id)
-            if regions is None:
+            gnd = gnd_data_index.get(gnd_id)
+            if gnd is None:
                 log.error(f'No region info for gnd: {gnd_id}')
                 continue
 
@@ -78,7 +77,7 @@ def main():
                 'lg',
                 'moh',
             ]:
-                parent_id = regions.get(region_type + '_id', None)
+                parent_id = gnd.get(region_type + '_id', None)
                 if parent_id is None or parent_id == '':
                     continue
 
