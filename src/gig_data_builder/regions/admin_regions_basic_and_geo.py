@@ -66,19 +66,19 @@ def expand_gnds(d):
 REGION_CONFIG_IDX = {
     "province": {
         'file_only': 'Provinces.json',
-        'expand_regions': expand_provinces,
+        'expand_region_custom': expand_provinces,
     },
     "district": {
         'file_only': 'Districts.json',
-        'expand_regions': expand_districts,
+        'expand_region_custom': expand_districts,
     },
     "dsd": {
         'file_only': 'DSDivisions.json',
-        'expand_regions': expand_dsds,
+        'expand_region_custom': expand_dsds,
     },
     "gnd": {
         'file_only': 'GNDivisions.json',
-        'expand_regions': expand_gnds,
+        'expand_region_custom': expand_gnds,
     },
 }
 
@@ -92,14 +92,14 @@ def get_centroid(d):
 def build_region(region_type):
     config = REGION_CONFIG_IDX[region_type]
     file_only = config['file_only']
-    expand_regions = config['expand_regions']
+    expand_region_custom = config['expand_region_custom']
 
     topojson_file = os.path.join(DIR_STATSL_SHAPE, file_only)
     df = geopandas.read_file(topojson_file)
 
     data_list = []
     for d in df.to_dict('records'):
-        expanded_d = expand_regions(d)
+        expanded_d = expand_region_custom(d)
         expanded_d.update(get_parent_ids_idx(expanded_d['id']))
         expanded_d['centroid'] = get_centroid(d)
         data_list.append(expanded_d)
