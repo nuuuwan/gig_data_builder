@@ -23,7 +23,7 @@ def add_parent_ids(d):
     return d
 
 
-def map_provinces(d):
+def expand_provinces(d):
     province_id = 'LK-%s' % d['prov_c']
     return {
         'id': province_id,
@@ -32,7 +32,7 @@ def map_provinces(d):
     }
 
 
-def map_districts(d):
+def expand_districts(d):
     district_id = 'LK-%s' % d['dis_c']
     province_id = district_id[:-4]
     return {
@@ -43,7 +43,7 @@ def map_districts(d):
     }
 
 
-def map_dsds(d):
+def expand_dsds(d):
     dsd_id = 'LK-%s' % d['dsd_c']
     return {
         'id': dsd_id,
@@ -52,7 +52,7 @@ def map_dsds(d):
     }
 
 
-def map_gnds(d):
+def expand_gnds(d):
     gnd_id = 'LK-%s' % d['code']
     gnd_num = d['gnnum']
     return {
@@ -66,19 +66,19 @@ def map_gnds(d):
 REGION_CONFIG_IDX = {
     "province": {
         'file_only': 'Provinces.json',
-        'map_regions': map_provinces,
+        'expand_regions': expand_provinces,
     },
     "district": {
         'file_only': 'Districts.json',
-        'map_regions': map_districts,
+        'expand_regions': expand_districts,
     },
     "dsd": {
         'file_only': 'DSDivisions.json',
-        'map_regions': map_dsds,
+        'expand_regions': expand_dsds,
     },
     "gnd": {
         'file_only': 'GNDivisions.json',
-        'map_regions': map_gnds,
+        'expand_regions': expand_gnds,
     },
 }
 
@@ -86,14 +86,15 @@ REGION_CONFIG_IDX = {
 def build_region(region_type):
     config = REGION_CONFIG_IDX[region_type]
     file_only = config['file_only']
-    map_regions = config['map_regions']
+    expand_regions = config['expand_regions']
 
     topojson_file = os.path.join(DIR_STATSL_SHAPE, file_only)
     df = geopandas.read_file(topojson_file)
 
     data_list = []
     for d in df.to_dict('records'):
-        expanded_d = add_parent_ids(map_regions(d))
+        expanded_d = expand_regions(d)
+        expanded_d = add_parent_ids(expanded_d)
         data_list.append(expanded_d)
 
         shape = d['geometry']
