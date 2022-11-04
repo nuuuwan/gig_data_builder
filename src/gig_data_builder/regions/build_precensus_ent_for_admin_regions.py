@@ -31,7 +31,7 @@ def build_precensus_ent_for_admin_regions(region_type):
     )
 
     if region_type == 'gnd':
-        prefix = '_tmp/precensus-prelg-premoh'
+        prefix = '_tmp/premoh-prelg-precensus'
     else:
         prefix = '_tmp/precensus-'
 
