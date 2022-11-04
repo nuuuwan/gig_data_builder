@@ -30,3 +30,14 @@ def dedupe(d_list, func_key):
             )
         ).values(),
     )
+
+
+def parse_float(x):
+    try:
+        return (float)(x)
+    except BaseException:
+        return 0
+
+
+def parse_int(x):
+    return (int)(parse_float(x))

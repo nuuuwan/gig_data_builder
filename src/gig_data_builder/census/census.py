@@ -77,9 +77,12 @@ def main():
                 'lg',
                 'moh',
             ]:
-                parent_id = gnd.get(region_type + '_id', None)
-                if parent_id is None or parent_id == '':
-                    continue
+                if region_type == 'country':
+                    parent_id = 'LK'
+                else:
+                    parent_id = gnd.get(region_type + '_id', None)
+                    if parent_id is None or parent_id == '':
+                        continue
 
                 if parent_id not in parent_to_k_to_v:
                     parent_to_k_to_v[parent_id] = {}

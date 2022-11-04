@@ -1,13 +1,14 @@
 import init_dirs
+from census import add_census_info_to_regions, census
 from regions import (add_lg_to_gnd, add_moh_to_gnd, add_pd_to_gnd,
                      build_geo_for_admin_regions,
                      build_geo_for_nonadmin_regions,
                      build_precensus_ent_for_admin_regions,
                      build_precensus_ent_for_country,
                      build_precensus_pregeo_ent_for_election_regions,
-                     build_precensus_pregeo_lg, build_precensus_pregeo_moh, sanity_check_geos)
+                     build_precensus_pregeo_lg, build_precensus_pregeo_moh,
+                     sanity_check_geos)
 
-from census import census
 
 def print_line():
     print('-' * 64)
@@ -28,6 +29,9 @@ def testMain():
 
     _("census/data.*.tsv")
     census.main()
+
+    _("[country|province|dsd|gnd|ed|pd|moh|lg].tsv")
+    add_census_info_to_regions.main()
 
 
 def main():
@@ -68,9 +72,9 @@ def main():
 
     _("census/data.*.tsv")
     census.main()
-    #
-    # _("[country|province|dsd|gnd|ed|pd|moh|lg].tsv")
-    # expand_regions_with_census_info.main()
+
+    _("[country|province|dsd|gnd|ed|pd|moh|lg].tsv")
+    add_census_info_to_regions.main()
     #
     # _(
     #     "gig2/government-elections-[presidential|parliamentary]"
