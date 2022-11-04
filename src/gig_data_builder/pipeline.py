@@ -11,6 +11,8 @@ from regions import (add_lg_to_gnd, add_moh_to_gnd, add_pd_to_gnd,
                      sanity_check_geos)
 
 
+TEST_MODE = False
+
 def print_line():
     print('-' * 64)
 
@@ -21,7 +23,6 @@ def print_title(text):
     print_line()
 
 
-TEST_MODE = True
 _ = print_title
 
 
