@@ -1,5 +1,6 @@
 import init_dirs
 from census import add_census_info_to_regions, census
+from elections import elections_results, sanity_check_pop_per_elector
 from regions import (add_lg_to_gnd, add_moh_to_gnd, add_pd_to_gnd,
                      build_geo_for_admin_regions,
                      build_geo_for_nonadmin_regions,
@@ -27,11 +28,8 @@ _ = print_title
 def testMain():
     assert TEST_MODE
 
-    _("census/data.*.tsv")
-    census.main()
-
-    _("[country|province|dsd|gnd|ed|pd|moh|lg].tsv")
-    add_census_info_to_regions.main()
+    elections_results.main()
+    sanity_check_pop_per_elector.main()
 
 
 def main():
@@ -75,13 +73,13 @@ def main():
 
     _("[country|province|dsd|gnd|ed|pd|moh|lg].tsv")
     add_census_info_to_regions.main()
-    #
-    # _(
-    #     "gig2/government-elections-[presidential|parliamentary]"
-    #     + ".regions-ec.{year}.tsv"
-    # )
-    # elections_results.main()
-    # sanity_check_pop_per_elector.main()
+
+    _(
+        "gig2/government-elections-[presidential|parliamentary]"
+        + ".regions-ec.{year}.tsv"
+    )
+    elections_results.main()
+    sanity_check_pop_per_elector.main()
 
 
 if __name__ == '__main__':

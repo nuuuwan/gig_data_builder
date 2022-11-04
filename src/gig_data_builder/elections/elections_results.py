@@ -2,13 +2,10 @@ import os
 
 from utils import jsonx, tsv, www
 
-from gig_data_builder._basic import get_basic_data_index
+from gig_data_builder import _basic
+from gig_data_builder._common import ent_types
 from gig_data_builder._constants import DIR_DATA_GIG2, DIR_ELECTIONS_RESULTS
 from gig_data_builder._utils import log
-from gig_data_builder.regions.all_region_id_map_and_lg_basic import \
-    get_region_id_index
-
-PARENT_TYPES = ['country', 'province', 'ed', 'district', 'dsd', 'lg', 'moh']
 
 SUMMARY_STAT_KEYS = ['valid', 'rejected', 'polled', 'electors']
 ELECTION_CONFIGS = {
@@ -72,18 +69,18 @@ def get_election_data_file(election_type, year):
 
 
 def main():
-    ed_index = get_basic_data_index('ents/', 'ed')
-    region_id_index = get_region_id_index()
+    ed_data_index = _basic.get_basic_data_index('ents/', 'ed')
+    gnd_data_index = _basic.get_basic_data_index('ents/', 'gnd')
     pd_to_region_id_index = {}
     pd_to_pop = {}
-    for gnd_id, regions in region_id_index.items():
-        pd_id = regions['pd_id']
+    for gnd_id, gnd in gnd_data_index.items():
+        pd_id = gnd['pd_id']
         if pd_id not in pd_to_region_id_index:
             pd_to_region_id_index[pd_id] = {}
             pd_to_pop[pd_id] = 0
-        pd_to_region_id_index[pd_id][gnd_id] = regions
+        pd_to_region_id_index[pd_id][gnd_id] = gnd
         pd_to_pop[pd_id] += (
-            (float)(regions['population']) if regions['population'] else 0
+            (float)(gnd['population']) if gnd['population'] else 0
         )
 
     for election_type, config in ELECTION_CONFIGS.items():
@@ -146,10 +143,15 @@ def main():
             # Expand to Others
             parent_index = {}
             for gnd_id, gnd_row in gnd_index.items():
-                for parent_type in PARENT_TYPES:
-                    parent_id = region_id_index[gnd_id][parent_type + '_id']
+                for parent_type in ['country', 'province', 'district'] + ent_types.ELECTION_REGION_TYPES:
+                    if parent_type == 'country':
+                        parent_id = 'LK'
+                    else:
+                        parent_id = gnd_data_index[gnd_id][parent_type + '_id']
+
                     if parent_id not in parent_index:
                         parent_index[parent_id] = {'entity_id': parent_id}
+
                     for k, v in gnd_row.items():
                         if k in ['entity_id']:
                             continue
@@ -162,9 +164,9 @@ def main():
             for row in postal_and_displaced_rows:
                 pd_id = row['entity_id']
                 ed_id = pd_id[:5]
-                ed = ed_index[ed_id]
+                ed = ed_data_index[ed_id]
                 province_id = ed['province_id']
-                country_id = ed['country_id']
+                country_id = 'LK'
 
                 for k, v in row.items():
                     if k in ['entity_id']:
@@ -179,9 +181,7 @@ def main():
                         parent_index[parent_id][k] += v
 
             # Combine and Save
-            table = (
-                table + list(gnd_index.values()) + list(parent_index.values())
-            )
+            table = list(parent_index.values())
             table = sorted(table, key=lambda d: -d['electors'])
 
             table_file = get_election_data_file(election_type, year)
