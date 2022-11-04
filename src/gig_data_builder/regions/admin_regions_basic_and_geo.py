@@ -13,16 +13,6 @@ REGION_TYPE_TO_ID_LEN = {
     'dsd': 7,
 }
 
-
-def get_parent_ids_idx(region_id):
-    n_region_id = len(region_id)
-    d = {}
-    for parent_type, n_parent_id in REGION_TYPE_TO_ID_LEN.items():
-        if n_region_id >= n_parent_id:
-            d[parent_type + '_id'] = region_id[:n_parent_id]
-    return d
-
-
 REGION_CONFIG_IDX = {
     "province": {
         'file_only': 'Provinces.json',
@@ -48,18 +38,18 @@ REGION_CONFIG_IDX = {
 }
 
 
-def get_centroid(d):
-    shape = d['geometry']
-    lng, lat = list(shape.centroid.coords[0])
-    return json.dumps([lat, lng])
-
-
 def get_id(d, config):
     return 'LK-' + str(d[config['id_base_key']])
 
 
 def get_name(d, config):
     return d[config['name_key']]
+
+
+def get_centroid(d):
+    shape = d['geometry']
+    lng, lat = list(shape.centroid.coords[0])
+    return json.dumps([lat, lng])
 
 
 def get_other_fields_idx(d, config):
@@ -69,6 +59,15 @@ def get_other_fields_idx(d, config):
         for k1, k2 in other_fields_key_map.items():
             d2[k1] = d[k2]
     return d2
+
+
+def get_parent_ids_idx(region_id):
+    n_region_id = len(region_id)
+    d = {}
+    for parent_type, n_parent_id in REGION_TYPE_TO_ID_LEN.items():
+        if n_region_id >= n_parent_id:
+            d[parent_type + '_id'] = region_id[:n_parent_id]
+    return d
 
 
 def expand_region(d, config):
