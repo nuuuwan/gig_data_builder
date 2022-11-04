@@ -4,6 +4,7 @@ import os
 import geopandas
 from utils import tsv
 
+from gig_data_builder import _utils
 from gig_data_builder._basic import (fuzzy_match, get_parent_to_field_to_ids,
                                      store_basic_data)
 from gig_data_builder._constants import DIR_MOH, DIR_TMP
@@ -90,28 +91,33 @@ def parse():
     log.info(f'Wrote {n_moh_data_list} rows to {MOH_REGION_ID_MAP}')
 
 
+def extract_moh_d(d):
+    moh_id = d['moh_id']
+    return {
+        'id': moh_id,
+        'moh_id': moh_id,
+        'name': d['moh_name'],
+    }
+
+
 def build_basic_moh_data():
     moh_data_list = tsv.read(MOH_REGION_ID_MAP)
-    moh_id_to_d = {}
-    for d in moh_data_list:
-        moh_id = d['moh_id']
-        moh_name = d['moh_name']
-        if moh_id not in moh_id_to_d:
-            moh_id_to_d[moh_id] = {
-                'id': moh_id,
-                'moh_id': moh_id,
-                'name': moh_name,
-            }
     basic_data_list = sorted(
-        moh_id_to_d.values(),
-        key=lambda d: d['moh_id'],
+        _utils.dedupe(
+            map(
+                extract_moh_d,
+                moh_data_list,
+            ),
+            func_key=lambda d: d['id'],
+        ),
+        key=lambda d: d['id'],
     )
     store_basic_data(PREFIX, 'moh', basic_data_list)
 
 
 def main():
-    convert_shp_to_geojson()
-    parse()
+    # convert_shp_to_geojson()
+    # parse()
     build_basic_moh_data()
 
 
