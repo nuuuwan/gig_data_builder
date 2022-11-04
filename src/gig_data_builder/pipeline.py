@@ -15,7 +15,10 @@ def print_title(text):
     print_line()
     print(text)
     print_line()
+
+
 _ = print_title
+
 
 def main():
     _("initialize dirs")
@@ -30,9 +33,7 @@ def main():
     _("_tmp/precensus-pregeo-moh.tsv")
     moh_basic_and_region_id_map.main()
 
-    _(
-        "_tmp/precensus-pregeo-lg.tsv _tmp/precensus-region_id_map.tsv"
-    )
+    _("_tmp/precensus-pregeo-lg.tsv _tmp/precensus-region_id_map.tsv")
     all_region_id_map_and_lg_basic.main()
 
     _("_tmp/precensus-[ed|pd|moh|lg].tsv")
