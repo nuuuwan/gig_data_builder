@@ -89,6 +89,13 @@ def get_centroid(d):
     return json.dumps([lat, lng])
 
 
+def expand_region(d, expand_region_custom):
+    expanded_d = expand_region_custom(d)
+    expanded_d.update(get_parent_ids_idx(expanded_d['id']))
+    expanded_d['centroid'] = get_centroid(d)
+    return expanded_d
+
+
 def build_region(region_type):
     config = REGION_CONFIG_IDX[region_type]
     file_only = config['file_only']
@@ -99,11 +106,8 @@ def build_region(region_type):
 
     data_list = []
     for d in df.to_dict('records'):
-        expanded_d = expand_region_custom(d)
-        expanded_d.update(get_parent_ids_idx(expanded_d['id']))
-        expanded_d['centroid'] = get_centroid(d)
+        expanded_d = expand_region(d, expand_region_custom)
         data_list.append(expanded_d)
-
         save_geo(region_type, expanded_d['id'], d['geometry'])
 
     data_list = sorted(data_list, key=lambda d: d['id'])
