@@ -89,7 +89,6 @@ REGION_CONFIG_LIST = [
 
 
 def build_region(region_type, file_only, func_map_regions):
-    log.info(f'Building region {region_type}...')
     topojson_file = os.path.join(DIR_STATSL_SHAPE, file_only)
     df = geopandas.read_file(topojson_file)
 
