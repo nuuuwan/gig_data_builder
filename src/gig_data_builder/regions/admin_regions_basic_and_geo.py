@@ -14,9 +14,9 @@ REGION_TYPE_TO_ID_LEN = {
 }
 
 
-def add_parent_ids(d):
-    region_id = d['id']
+def get_parent_ids_idx(region_id):
     n_region_id = len(region_id)
+    d = {}
     for parent_type, n_parent_id in REGION_TYPE_TO_ID_LEN.items():
         if n_region_id >= n_parent_id:
             d[parent_type + '_id'] = region_id[:n_parent_id]
@@ -83,6 +83,12 @@ REGION_CONFIG_IDX = {
 }
 
 
+def get_centroid(d):
+    shape = d['geometry']
+    lng, lat = list(shape.centroid.coords[0])
+    return json.dumps([lat, lng])
+
+
 def build_region(region_type):
     config = REGION_CONFIG_IDX[region_type]
     file_only = config['file_only']
@@ -94,14 +100,11 @@ def build_region(region_type):
     data_list = []
     for d in df.to_dict('records'):
         expanded_d = expand_regions(d)
-        expanded_d = add_parent_ids(expanded_d)
+        expanded_d.update(get_parent_ids_idx(d['id']))
+        expanded_d['centroid'] = get_centroid(d)
         data_list.append(expanded_d)
 
-        shape = d['geometry']
-        lng, lat = list(shape.centroid.coords[0])
-        expanded_d['centroid'] = json.dumps([lat, lng])
-
-        save_geo(region_type, expanded_d['id'], shape)
+        save_geo(region_type, expanded_d['id'], d['geometry'])
 
     data_list = sorted(data_list, key=lambda d: d['id'])
     store_basic_data('_tmp/precensus-', region_type, data_list)
