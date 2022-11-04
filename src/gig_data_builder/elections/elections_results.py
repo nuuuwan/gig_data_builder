@@ -143,11 +143,17 @@ def main():
             # Expand to Others
             parent_index = {}
             for gnd_id, gnd_row in gnd_index.items():
-                for parent_type in ['country', 'province', 'district'] + ent_types.ELECTION_REGION_TYPES:
+                for parent_type in [
+                    'country',
+                    'province',
+                    'district',
+                ] + ent_types.ELECTION_REGION_TYPES:
                     if parent_type == 'country':
                         parent_id = 'LK'
                     else:
-                        parent_id = gnd_data_index[gnd_id][parent_type + '_id']
+                        parent_id = gnd_data_index[gnd_id][
+                            parent_type + '_id'
+                        ]
 
                     if parent_id not in parent_index:
                         parent_index[parent_id] = {'entity_id': parent_id}

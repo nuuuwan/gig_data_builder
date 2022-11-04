@@ -3,29 +3,9 @@ from gig_data_builder._utils import log
 from gig_data_builder.ground_truth import moh_utils
 
 
-def build_precensus_pregeo_moh(moh_id_to_name, moh_to_district):
-    district_data_index = _basic.get_basic_data_index(
-        '_tmp/precensus-', 'district'
-    )
-    moh_data_list = []
-    for moh_id, moh_name in moh_id_to_name.items():
-        district_id = moh_to_district[moh_id]
-        district = district_data_index[district_id]
-        d = {
-            'id': moh_id,
-            'moh_id': moh_id,
-            'name': moh_name,
-            'province_id': district['province_id'],
-            'district_id': district_id,
-            'ed_id': district['ed_id'],
-        }
-        moh_data_list.append(d)
-    _basic.store_basic_data('_tmp/precensus-pregeo-', 'moh', moh_data_list)
-
-
 def add_moh_to_gnd(gnd_to_moh):
     gnd_data_list = _basic.get_basic_data(
-        '_tmp/premoh-prelg-precensus', 'gnd'
+        '_tmp/premoh-prelg-precensus-', 'gnd'
     )
     gnd_data_list2 = []
     n = len(gnd_data_list)
@@ -36,7 +16,7 @@ def add_moh_to_gnd(gnd_to_moh):
             n_missing += 1
         d['moh_id'] = moh_id
         gnd_data_list2.append(d)
-    _basic.store_basic_data('_tmp/prelg-precensus', 'gnd', gnd_data_list2)
+    _basic.store_basic_data('_tmp/prelg-precensus-', 'gnd', gnd_data_list2)
     log.warning(f'No MOH for {n_missing}/{n} GNDs')
 
 

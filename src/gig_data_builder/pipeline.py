@@ -28,8 +28,11 @@ _ = print_title
 def testMain():
     assert TEST_MODE
 
-    elections_results.main()
-    sanity_check_pop_per_elector.main()
+    _("_tmp/precensus-pregeo-moh.tsv")
+    build_precensus_pregeo_moh.main()
+
+    _("_tmp/prelg-precensus-gnd.tsv")
+    add_moh_to_gnd.main()
 
 
 def main():
