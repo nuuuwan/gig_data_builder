@@ -107,7 +107,7 @@ def build_region(region_type, file_only, func_map_regions):
     store_basic_data(PREFIX, region_type, data_list)
 
 
-def build_country():
+def build_precensus_ent_for_country():
     store_basic_data(
         PREFIX,
         'country',
@@ -132,7 +132,7 @@ def build_all_regions():
 
 
 def main():
-    build_country()
+    build_precensus_ent_for_country()
     build_all_regions()
 
 
