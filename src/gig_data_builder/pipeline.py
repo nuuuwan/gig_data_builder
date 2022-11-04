@@ -1,6 +1,7 @@
 import init_dirs
 from regions import (add_lg_to_gnd, add_moh_to_gnd,
                      build_geo_for_admin_regions,
+                     build_geo_for_nonadmin_regions,
                      build_precensus_ent_for_admin_regions,
                      build_precensus_ent_for_country,
                      build_precensus_pregeo_ent_for_election_regions,
@@ -24,11 +25,8 @@ _ = print_title
 def testMain():
     assert TEST_MODE
 
-    _("_tmp/precensus-pregeo-lg.tsv")
-    build_precensus_pregeo_lg.main()
-
-    _("_tmp/precensus-gnd.tsv")
-    add_lg_to_gnd.main()
+    _("_tmp/precensus-[ed|pd|moh|lg].tsv")
+    build_geo_for_nonadmin_regions.main()
 
 
 def main():
@@ -60,8 +58,8 @@ def main():
     _("_tmp/precensus-gnd.tsv")
     add_lg_to_gnd.main()
 
-    # _("_tmp/precensus-[ed|pd|moh|lg].tsv")
-    # non_admin_region_geo.main()
+    _("_tmp/precensus-[ed|pd|moh|lg].tsv")
+    build_geo_for_nonadmin_regions.main()
     #
     # _("census/data.*.tsv")
     # census.main()
