@@ -100,7 +100,7 @@ def build_region(region_type):
     data_list = []
     for d in df.to_dict('records'):
         expanded_d = expand_regions(d)
-        expanded_d.update(get_parent_ids_idx(d['id']))
+        expanded_d.update(get_parent_ids_idx(expanded_d['id']))
         expanded_d['centroid'] = get_centroid(d)
         data_list.append(expanded_d)
 
