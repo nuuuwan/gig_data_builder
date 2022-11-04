@@ -1,11 +1,8 @@
-import json
 import os
 
 import geopandas
-from utils import tsv
 
-from gig_data_builder import _utils
-from gig_data_builder._basic import store_basic_data
+from gig_data_builder import _basic
 from gig_data_builder._common.FuzzySearch import FuzzySearch
 from gig_data_builder._constants import DIR_MOH, DIR_TMP
 from gig_data_builder._utils import log
@@ -27,16 +24,18 @@ def get_raw_moh_data_list():
     return df.to_dict('records')
 
 
-def parse():
+def get_moh_id_to_name_and_gnd_to_moh_and_moh_to_district():
+    log.debug('get_moh_id_to_name_and_gnd_to_moh_and_moh_to_district')
     data_list = get_raw_moh_data_list()
 
     fs = FuzzySearch()
 
-    moh_data_list = []
-    n_data_list = len(data_list)
-    moh_name_to_id = {}
-    district_to_n = {}
+    moh_name_to_id = {}  # repetition
+    district_to_n = {}  # for numbering
+    moh_id_to_name = {}
+    gnd_to_moh = {}
     moh_to_district = {}
+    n = len(data_list)
     for i, d in enumerate(data_list):
         if not d['GND_NO']:
             continue
@@ -52,12 +51,8 @@ def parse():
             'gnd_num',
             gnd_num,
         )
-
-        dsd_id = None
-        if gnd_id is not None:
-            dsd_id = gnd_id[:7]
-        else:
-            log.error('Could not find GND_ID for gnd_num: %s', gnd_num)
+        if (i + 1) % 1_000 == 0:
+            log.debug(f'{i + 1}/{n}) Processing MOH for GND: {gnd_id}')
 
         moh_name = d['MOH_N']
 
@@ -70,60 +65,63 @@ def parse():
             moh_name_to_id[moh_name] = moh_id
         moh_id = moh_name_to_id[moh_name]
 
-        if moh_id not in moh_to_district:
-            moh_to_district[moh_id] = set()
-        moh_to_district[moh_id].add(district_id)
+        moh_id_to_name[moh_id] = moh_name
+        gnd_to_moh[gnd_id] = moh_id
+        moh_to_district[moh_id] = district_id
 
-        moh_d = {
-            'province_id': province_id,
-            'district_id': district_id,
-            'dsd_id': dsd_id,
-            'gnd_id': gnd_id,
-            'moh_name': moh_name,
+    return [
+        moh_id_to_name,
+        gnd_to_moh,
+        moh_to_district,
+    ]
+
+
+def add_moh_to_gnd(gnd_to_moh):
+    gnd_data_list = _basic.get_basic_data(
+        '_tmp/premoh-prelg-precensus', 'gnd'
+    )
+    gnd_data_list2 = []
+    n = len(gnd_data_list)
+    n_missing = 0
+    for d in gnd_data_list:
+        moh_id = gnd_to_moh.get(d['gnd_id'], None)
+        if not moh_id:
+            n_missing += 1
+        d['moh_id'] = moh_id
+        gnd_data_list2.append(d)
+    _basic.store_basic_data('_tmp/prelg-precensus', 'gnd', gnd_data_list2)
+    log.warning(f'No MOH for {n_missing}/{n} GNDs')
+
+
+def build_precensus_pregeo_moh(moh_id_to_name, moh_to_district):
+    district_data_index = _basic.get_basic_data_index(
+        '_tmp/precensus-', 'district'
+    )
+    moh_data_list = []
+    for moh_id, moh_name in moh_id_to_name.items():
+        district_id = moh_to_district[moh_id]
+        district = district_data_index[district_id]
+        d = {
+            'id': moh_id,
             'moh_id': moh_id,
+            'name': moh_name,
+            'province_id': district['province_id'],
+            'district_id': district_id,
+            'ed_id': district['ed_id'],
         }
-        if (i + 1) % 1000 == 0:
-            log.debug(f'{ i + 1 }/{n_data_list}: {json.dumps(moh_d)}')
-        moh_data_list.append(moh_d)
-
-    moh_data_list = sorted(
-        moh_data_list,
-        key=lambda d: d['gnd_id'],
-    )
-
-    tsv.write(MOH_REGION_ID_MAP, moh_data_list)
-    n_moh_data_list = len(moh_data_list)
-    log.info(f'Wrote {n_moh_data_list} rows to {MOH_REGION_ID_MAP}')
-
-
-def extract_moh_d(d):
-    moh_id = d['moh_id']
-    return {
-        'id': moh_id,
-        'moh_id': moh_id,
-        'name': d['moh_name'],
-    }
-
-
-def build_basic_moh_data():
-    moh_data_list = tsv.read(MOH_REGION_ID_MAP)
-    basic_data_list = sorted(
-        _utils.dedupe(
-            map(
-                extract_moh_d,
-                moh_data_list,
-            ),
-            func_key=lambda d: d['id'],
-        ),
-        key=lambda d: d['id'],
-    )
-    store_basic_data(PREFIX, 'moh', basic_data_list)
+        moh_data_list.append(d)
+    _basic.store_basic_data('_tmp/precensus-pregeo-', 'moh', moh_data_list)
 
 
 def main():
-    # convert_shp_to_geojson()
-    parse()
-    # build_basic_moh_data()
+    convert_shp_to_geojson()
+    [
+        moh_id_to_name,
+        gnd_to_moh,
+        moh_to_district,
+    ] = get_moh_id_to_name_and_gnd_to_moh_and_moh_to_district()
+    add_moh_to_gnd(gnd_to_moh)
+    build_precensus_pregeo_moh(moh_id_to_name, moh_to_district)
 
 
 if __name__ == '__main__':
