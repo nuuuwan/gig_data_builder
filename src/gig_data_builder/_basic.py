@@ -59,8 +59,8 @@ def get_parent_to_field_to_ids(region_type, parent_region_type, field_key):
             parent_to_field_to_ids[parent_id][field_value] = []
         parent_to_field_to_ids[parent_id][field_value].append(id)
     log.debug(
-        'Built parent_to_field_to_ids for'
-        + f' {region_type}/{parent_region_type}'
+        'Built parent_to_field_to_ids: '
+        + f' {region_type}->{field_key}->{parent_region_type}'
     )
     return parent_to_field_to_ids
 
