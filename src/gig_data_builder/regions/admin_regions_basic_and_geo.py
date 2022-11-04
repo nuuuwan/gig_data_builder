@@ -94,14 +94,14 @@ def build_region(region_type, file_only, map_regions):
 
     data_list = []
     for d in df.to_dict('records'):
-        new_d = expand_data(map_regions(d))
-        data_list.append(new_d)
+        expanded_d = expand_data(map_regions(d))
+        data_list.append(expanded_d)
 
         shape = d['geometry']
         lng, lat = list(shape.centroid.coords[0])
-        new_d['centroid'] = json.dumps([lat, lng])
+        expanded_d['centroid'] = json.dumps([lat, lng])
 
-        save_geo(region_type, new_d['id'], shape)
+        save_geo(region_type, expanded_d['id'], shape)
 
     data_list = sorted(data_list, key=lambda d: d['id'])
     store_basic_data(PREFIX, region_type, data_list)
