@@ -3,10 +3,9 @@ import os
 
 from utils import tsv
 
-from gig_data_builder._basic import (fuzzy_match, get_basic_data,
-                                     get_basic_data_file,
-                                     get_parent_to_field_to_ids,
+from gig_data_builder._basic import (get_basic_data, get_basic_data_file,
                                      store_basic_data)
+from gig_data_builder._common.FuzzySearch import FuzzySearch
 from gig_data_builder._constants import DIR_REGION_ID_MAP, DIR_TMP
 from gig_data_builder._utils import log
 from gig_data_builder.regions.moh_basic_and_region_id_map import \
@@ -23,104 +22,105 @@ EXPANDED_REGION_ID_MAP_FILE = os.path.join(
 )
 
 
+def clean(x, fs):
+    [i, d] = x
+    if (i + 1) % 1_000 == 0:
+        gnd_name = d['GND_N']
+        log.debug(f'{i + 1}) Cleaning {gnd_name}')
+    country_id = 'LK'
+    province_id = fs.search(
+        None,
+        country_id,
+        'province',
+        'name',
+        d['PROVINCE_N'],
+    )
+    district_id = fs.search(
+        'province',
+        province_id,
+        'district',
+        'name',
+        d['DISTRICT_N'],
+    )
+
+    dsd_id = fs.search(
+        'district',
+        district_id,
+        'dsd',
+        'name',
+        d['DSD_N'],
+    )
+
+    gnd_id = fs.search(
+        'dsd',
+        dsd_id,
+        'gnd',
+        'name',
+        d['GND_N'],
+    )
+
+    if gnd_id is None:
+        gnd_id = fs.search(
+            'dsd',
+            dsd_id,
+            'gnd',
+            'name_num',
+            d['GND_NO'],
+        )
+
+    if gnd_id is None:
+        log.error('Could not find gnd_id for: %s', json.dumps(d))
+
+    pd_id = fs.search(
+        'district',
+        district_id,
+        'pd',
+        'name',
+        d['Polling_D'],
+    )
+
+    if pd_id is None:
+        # Jaffna Electoral District (EC-10) special cases ???
+        if dsd_id == 'LK-4112':
+            pd_id = 'EC-10C'
+        elif dsd_id == 'LK-4127':
+            pd_id = 'EC-10G'
+        elif dsd_id == 'LK-4124':
+            pd_id = 'EC-10G'
+        else:
+            log.error('Could not find pd_id for gnd: %s', gnd_id)
+
+    if pd_id is None:
+        ed_id = None
+    else:
+        ed_id = pd_id[:5]
+
+    new_d = {
+        'country_id': country_id,
+        'province_id': province_id,
+        'district_id': district_id,
+        'dsd_id': dsd_id,
+        'gnd_id': gnd_id,
+        'ed_id': ed_id,
+        'pd_id': pd_id,
+        'lg_name': d['Local_Gov'],
+        'source_type': 'original',
+    }
+    return new_d
+
+
 def build_map_data_list_list():
     raw_map_file = os.path.join(
         DIR_REGION_ID_MAP, '00-Data_PD_LA_DSD_Ward_GND.tsv'
     )
     raw_map_data_list = tsv.read(raw_map_file)
 
-    parent_to_province_name_to_ids = get_parent_to_field_to_ids(
-        None, 'name', 'province',
-    )
-    parent_to_district_name_to_ids = get_parent_to_field_to_ids(
-        'province', 'name', 'district',
-    )
-    parent_to_dsd_name_to_ids = get_parent_to_field_to_ids(
-        'district', 'name', 'dsd',
-    )
-    parent_to_gnd_name_to_ids = get_parent_to_field_to_ids(
-        'dsd', 'name', 'gnd',
-    )
-    parent_to_gnd_num_to_ids = get_parent_to_field_to_ids(
-        'dsd', 'gnd_num', 'gnd',
-    )
-
-    parent_to_pd_name_to_ids = get_parent_to_field_to_ids(
-        'district', 'name', 'pd',
-    )
-
-    def clean(x):
-        [i, d] = x
-        if (i + 1) % 1_000 == 0:
-            gnd_name = d['GND_N']
-            log.debug(f'{i + 1}) Cleaning {gnd_name}')
-        country_id = 'LK'
-        province_id = fuzzy_match(
-            d['PROVINCE_N'],
-            parent_to_province_name_to_ids[country_id],
-        )
-        district_id = fuzzy_match(
-            d['DISTRICT_N'],
-            parent_to_district_name_to_ids[province_id],
-        )
-
-        dsd_id = fuzzy_match(
-            d['DSD_N'],
-            parent_to_dsd_name_to_ids[district_id],
-        )
-
-        gnd_id = fuzzy_match(
-            d['GND_N'],
-            parent_to_gnd_name_to_ids[dsd_id],
-        )
-
-        if gnd_id is None:
-            gnd_id = fuzzy_match(
-                d['GND_NO'],
-                parent_to_gnd_num_to_ids[dsd_id],
-            )
-
-        if gnd_id is None:
-            log.error('Could not find gnd_id for: %s', json.dumps(d))
-
-        pd_id = fuzzy_match(
-            d['Polling_D'],
-            parent_to_pd_name_to_ids[district_id],
-        )
-
-        if pd_id is None:
-            # Jaffna Electoral District (EC-10) special cases ???
-            if dsd_id == 'LK-4112':
-                pd_id = 'EC-10C'
-            elif dsd_id == 'LK-4127':
-                pd_id = 'EC-10G'
-            elif dsd_id == 'LK-4124':
-                pd_id = 'EC-10G'
-            else:
-                log.error('Could not find pd_id for gnd: %s', gnd_id)
-
-        if pd_id is None:
-            ed_id = None
-        else:
-            ed_id = pd_id[:5]
-
-        new_d = {
-            'country_id': country_id,
-            'province_id': province_id,
-            'district_id': district_id,
-            'dsd_id': dsd_id,
-            'gnd_id': gnd_id,
-            'ed_id': ed_id,
-            'pd_id': pd_id,
-            'lg_name': d['Local_Gov'],
-            'source_type': 'original',
-        }
-        return new_d
+    fs = FuzzySearch()
 
     cleaned_map_data_list = sorted(
         list(
             map(
-                clean,
+                lambda x: clean(x, fs),
                 enumerate(raw_map_data_list),
             )
         ),

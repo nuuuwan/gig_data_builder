@@ -5,8 +5,8 @@ import geopandas
 from utils import tsv
 
 from gig_data_builder import _utils
-from gig_data_builder._basic import (fuzzy_match, get_parent_to_field_to_ids,
-                                     store_basic_data)
+from gig_data_builder._basic import store_basic_data
+from gig_data_builder._common.FuzzySearch import FuzzySearch
 from gig_data_builder._constants import DIR_MOH, DIR_TMP
 from gig_data_builder._utils import log
 
@@ -26,12 +26,11 @@ def get_raw_moh_data_list():
     df = geopandas.read_file(MOH_GEOJSON_FILE)
     return df.to_dict('records')
 
+
 def parse():
     data_list = get_raw_moh_data_list()
 
-    parent_to_gnd_num_to_ids = get_parent_to_field_to_ids(
-        'district', 'gnd_num', 'gnd'
-    )
+    fs = FuzzySearch()
 
     moh_data_list = []
     n_data_list = len(data_list)
@@ -46,7 +45,14 @@ def parse():
         district_id = '%s%s' % (province_id, d['DISTRICT_C'])
         gnd_num = d['GND_NO'].replace(' ', '')
 
-        gnd_id = fuzzy_match(gnd_num, parent_to_gnd_num_to_ids[district_id])
+        gnd_id = fs.search(
+            'district',
+            district_id,
+            'gnd',
+            'gnd_num',
+            gnd_num,
+        )
+
         dsd_id = None
         if gnd_id is not None:
             dsd_id = gnd_id[:7]
