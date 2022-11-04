@@ -17,3 +17,16 @@ def get_data_index(file_name):
             data_list,
         )
     )
+
+
+def dedupe(d_list, func_key):
+    return list(
+        dict(
+            list(
+                map(
+                    lambda d: [func_key(d), d],
+                    d_list,
+                )
+            )
+        ).values(),
+    )
