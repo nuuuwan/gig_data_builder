@@ -22,9 +22,12 @@ def convert_shp_to_geojson():
     log.info(f'Converted {moh_shp_file} to {MOH_GEOJSON_FILE}')
 
 
-def parse():
+def get_raw_moh_data_list():
     df = geopandas.read_file(MOH_GEOJSON_FILE)
-    data_list = df.to_dict('records')
+    return df.to_dict('records')
+
+def parse():
+    data_list = get_raw_moh_data_list()
 
     parent_to_gnd_num_to_ids = get_parent_to_field_to_ids(
         'gnd', 'district', 'gnd_num'
@@ -77,10 +80,6 @@ def parse():
             log.debug(f'{ i + 1 }/{n_data_list}: {json.dumps(moh_d)}')
         moh_data_list.append(moh_d)
 
-    for moh, districts in moh_to_district.items():
-        if len(districts) > 1:
-            print(moh, districts)
-
     moh_data_list = sorted(
         moh_data_list,
         key=lambda d: d['gnd_id'],
@@ -117,8 +116,8 @@ def build_basic_moh_data():
 
 def main():
     # convert_shp_to_geojson()
-    # parse()
-    build_basic_moh_data()
+    parse()
+    # build_basic_moh_data()
 
 
 if __name__ == '__main__':
