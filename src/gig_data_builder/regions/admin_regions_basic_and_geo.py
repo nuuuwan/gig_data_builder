@@ -68,33 +68,33 @@ REGION_CONFIG_LIST = [
     {
         'region_type': 'province',
         'file_only': 'Provinces.json',
-        'func_map_regions': map_provinces,
+        'map_regions': map_provinces,
     },
     {
         'region_type': 'district',
         'file_only': 'Districts.json',
-        'func_map_regions': map_districts,
+        'map_regions': map_districts,
     },
     {
         'region_type': 'dsd',
         'file_only': 'DSDivisions.json',
-        'func_map_regions': map_dsds,
+        'map_regions': map_dsds,
     },
     {
         'region_type': 'gnd',
         'file_only': 'GNDivisions.json',
-        'func_map_regions': map_gnds,
+        'map_regions': map_gnds,
     },
 ]
 
 
-def build_region(region_type, file_only, func_map_regions):
+def build_region(region_type, file_only, map_regions):
     topojson_file = os.path.join(DIR_STATSL_SHAPE, file_only)
     df = geopandas.read_file(topojson_file)
 
     data_list = []
     for d in df.to_dict('records'):
-        new_d = expand_d(func_map_regions(d))
+        new_d = expand_d(map_regions(d))
         data_list.append(new_d)
 
         shape = d['geometry']
@@ -127,7 +127,7 @@ def build_all_regions():
         build_region(
             config['region_type'],
             config['file_only'],
-            config['func_map_regions'],
+            config['map_regions'],
         )
 
 
