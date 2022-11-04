@@ -54,17 +54,30 @@ def get_centroid(d):
     return json.dumps([lat, lng])
 
 
-def expand_region(d, config):
-    expanded_d = {}
-    expanded_d['id'] = 'LK-' + str(d[config['id_base_key']])
-    expanded_d['name'] = d[config['name_key']]
+def get_id(d, config):
+    return 'LK-' + str(d[config['id_base_key']])
+
+
+def get_name(d, config):
+    return d[config['name_key']]
+
+
+def get_other_fields_idx(d, config):
     other_fields_key_map = config.get('other_fields_key_map')
+    d2 = {}
     if other_fields_key_map:
         for k1, k2 in other_fields_key_map.items():
-            expanded_d[k1] = d[k2]
+            d2[k1] = d[k2]
+    return d2
 
-    expanded_d.update(get_parent_ids_idx(expanded_d['id']))
+
+def expand_region(d, config):
+    expanded_d = {}
+    expanded_d['id'] = get_id(d, config)
+    expanded_d['name'] = get_name(d, config)
     expanded_d['centroid'] = get_centroid(d)
+    expanded_d.update(get_other_fields_idx(d, config))
+    expanded_d.update(get_parent_ids_idx(expanded_d['id']))
     return expanded_d
 
 
