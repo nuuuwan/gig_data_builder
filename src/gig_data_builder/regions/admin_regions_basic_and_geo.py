@@ -11,7 +11,7 @@ from gig_data_builder.regions._geo import save_geo
 PREFIX = '_tmp/precensus-'
 
 
-def expand_d(d):
+def expand_data(d):
     region_id = d['id']
     n_region_id = len(region_id)
     for parent_type, n_parent_id in [
@@ -94,7 +94,7 @@ def build_region(region_type, file_only, map_regions):
 
     data_list = []
     for d in df.to_dict('records'):
-        new_d = expand_d(map_regions(d))
+        new_d = expand_data(map_regions(d))
         data_list.append(new_d)
 
         shape = d['geometry']
