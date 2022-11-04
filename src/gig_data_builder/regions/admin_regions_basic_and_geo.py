@@ -13,6 +13,7 @@ REGION_TYPE_TO_ID_LEN = {
     'dsd': 7,
 }
 
+
 def add_parent_ids(d):
     region_id = d['id']
     n_region_id = len(region_id)
