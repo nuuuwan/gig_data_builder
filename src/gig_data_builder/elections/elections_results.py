@@ -147,6 +147,8 @@ def main():
                     'country',
                     'province',
                     'district',
+                    'dsd',
+                    'gnd',
                 ] + ent_types.ELECTION_REGION_TYPES:
                     if parent_type == 'country':
                         parent_id = 'LK'
