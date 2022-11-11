@@ -8,7 +8,7 @@ from regions import (add_lg_to_gnd, add_moh_to_gnd, add_pd_to_gnd,
                      build_precensus_ent_for_country,
                      build_precensus_pregeo_ent_for_election_regions,
                      build_precensus_pregeo_lg, build_precensus_pregeo_moh,
-                     sanity_check_geos)
+                     sanity_check_geos, census_pdf)
 
 
 TEST_MODE = False
@@ -74,6 +74,7 @@ def main():
 
     _("census/data.*.tsv")
     census.main()
+    census_pdf.main()
 
     _("[country|province|dsd|gnd|ed|pd|moh|lg].tsv")
     add_census_info_to_regions.main()
