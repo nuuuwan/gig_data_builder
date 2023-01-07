@@ -125,7 +125,7 @@ def main():
                 if pd_pop is None:
                     postal_and_displaced_rows.append(row)
                     continue
-                for gnd_id, regions in list(pd_to_region_id_index[pd_id].items())[-1:]:
+                for gnd_id, regions in pd_to_region_id_index[pd_id].items():
                     pop = (
                         (float)(regions['population'])
                         if regions['population']
@@ -165,7 +165,7 @@ def main():
                             continue
                         if k not in parent_index[parent_id]:
                             parent_index[parent_id][k] = 0
-                        parent_index[parent_id][k] += v
+                        parent_index[parent_id][k] += (int)(v)
 
             # Add Postal and Displaced Votes to
             #   province, district, ed
@@ -179,7 +179,6 @@ def main():
 
                 parent_index[pd_id] = {'entity_id': pd_id}
                 
-
                 for k, v in row.items():
                     if k in ['entity_id']:
                         continue
@@ -191,7 +190,7 @@ def main():
                     ]:
                         if k not in parent_index[parent_id]:
                             parent_index[parent_id][k] = 0
-                        parent_index[parent_id][k] += v
+                        parent_index[parent_id][k] += (int)(v)
 
             # Combine and Save
             table = list(parent_index.values())
