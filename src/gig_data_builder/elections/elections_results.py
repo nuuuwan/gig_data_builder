@@ -176,9 +176,13 @@ def main():
                 province_id = ed['province_id']
                 country_id = 'LK'
 
+                parent_index[pd_id] = {'entity_id': pd_id}
+
                 for k, v in row.items():
                     if k in ['entity_id']:
                         continue
+                    parent_index[pd_id][k] = v
+                
                     for parent_id in [
                         country_id,
                         province_id,
@@ -190,7 +194,7 @@ def main():
 
             # Combine and Save
             table = list(parent_index.values())
-            table = sorted(table, key=lambda d: -d['electors'])
+            table = sorted(table, key=lambda d: d['entity_id'])
 
             table_file = get_election_data_file(election_type, year)
             tsv.write(table_file, table)

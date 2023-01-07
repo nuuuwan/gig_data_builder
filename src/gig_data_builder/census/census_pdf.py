@@ -6,14 +6,11 @@ from gig_data_builder import _basic
 from gig_data_builder._constants import DIR_DATA_GIG2
 from gig_data_builder._utils import log
 
-TABLE_SHORT_NAME_LIST = ['economic-activity', 'education']
+TABLE_SHORT_NAME_LIST = ['economy-economic-activity', 'education-educational-attainment']
 
 
 def get_table_file_name(table_short_name):
-    if table_short_name == 'education':
-        m = 'education'
-    elif table_short_name == 'economic-activity':
-        m = 'economy-economic-activity'
+    m = table_short_name
     e = 'regions'
     t = '2012'
     file_name_only = f'{m}.{e}.{t}.tsv'
