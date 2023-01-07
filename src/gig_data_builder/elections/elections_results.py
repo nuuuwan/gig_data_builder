@@ -137,7 +137,7 @@ def main():
                     for k, v in row.items():
                         if k in ['entity_id']:
                             continue
-                        gnd_row[k] = (int)(v) * p_gnd
+                        gnd_row[k] = (float)(v) * p_gnd
                     gnd_index[gnd_id] = gnd_row
 
             # Expand to Others
@@ -149,7 +149,9 @@ def main():
                     'district',
                     'dsd',
                     'gnd',
-                ] + ent_types.ELECTION_REGION_TYPES:
+                    'ed',
+                    'pd',
+                ]:
                     if parent_type == 'country':
                         parent_id = 'LK'
                     else:
@@ -165,7 +167,7 @@ def main():
                             continue
                         if k not in parent_index[parent_id]:
                             parent_index[parent_id][k] = 0
-                        parent_index[parent_id][k] += (int)(v)
+                        parent_index[parent_id][k] += v
 
             # Add Postal and Displaced Votes to
             #   province, district, ed
@@ -190,7 +192,7 @@ def main():
                     ]:
                         if k not in parent_index[parent_id]:
                             parent_index[parent_id][k] = 0
-                        parent_index[parent_id][k] += (int)(v)
+                        parent_index[parent_id][k] += v
 
             # Combine and Save
             table = list(parent_index.values())
