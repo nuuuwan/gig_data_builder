@@ -6,7 +6,10 @@ from gig_data_builder import _basic
 from gig_data_builder._constants import DIR_DATA_GIG2
 from gig_data_builder._utils import log
 
-TABLE_SHORT_NAME_LIST = ['economy-economic-activity', 'education-educational-attainment']
+TABLE_SHORT_NAME_LIST = [
+    'economy-economic-activity',
+    'education-educational-attainment',
+]
 
 
 def get_table_file_name(table_short_name):

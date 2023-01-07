@@ -8,10 +8,10 @@ from regions import (add_lg_to_gnd, add_moh_to_gnd, add_pd_to_gnd,
                      build_precensus_ent_for_country,
                      build_precensus_pregeo_ent_for_election_regions,
                      build_precensus_pregeo_lg, build_precensus_pregeo_moh,
-                     sanity_check_geos, census_pdf)
-
+                     census_pdf, sanity_check_geos)
 
 TEST_MODE = False
+
 
 def print_line():
     print('-' * 64)

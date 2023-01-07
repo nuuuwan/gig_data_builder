@@ -3,7 +3,6 @@ import os
 from utils import jsonx, tsv, www
 
 from gig_data_builder import _basic
-from gig_data_builder._common import ent_types
 from gig_data_builder._constants import DIR_DATA_GIG2, DIR_ELECTIONS_RESULTS
 from gig_data_builder._utils import log
 
@@ -15,7 +14,7 @@ ELECTION_CONFIGS = {
             'nuuuwan/elections_lk/data',
         ),
         'func_get_file': lambda year: f'elections_lk.presidential.{year}.json',
-        'year_list': [1982, 1988, 1994, 1999, 2005, 2010, 2015, 2019],
+        'year_list': [],  # [1982, 1988, 1994, 1999, 2005, 2010, 2015, 2019],
         'field_key_votes': 'votes',
     },
     'parliamentary': {
@@ -25,10 +24,46 @@ ELECTION_CONFIGS = {
             'public/data/elections',
         ),
         'func_get_file': lambda year: f'gen_elec_sl.ec.results.{year}.json',
-        'year_list': [1989, 1994, 2000, 2001, 2004, 2010, 2015, 2020],
+        'year_list': [
+            2020
+        ],  # [1989, 1994, 2000, 2001, 2004, 2010, 2015, 2020],
         'field_key_votes': 'vote_count',
     },
 }
+
+
+def cmp_key(k):
+    if k == 'entity_id':
+        return 0
+    if k in ['valid', 'rejected', 'polled', 'electors']:
+        return 1
+    return 2
+
+
+def expand_keys(idx):
+    NON_PARTY_KEYS = ['entity_id', 'valid', 'rejected', 'polled', 'electors']
+    sorted_party_list = list(
+        map(
+            lambda x: x[0],
+            sorted(
+                list(
+                    filter(
+                        lambda x: x[0] not in NON_PARTY_KEYS,
+                        idx['LK'].items(),
+                    )
+                ),
+                key=lambda x: -x[1],
+            ),
+        )
+    )
+
+    expanded_data_list = []
+    for d in idx.values():
+        expanded_d = {}
+        for k in NON_PARTY_KEYS + sorted_party_list:
+            expanded_d[k] = d.get(k, 0)
+        expanded_data_list.append(expanded_d)
+    return expanded_data_list
 
 
 def get_election_data_ground_truth_file(election_type, year):
@@ -179,8 +214,9 @@ def main():
                 province_id = ed['province_id']
                 country_id = 'LK'
 
+                assert pd_id not in parent_index
                 parent_index[pd_id] = {'entity_id': pd_id}
-                
+
                 for k, v in row.items():
                     if k in ['entity_id']:
                         continue
@@ -195,7 +231,7 @@ def main():
                         parent_index[parent_id][k] += v
 
             # Combine and Save
-            table = list(parent_index.values())
+            table = expand_keys(parent_index)
             table = sorted(table, key=lambda d: d['entity_id'])
 
             table_file = get_election_data_file(election_type, year)
