@@ -1,6 +1,6 @@
 import os
 
-from utils import TSVFile, JSONFile 
+from utils import JSONFile, String, TSVFile
 
 from gig_data_builder import _basic
 from gig_data_builder._constants import (DIR_DATA_GIG2, DIR_RAW_DATA,
@@ -51,7 +51,7 @@ def main():
                 gnd_table_data.items(),
                 key=lambda x: (int)(x[0]),
             ):
-                field_name = dt.to_snake(field_metadata[field_id])
+                field_name = String(field_metadata[field_id]).snake
                 if str(value).isnumeric():
                     d[field_name] = (float)(value)
                 else:
@@ -103,7 +103,7 @@ def main():
         )
         n_table_data_list = len(table_data_list)
 
-        table_name = dt.to_snake(table_metadata['Title'])
+        table_name = String(table_metadata['Title']).snake
         table_file = table_name_to_file_name[table_name]
         TSVFile(table_file).write(table_data_list)
         log.debug(f'Writing {n_table_data_list} rows to {table_file}')

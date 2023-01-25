@@ -1,11 +1,11 @@
 import os
 
 import geopandas
-from utils.cache import cache
 
 from gig_data_builder._common.FuzzySearch import FuzzySearch
 from gig_data_builder._constants import DIR_MOH
 from gig_data_builder._utils import log
+from gig_data_builder.base.StoredVariable import StoredVariable
 
 
 def convert_shp_to_geojson():
@@ -19,8 +19,11 @@ def get_raw_moh_data_list():
     return df.to_dict('records')
 
 
-@cache('get_moh_id_to_name_and_gnd_to_moh_and_moh_to_district', 3600)
-def get_moh_id_to_name_and_gnd_to_moh_and_moh_to_district():
+def get_moh_data_file_path():
+    return 'data_ground_truth/moh/moh_data.json'
+
+
+def get_moh_data_hot():
     data_list = get_raw_moh_data_list()
 
     fs = FuzzySearch()
@@ -69,3 +72,10 @@ def get_moh_id_to_name_and_gnd_to_moh_and_moh_to_district():
         gnd_to_moh,
         moh_to_district,
     ]
+
+
+var_moh_data = StoredVariable('moh_data', get_moh_data_hot)
+
+
+def get_moh_id_to_name_and_gnd_to_moh_and_moh_to_district():
+    return var_moh_data.get()

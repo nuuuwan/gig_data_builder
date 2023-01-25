@@ -2,11 +2,11 @@ import json
 import os
 
 from utils import TSVFile
-from utils import cache
 
 from gig_data_builder._common.FuzzySearch import FuzzySearch
 from gig_data_builder._constants import DIR_REGION_ID_MAP
 from gig_data_builder._utils import log
+from gig_data_builder.base.StoredVariable import StoredVariable
 
 
 def get_gnd_and_pd(d, fs):
@@ -70,8 +70,7 @@ def get_gnd_and_pd(d, fs):
     return [gnd_id, pd_id]
 
 
-@cache('get_gnd_to_pd', 3600)
-def get_gnd_to_pd():
+def get_gnd_to_pd_hot():
     raw_map_file = os.path.join(
         DIR_REGION_ID_MAP, '00-Data_PD_LA_DSD_Ward_GND.tsv'
     )
@@ -90,3 +89,10 @@ def get_gnd_to_pd():
             log.debug(f'{i + 1}/{n}) get_gnd_to_pd: {gnd_id}')
 
     return gnd_to_pd
+
+
+var_gnd_to_pd = StoredVariable('gnd_to_pd', get_gnd_to_pd_hot)
+
+
+def get_gnd_to_pd():
+    return var_gnd_to_pd.get()

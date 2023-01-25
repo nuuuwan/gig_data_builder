@@ -1,5 +1,5 @@
 import init_dirs
-from census import add_census_info_to_regions, census
+from census import add_census_info_to_regions, census, census_pdf
 from elections import elections_results, sanity_check_pop_per_elector
 from regions import (add_lg_to_gnd, add_moh_to_gnd, add_pd_to_gnd,
                      build_geo_for_admin_regions,
@@ -65,7 +65,7 @@ def main():
     _("_tmp/precensus-gnd.tsv")
     add_lg_to_gnd.main()
 
-    _("_tmp/precensus-gnd.tsv") 
+    _("_tmp/precensus-gnd.tsv")
     add_pd_to_gnd.main()
 
     _("_tmp/precensus-[ed|pd|moh|lg].tsv")

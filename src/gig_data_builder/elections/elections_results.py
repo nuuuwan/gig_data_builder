@@ -1,6 +1,6 @@
 import os
 
-from utils import JSONFile, TSVFile, WWW
+from utils import WWW, JSONFile, TSVFile
 
 from gig_data_builder import _basic
 from gig_data_builder._constants import DIR_DATA_GIG2, DIR_ELECTIONS_RESULTS
@@ -80,7 +80,7 @@ def reverse_download():
                 dir_remote,
                 func_get_file(year),
             )
-            data = www.read_json(remote_url)
+            data = WWW(remote_url).readJSON()
             data_file = get_election_data_ground_truth_file(
                 election_type, year
             )
