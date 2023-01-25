@@ -3,7 +3,7 @@ import random
 
 import matplotlib.pyplot as plt
 from shapely.geometry import Polygon
-from utils import JSONFile, colorx
+from utils import JSONFile, Color
 
 from gig_data_builder._constants import DIR_DATA_CHECKS, DIR_DATA_GEO
 
@@ -23,7 +23,7 @@ def save_geo_image(region_type, func_filter=None, image_file_prefix=None):
         if func_filter and not func_filter(file_name):
             continue
 
-        color = colorx.random_hex()
+        color = Color.rgba()
         data = JSONFile(file_name).read()
         for polygon_data in data:
             polygon = Polygon(polygon_data)

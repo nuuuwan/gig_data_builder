@@ -1,7 +1,7 @@
 import os
 
 from shapely.geometry import MultiPolygon, Polygon
-from utils import jsonx
+from utils import JSONFile
 
 from gig_data_builder._constants import DIR_DATA_GEO
 from gig_data_builder._utils import log
@@ -22,7 +22,7 @@ def get_geo_file(region_type, region_id):
 
 def get_geo(region_type, region_id):
     geo_file = get_geo_file(region_type, region_id)
-    return jsonx.read(geo_file)
+    return JSONFile(geo_file).read()
 
 
 def get_geo_index_for_region_type(region_type):
@@ -50,4 +50,4 @@ def save_geo(region_type, region_id, shape):
         return None
 
     geo_file = get_geo_file(region_type, region_id)
-    jsonx.write(geo_file, geo_data)
+    JSONFile(geo_file).write(geo_data)

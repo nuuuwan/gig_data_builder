@@ -18,10 +18,7 @@ def add_lg_to_gnd(gnd_to_lg):
     log.warning(f'No LG for {n_missing}/{n} GNDs')
 
 
-def main():
-    [_, gnd_to_lg] = lg_utils.get_lg_id_to_name_and_gnd_to_lg()
-    add_lg_to_gnd(gnd_to_lg)
-
 
 if __name__ == '__main__':
-    main()
+    [_, gnd_to_lg] = lg_utils.get_lg_id_to_name_and_gnd_to_lg()
+    add_lg_to_gnd(gnd_to_lg)

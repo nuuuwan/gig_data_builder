@@ -1,6 +1,6 @@
 import os
 
-from utils import TSVFile, dt, jsonx, tsv
+from utils import TSVFile, JSONFile 
 
 from gig_data_builder import _basic
 from gig_data_builder._constants import (DIR_DATA_GIG2, DIR_RAW_DATA,
@@ -30,8 +30,8 @@ def get_table_name_to_file_name():
 
 
 def main():
-    metadata_tables = jsonx.read(METADATA_TABLES_FILE)
-    metadata_fields = jsonx.read(METADATA_FIELDS_FILE)
+    metadata_tables = JSONFile(METADATA_TABLES_FILE).read()
+    metadata_fields = JSONFile(METADATA_FIELDS_FILE).read()
     gnd_data_index = _basic.get_basic_data_index('_tmp/precensus-', 'gnd')
     table_name_to_file_name = get_table_name_to_file_name()
 
@@ -42,7 +42,7 @@ def main():
         table_file = os.path.join(
             DIR_STATSL_DATA, 'var_%s_gnd.json' % (table_id)
         )
-        table_data = jsonx.read(table_file)
+        table_data = JSONFile(table_file).read()
         table_data_list = []
         for gnd_id_num, gnd_table_data in table_data.items():
             d = {}
@@ -105,7 +105,7 @@ def main():
 
         table_name = dt.to_snake(table_metadata['Title'])
         table_file = table_name_to_file_name[table_name]
-        tsv.write(table_file, table_data_list)
+        TSVFile(table_file).write(table_data_list)
         log.debug(f'Writing {n_table_data_list} rows to {table_file}')
 
 

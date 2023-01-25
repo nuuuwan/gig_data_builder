@@ -1,12 +1,12 @@
 """Utils."""
 
-from utils import logx, tsv
+from utils import Log, TSVFile
 
-log = logx.get_logger('gig_data_builder')
+log = Log('gig_data_builder')
 
 
 def get_data_list(file_name):
-    return tsv.read(file_name)
+    return TSVFile(file_name).read()
 
 
 def get_data_index(file_name):

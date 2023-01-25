@@ -8,7 +8,7 @@ from regions import (add_lg_to_gnd, add_moh_to_gnd, add_pd_to_gnd,
                      build_precensus_ent_for_country,
                      build_precensus_pregeo_ent_for_election_regions,
                      build_precensus_pregeo_lg, build_precensus_pregeo_moh,
-                     census_pdf, sanity_check_geos)
+                     sanity_check_geos)
 
 TEST_MODE = False
 
@@ -65,7 +65,7 @@ def main():
     _("_tmp/precensus-gnd.tsv")
     add_lg_to_gnd.main()
 
-    _("_tmp/precensus-gnd.tsv")  # REPEAT USE!!!
+    _("_tmp/precensus-gnd.tsv") 
     add_pd_to_gnd.main()
 
     _("_tmp/precensus-[ed|pd|moh|lg].tsv")

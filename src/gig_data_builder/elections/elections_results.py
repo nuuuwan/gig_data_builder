@@ -1,6 +1,6 @@
 import os
 
-from utils import jsonx, tsv, www
+from utils import JSONFile, TSVFile, WWW
 
 from gig_data_builder import _basic
 from gig_data_builder._constants import DIR_DATA_GIG2, DIR_ELECTIONS_RESULTS
@@ -84,14 +84,14 @@ def reverse_download():
             data_file = get_election_data_ground_truth_file(
                 election_type, year
             )
-            jsonx.write(data_file, data)
+            JSONFile(data_file).write(data)
             log.info(f'Downloaded from {remote_url} to {data_file}')
 
 
 def get_election_data_ground_truth(election_type, year):
-    return jsonx.read(
+    return JSONFile(
         get_election_data_ground_truth_file(election_type, year)
-    )
+    ).read()
 
 
 def get_election_data_file(election_type, year):
@@ -233,7 +233,7 @@ def main():
             table = sorted(table, key=lambda d: d['entity_id'])
 
             table_file = get_election_data_file(election_type, year)
-            tsv.write(table_file, table)
+            TSVFile(table_file).write(table)
             n_data_list = len(table)
             log.info(f'Wrote {n_data_list} rows to {table_file}')
 

@@ -1,8 +1,8 @@
 import json
 import os
 
-from utils import tsv
-from utils.cache import cache
+from utils import TSVFile
+from utils import cache
 
 from gig_data_builder._common.FuzzySearch import FuzzySearch
 from gig_data_builder._constants import DIR_REGION_ID_MAP
@@ -75,7 +75,7 @@ def get_gnd_to_pd():
     raw_map_file = os.path.join(
         DIR_REGION_ID_MAP, '00-Data_PD_LA_DSD_Ward_GND.tsv'
     )
-    raw_map_data_list = tsv.read(raw_map_file)
+    raw_map_data_list = TSVFile(raw_map_file).read()
 
     fs = FuzzySearch()
     n = len(raw_map_data_list)
