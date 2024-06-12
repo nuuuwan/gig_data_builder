@@ -1,6 +1,6 @@
 import os
 
-from utils import TSVFile
+from utils_future import TSVFile
 
 from gig_data_builder._basic import get_basic_data_index
 from gig_data_builder._constants import DIR_DATA_CHECKS, DIR_DATA_GIG2

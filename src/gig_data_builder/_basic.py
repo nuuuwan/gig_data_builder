@@ -1,6 +1,6 @@
 import os
 
-from utils import TSVFile
+from utils_future import TSVFile
 
 from gig_data_builder._constants import DIR_DATA
 from gig_data_builder._utils import log

@@ -1,6 +1,6 @@
 import os
 
-from utils import TSVFile
+from utils_future import TSVFile
 
 from gig_data_builder import _basic
 from gig_data_builder._constants import DIR_DATA_GIG2
@@ -53,7 +53,7 @@ def get_table_data_list(table_short_name):
             map_table_row,
             list(
                 filter(
-                    lambda d: d['region_type'] == 'gnd',
+                    lambda d: d.get('region_type') == 'gnd',
                     d_list,
                 )
             ),

@@ -1,7 +1,7 @@
 import json
 import os
 
-from utils import TSVFile
+from utils_future import TSVFile
 
 from gig_data_builder._common.FuzzySearch import FuzzySearch
 from gig_data_builder._constants import DIR_REGION_ID_MAP

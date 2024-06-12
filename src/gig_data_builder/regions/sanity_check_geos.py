@@ -37,7 +37,6 @@ def save_geo_image(region_type, func_filter=None, image_file_prefix=None):
     )
     plt.title(image_file_prefix)
     plt.savefig(image_file)
-    os.system(f'open -a firefox {image_file}')
     plt.close()
 
 
