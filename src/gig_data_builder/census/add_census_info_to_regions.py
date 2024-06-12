@@ -36,7 +36,9 @@ def main():
         data_list = list(
             map(
                 expand_row,
-                _basic.get_basic_data(os.path.join('_tmp', 'precensus-'), region_type),
+                _basic.get_basic_data(
+                    os.path.join('_tmp', 'precensus-'), region_type
+                ),
             )
         )
         _basic.store_basic_data('ents/', region_type, data_list)

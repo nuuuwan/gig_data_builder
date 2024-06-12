@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+
 from shapely.geometry import Polygon
 from shapely.ops import unary_union
 
@@ -18,18 +19,24 @@ def add_centroid_column(region_type, region_to_centroid):
         d['centroid'] = region_to_centroid.get(d['id'])
         return d
 
-    basic_data = _basic.get_basic_data(os.path.join('_tmp', 'precensus-pregeo-'), region_type)
+    basic_data = _basic.get_basic_data(
+        os.path.join('_tmp', 'precensus-pregeo-'), region_type
+    )
     data_list = list(
         map(
             add_centroid_to_row,
             basic_data,
         )
     )
-    _basic.store_basic_data(os.path.join('_tmp', 'precensus-'), region_type, data_list)
+    _basic.store_basic_data(
+        os.path.join('_tmp', 'precensus-'), region_type, data_list
+    )
 
 
 def main():
-    gnd_data_index = _basic.get_basic_data_index(os.path.join('_tmp', 'precensus-'), 'gnd')
+    gnd_data_index = _basic.get_basic_data_index(
+        os.path.join('_tmp', 'precensus-'), 'gnd'
+    )
     gnd_geo_index = _geo.get_geo_index_for_region_type('gnd')
     for region_type in ent_types.NON_ADMIN_REGION_TYPES:
         parent_to_gnds = {}

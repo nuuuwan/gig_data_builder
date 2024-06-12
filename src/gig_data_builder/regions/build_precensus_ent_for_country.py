@@ -1,5 +1,7 @@
-from gig_data_builder._basic import store_basic_data
 import os
+
+from gig_data_builder._basic import store_basic_data
+
 
 def build_precensus_ent_for_country():
     store_basic_data(

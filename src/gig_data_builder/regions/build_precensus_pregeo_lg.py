@@ -1,6 +1,8 @@
+import os
+
 from gig_data_builder import _basic
 from gig_data_builder.ground_truth import lg_utils
-import os
+
 
 def build_precensus_pregeo_lg(lg_id_to_name):
     lg_data_list = []
@@ -19,7 +21,9 @@ def build_precensus_pregeo_lg(lg_id_to_name):
             'district_id': district_id,
         }
         lg_data_list.append(d)
-    _basic.store_basic_data(os.path.join('_tmp', 'precensus-pregeo-'), 'lg', lg_data_list)
+    _basic.store_basic_data(
+        os.path.join('_tmp', 'precensus-pregeo-'), 'lg', lg_data_list
+    )
 
 
 def main():

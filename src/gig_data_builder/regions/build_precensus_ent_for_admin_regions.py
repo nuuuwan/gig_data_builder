@@ -1,8 +1,10 @@
+import os
+
 from gig_data_builder._basic import store_basic_data
 from gig_data_builder._common import ent_types
 from gig_data_builder.elections.DISTRICT_TO_ED import DISTRICT_TO_ED
 from gig_data_builder.ground_truth import statsl_utils
-import os
+
 
 def expand_region(d, region_type):
     expanded_d = {}

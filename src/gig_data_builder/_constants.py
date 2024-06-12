@@ -1,7 +1,9 @@
 """Constants."""
 import os
 import tempfile
+
 from gig_data_builder._utils import log
+
 CACHE_NAME = 'gig_data_builder'
 CACHE_TIMEOUT = 3600
 
