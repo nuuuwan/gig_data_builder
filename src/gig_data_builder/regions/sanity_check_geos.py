@@ -19,15 +19,19 @@ def get_region_file_names(region_type):
 
 
 def save_geo_image(region_type, func_filter=None, image_file_prefix=None):
-    for file_name in get_region_file_names(region_type):
+    plt.close()
+    file_names = get_region_file_names(region_type)
+    n_files = len(file_names)
+    for i_file, file_name in enumerate(file_names):
         if func_filter and not func_filter(file_name):
             continue
 
         data = JSONFile(file_name).read()
+        color = plt.cm.jet(i_file / n_files)
         for polygon_data in data:
             polygon = Polygon(polygon_data)
             x, y = polygon.exterior.xy
-            plt.fill(x, y, color="red")
+            plt.fill(x, y, color=color)
 
     image_file_prefix = (
         image_file_prefix if image_file_prefix else region_type
