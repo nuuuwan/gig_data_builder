@@ -102,8 +102,12 @@ def get_election_data_file(election_type, year):
 
 
 def main():
-    ed_data_index = _basic.get_basic_data_index('ents', 'ed')
-    gnd_data_index = _basic.get_basic_data_index('ents', 'gnd')
+    ed_data_index = _basic.get_basic_data_index(
+        os.path.join('ents', ''), 'ed'
+    )
+    gnd_data_index = _basic.get_basic_data_index(
+        os.path.join('ents', ''), 'gnd'
+    )
     pd_to_region_id_index = {}
     pd_to_pop = {}
     for gnd_id, gnd in gnd_data_index.items():

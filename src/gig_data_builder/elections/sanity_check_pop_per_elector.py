@@ -13,7 +13,7 @@ def main():
         'government-elections-parliamentary.regions-ec.2020.tsv',
     )
 
-    pd_index = get_basic_data_index('ents', 'pd')
+    pd_index = get_basic_data_index(os.path.join('ents', ''), 'pd')
     election_index = get_data_index(election_2020_index)
 
     sanity_data_list = []
