@@ -8,7 +8,7 @@ class TSVFile:
                 f.write('\t'.join(data_list[0].keys()) + '\n')
                 for d in data_list:
                     f.write('\t'.join(map(str, d.values())) + '\n')
-            
+
     def read(self):
         with open(self.file_path, 'r', encoding="utf8") as f:
             lines = f.readlines()
@@ -18,12 +18,15 @@ class TSVFile:
                 values = line.strip().split('\t')
                 data_list.append(dict(zip(keys, values)))
             return data_list
-        
+
 
 def test():
     import os
+
     tsv_file = os.path.join(
-        'data_ground_truth', 'census', 'education-educational-attainment.expanded.tsv'
+        'data_ground_truth',
+        'census',
+        'education-educational-attainment.expanded.tsv',
     )
     d_list = TSVFile(tsv_file).read()
     for d in d_list:

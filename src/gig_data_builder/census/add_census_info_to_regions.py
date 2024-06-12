@@ -41,7 +41,9 @@ def main():
                 ),
             )
         )
-        _basic.store_basic_data('ents', region_type, data_list)
+        _basic.store_basic_data(
+            os.path.join('ents', ''), region_type, data_list
+        )
         log.info(f'Expanded {region_type}')
 
 
