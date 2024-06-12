@@ -20,7 +20,7 @@ def get_raw_moh_data_list():
 
 
 def get_moh_data_file_path():
-    return 'data_ground_truth/moh/moh_data.json'
+    return os.path.join('data_ground_truth', 'moh', 'moh_data.json')
 
 
 def get_moh_data_hot():

@@ -44,7 +44,9 @@ def map_table_row(d):
 
 
 def get_table_data_list(table_short_name):
-    tsv_file = f'data_ground_truth/census/{table_short_name}.expanded.tsv'
+    tsv_file = os.path.join(
+        'data_ground_truth', 'census', f'{table_short_name}.expanded.tsv'
+    )
     d_list = TSVFile(tsv_file).read()
     table_data_list = list(
         map(
