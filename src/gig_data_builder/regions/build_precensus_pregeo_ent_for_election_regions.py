@@ -5,7 +5,7 @@ from gig_data_builder._common import ent_types
 from gig_data_builder._constants import DIR_ELECTIONS
 from gig_data_builder._utils import log
 
-PREFIX = '_tmp/precensus-pregeo-'
+PREFIX = os.path.join('_tmp', 'precensus-pregeo-')
 
 
 def build_precensus_pregeo_ent_for_election_regions(region_type):

@@ -1,10 +1,10 @@
 from gig_data_builder import _basic
 from gig_data_builder.ground_truth import moh_utils
-
+import os
 
 def build_precensus_pregeo_moh(moh_id_to_name, moh_to_district):
     district_data_index = _basic.get_basic_data_index(
-        '_tmp/precensus-', 'district'
+        os.path.join('_tmp', 'precensus-'), 'district'
     )
     moh_data_list = []
     for moh_id, moh_name in moh_id_to_name.items():
@@ -19,7 +19,7 @@ def build_precensus_pregeo_moh(moh_id_to_name, moh_to_district):
             'ed_id': district['ed_id'],
         }
         moh_data_list.append(d)
-    _basic.store_basic_data('_tmp/precensus-pregeo-', 'moh', moh_data_list)
+    _basic.store_basic_data(os.path.join('_tmp', 'precensus-pregeo-'), 'moh', moh_data_list)
 
 
 def main():

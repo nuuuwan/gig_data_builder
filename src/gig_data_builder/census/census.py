@@ -32,7 +32,7 @@ def get_table_name_to_file_name():
 def main():
     metadata_tables = JSONFile(METADATA_TABLES_FILE).read()
     metadata_fields = JSONFile(METADATA_FIELDS_FILE).read()
-    gnd_data_index = _basic.get_basic_data_index('_tmp/precensus-', 'gnd')
+    gnd_data_index = _basic.get_basic_data_index(os.path.join('_tmp', 'precensus-'), 'gnd')
     table_name_to_file_name = get_table_name_to_file_name()
 
     for table_id, table_metadata in metadata_tables.items():

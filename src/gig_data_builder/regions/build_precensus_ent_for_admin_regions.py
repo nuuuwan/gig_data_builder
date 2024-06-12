@@ -2,7 +2,7 @@ from gig_data_builder._basic import store_basic_data
 from gig_data_builder._common import ent_types
 from gig_data_builder.elections.DISTRICT_TO_ED import DISTRICT_TO_ED
 from gig_data_builder.ground_truth import statsl_utils
-
+import os
 
 def expand_region(d, region_type):
     expanded_d = {}
@@ -31,9 +31,9 @@ def build_precensus_ent_for_admin_regions(region_type):
     )
 
     if region_type == 'gnd':
-        prefix = '_tmp/premoh-prelg-precensus-'
+        prefix = os.path.join('_tmp', 'premoh-prelg-precensus-')
     else:
-        prefix = '_tmp/precensus-'
+        prefix = os.path.join('_tmp', 'precensus-')
 
     store_basic_data(prefix, region_type, data_list)
 

@@ -5,7 +5,7 @@ from gig_data_builder.ground_truth import moh_utils
 
 def add_moh_to_gnd(gnd_to_moh):
     gnd_data_list = _basic.get_basic_data(
-        '_tmp/premoh-prelg-precensus-', 'gnd'
+        os.path.join('_tmp', 'premoh-prelg-precensus-'), 'gnd'
     )
     gnd_data_list2 = []
     n = len(gnd_data_list)
@@ -16,7 +16,7 @@ def add_moh_to_gnd(gnd_to_moh):
             n_missing += 1
         d['moh_id'] = moh_id
         gnd_data_list2.append(d)
-    _basic.store_basic_data('_tmp/prelg-precensus-', 'gnd', gnd_data_list2)
+    _basic.store_basic_data(os.path.join('_tmp', 'prelg-precensus-'), 'gnd', gnd_data_list2)
     log.warning(f'No MOH for {n_missing}/{n} GNDs')
 
 

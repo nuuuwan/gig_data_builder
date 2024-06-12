@@ -1,9 +1,9 @@
 from gig_data_builder._basic import store_basic_data
-
+import os
 
 def build_precensus_ent_for_country():
     store_basic_data(
-        '_tmp/precensus-',
+        os.path.join('_tmp', 'precensus-'),
         'country',
         [
             {

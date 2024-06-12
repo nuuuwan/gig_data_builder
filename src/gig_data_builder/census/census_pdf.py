@@ -61,7 +61,7 @@ def get_table_data_list(table_short_name):
 
 
 def expand_parents(table_data_list):
-    gnd_data_index = _basic.get_basic_data_index('_tmp/precensus-', 'gnd')
+    gnd_data_index = _basic.get_basic_data_index(os.path.join('_tmp', 'precensus-'), 'gnd')
 
     parent_to_k_to_v = {}
     for d in table_data_list:

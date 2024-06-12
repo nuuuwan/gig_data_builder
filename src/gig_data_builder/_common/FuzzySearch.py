@@ -1,5 +1,5 @@
 from fuzzywuzzy import process as fuzzywuzzy_process
-
+import os
 from gig_data_builder import _basic
 from gig_data_builder._utils import log
 
@@ -12,9 +12,9 @@ def get_parent_to_field_to_ids(parent_region_type, field_key, region_type):
 
     parent_to_field_to_ids = {}
     basic_data = (
-        _basic.get_basic_data('_tmp/precensus-', region_type)
-        or _basic.get_basic_data('_tmp/precensus-pregeo-', region_type)
-        or _basic.get_basic_data('_tmp/premoh-prelg-precensus-', region_type)
+        _basic.get_basic_data(os.path.join('_tmp', 'precensus-'), region_type)
+        or _basic.get_basic_data(os.path.join('_tmp', 'precensus-pregeo-'), region_type)
+        or _basic.get_basic_data(os.path.join('_tmp', 'premoh-prelg-precensus-'), region_type)
     )
 
     for d in basic_data:

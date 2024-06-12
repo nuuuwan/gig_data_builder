@@ -13,6 +13,7 @@ def get_basic_data_file(prefix, region_type):
 def get_basic_data(prefix, region_type):
     basic_data_file = get_basic_data_file(prefix, region_type)
     if not os.path.exists(basic_data_file):
+        log.error(f'File not found: {basic_data_file}')
         return None
     return TSVFile(basic_data_file).read()
 

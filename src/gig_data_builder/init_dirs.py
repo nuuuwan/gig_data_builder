@@ -1,4 +1,5 @@
 import os
+import shutil
 
 from gig_data_builder._constants import (DIR_DATA, DIR_DATA_CHECKS,
                                          DIR_DATA_ENTS, DIR_DATA_GEO,
@@ -7,7 +8,7 @@ from gig_data_builder._utils import log
 
 
 def main():
-    os.system(f'rm -rf {DIR_DATA}/*')
+    
     for dir in [
         DIR_DATA_TMP,
         DIR_DATA_ENTS,
@@ -15,8 +16,9 @@ def main():
         DIR_DATA_GIG2,
         DIR_DATA_CHECKS,
     ]:
-        os.mkdir(dir)
-        log.info(f'Created {dir}')
+        shutil.rmtree(dir, ignore_errors=True)
+        os.makedirs(dir)
+        log.info(f'(Re)Created {dir}')
 
 
 if __name__ == '__main__':

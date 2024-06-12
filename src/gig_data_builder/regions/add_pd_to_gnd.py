@@ -4,7 +4,7 @@ from gig_data_builder.ground_truth import pd_utils
 
 
 def add_pd_to_gnd(gnd_to_pd):
-    gnd_data_list = _basic.get_basic_data('_tmp/precensus-', 'gnd')
+    gnd_data_list = _basic.get_basic_data(os.path.join('_tmp', 'precensus-'), 'gnd')
     gnd_data_list2 = []
     n = len(gnd_data_list)
     n_missing = 0
@@ -14,7 +14,7 @@ def add_pd_to_gnd(gnd_to_pd):
             n_missing += 1
         d['pd_id'] = pd_id
         gnd_data_list2.append(d)
-    _basic.store_basic_data('_tmp/precensus-', 'gnd', gnd_data_list2)
+    _basic.store_basic_data(os.path.join('_tmp', 'precensus-'), 'gnd', gnd_data_list2)
     log.warning(f'No PD for {n_missing}/{n} GNDs')
 
 

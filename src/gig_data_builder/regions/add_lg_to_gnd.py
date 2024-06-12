@@ -4,7 +4,7 @@ from gig_data_builder.ground_truth import lg_utils
 
 
 def add_lg_to_gnd(gnd_to_lg):
-    gnd_data_list = _basic.get_basic_data('_tmp/prelg-precensus-', 'gnd')
+    gnd_data_list = _basic.get_basic_data(os.path.join('_tmp', 'prelg-precensus-'), 'gnd')
     gnd_data_list2 = []
     n = len(gnd_data_list)
     n_missing = 0
@@ -14,7 +14,7 @@ def add_lg_to_gnd(gnd_to_lg):
             n_missing += 1
         d['lg_id'] = lg_id
         gnd_data_list2.append(d)
-    _basic.store_basic_data('_tmp/precensus-', 'gnd', gnd_data_list2)
+    _basic.store_basic_data(os.path.join('_tmp', 'precensus-'), 'gnd', gnd_data_list2)
     log.warning(f'No LG for {n_missing}/{n} GNDs')
 
 
