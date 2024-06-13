@@ -77,7 +77,12 @@ def main():
             shape = unary_union(valid_polygon_list)
             try:
                 _geo.save_geo(region_type, parent_id, shape)
-                lng, lat = list(shape.centroid.coords[0])
+                lng, lat = list(
+                    map(
+                        _geo.normalize_point_value,
+                        list(shape.centroid.coords[0]),
+                    )
+                )
                 region_to_centroid[parent_id] = json.dumps([lat, lng])
 
             except BaseException:

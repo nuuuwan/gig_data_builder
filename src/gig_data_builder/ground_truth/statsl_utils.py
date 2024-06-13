@@ -5,6 +5,7 @@ import geopandas
 
 from gig_data_builder._common import ent_types
 from gig_data_builder._constants import DIR_STATSL_SHAPE
+from gig_data_builder.regions import _geo
 
 REGION_CONFIG_IDX = {
     "province": {
@@ -41,15 +42,10 @@ def get_name(d, region_type):
     return d[config['name_key']]
 
 
-def normalize_point_value(x):
-    PRECISION = 6
-    return round(x, PRECISION)
-
-
 def get_centroid(d):
     shape = d['geometry']
     lng, lat = list(shape.centroid.coords[0])
-    lng, lat = normalize_point_value(lng), normalize_point_value(lat)
+    lng, lat = normalize_point_value(lng), _geo.normalize_point_value(lat)
     return json.dumps([lat, lng])
 
 
