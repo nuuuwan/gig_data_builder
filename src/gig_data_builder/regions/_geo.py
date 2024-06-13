@@ -35,13 +35,13 @@ def get_geo_index_for_region_type(region_type):
     return geo_index
 
 
-def normalize_point_item(x):
+def normalize_point_value(x):
     PRECISION = 6
     return round(x, PRECISION)
 
 
 def normalize_point(point):
-    return list(map(normalize_point_item, point))
+    return list(map(normalize_point_value, point))
 
 
 def normalize_points(points):

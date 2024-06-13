@@ -45,7 +45,9 @@ def get_name(d, region_type):
 def get_centroid(d):
     shape = d['geometry']
     lng, lat = list(shape.centroid.coords[0])
-    lng, lat = _geo.normalize_point_value(lng), _geo.normalize_point_value(lat)
+    lng, lat = _geo.normalize_point_value(lng), _geo.normalize_point_value(
+        lat
+    )
     return json.dumps([lat, lng])
 
 
