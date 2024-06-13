@@ -32,6 +32,10 @@ def add_centroid_column(region_type, region_to_centroid):
         os.path.join('_tmp', 'precensus-'), region_type, data_list
     )
 
+def fix(polygon):
+    if not polygon.is_valid:
+        return polygon.buffer(0)
+    return polygon
 
 def main():
     gnd_data_index = _basic.get_basic_data_index(
@@ -52,29 +56,14 @@ def main():
 
         region_to_centroid = {}
         for parent_id, gnd_ids in parent_to_gnds.items():
-            gnd_geos = list(
-                map(
-                    lambda gnd_id: gnd_geo_index.get(gnd_id, []),
-                    gnd_ids,
-                )
-            )
+            polygon_list = []
+            for gnd_id in gnd_ids:
+                gnd_geo = gnd_geo_index.get(gnd_id, [])
+                for gnd_geo_item in gnd_geo:
+                    polygon = fix(Polygon(gnd_geo_item))
+                    polygon_list.append(polygon)
 
-            polygon_list = list(
-                map(
-                    lambda gnd_geo: Polygon(gnd_geo[0]),
-                    gnd_geos,
-                )
-            )
-            valid_polygon_list = list(
-                map(
-                    lambda polygon: polygon
-                    if polygon.is_valid
-                    else polygon.buffer(0),
-                    polygon_list,
-                )
-            )
-
-            shape = unary_union(valid_polygon_list)
+            shape = unary_union(polygon_list)
             try:
                 _geo.save_geo(region_type, parent_id, shape)
                 lng, lat = list(
