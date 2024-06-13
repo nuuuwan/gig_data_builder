@@ -34,15 +34,19 @@ def get_geo_index_for_region_type(region_type):
     log.info(f'Built index with {n_geo_index} items for {region_type}')
     return geo_index
 
+
 def normalize_point_item(x):
     PRECISION = 6
     return round(x, PRECISION)
 
+
 def normalize_point(point):
     return list(map(normalize_point_item, point))
 
+
 def normalize_points(points):
     return list(map(normalize_point, points))
+
 
 def save_geo(region_type, region_id, shape):
     if isinstance(shape, Polygon):
@@ -50,7 +54,9 @@ def save_geo(region_type, region_id, shape):
     elif isinstance(shape, MultiPolygon):
         geo_data = list(
             map(
-                lambda polygon: normalize_points(list(polygon.exterior.coords)),
+                lambda polygon: normalize_points(
+                    list(polygon.exterior.coords)
+                ),
                 shape.geoms,
             )
         )
