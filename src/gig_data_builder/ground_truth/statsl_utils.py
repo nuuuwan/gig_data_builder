@@ -40,9 +40,11 @@ def get_name(d, region_type):
     config = REGION_CONFIG_IDX[region_type]
     return d[config['name_key']]
 
+
 def normalize_point_value(x):
     PRECISION = 6
     return round(x, PRECISION)
+
 
 def get_centroid(d):
     shape = d['geometry']

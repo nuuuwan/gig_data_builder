@@ -2,9 +2,9 @@ import os
 import random
 
 import matplotlib.pyplot as plt
+from _utils import log
 from shapely.geometry import Polygon
 from utils import JSONFile
-from _utils import log
 
 from gig_data_builder._constants import DIR_DATA_CHECKS, DIR_DATA_GEO
 
