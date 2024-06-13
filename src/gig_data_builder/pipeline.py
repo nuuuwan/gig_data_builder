@@ -86,6 +86,8 @@ if __name__ == '__main__':
     is_prod_mode = len(sys.argv) > 1 and sys.argv[1] == 'prod'
     log.debug(f'{is_prod_mode=}')
     if is_prod_mode:
+        log.warn('🏭 Running in prod mode')
         main()
     else:
+        log.debug('🧪 Running in test mode')
         testMain()
