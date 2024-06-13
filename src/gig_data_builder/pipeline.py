@@ -10,7 +10,7 @@ from regions import (add_lg_to_gnd, add_moh_to_gnd, add_pd_to_gnd,
                      build_precensus_pregeo_lg, build_precensus_pregeo_moh,
                      sanity_check_geos)
 
-TEST_MODE = False
+TEST_MODE = True
 
 
 def print_line():
@@ -29,11 +29,7 @@ _ = print_title
 def testMain():
     assert TEST_MODE
 
-    _("_tmp/precensus-pregeo-moh.tsv")
-    build_precensus_pregeo_moh.main()
-
-    _("_tmp/prelg-precensus-gnd.tsv")
-    add_moh_to_gnd.main()
+    sanity_check_geos.main()
 
 
 def main():

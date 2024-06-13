@@ -4,6 +4,7 @@ import random
 import matplotlib.pyplot as plt
 from shapely.geometry import Polygon
 from utils import JSONFile
+from _utils import log
 
 from gig_data_builder._constants import DIR_DATA_CHECKS, DIR_DATA_GEO
 
@@ -21,11 +22,16 @@ def get_region_file_names(region_type):
 def save_geo_image(region_type, func_filter=None, image_file_prefix=None):
     plt.close()
     file_names = get_region_file_names(region_type)
-    n_files = len(file_names)
-    for i_file, file_name in enumerate(file_names):
-        if func_filter and not func_filter(file_name):
-            continue
+    filtered_file_names = [
+        file_name
+        for file_name in file_names
+        if not func_filter or func_filter(file_name)
+    ]
+    random.seed(0)
+    random.shuffle(filtered_file_names)
 
+    n_files = len(filtered_file_names)
+    for i_file, file_name in enumerate(filtered_file_names):
         data = JSONFile(file_name).read()
         color = plt.cm.jet(i_file / n_files)
         for polygon_data in data:
@@ -41,6 +47,7 @@ def save_geo_image(region_type, func_filter=None, image_file_prefix=None):
     )
     plt.title(image_file_prefix)
     plt.savefig(image_file)
+    log.debug(f'Wrote {image_file}')
     plt.close()
 
 
