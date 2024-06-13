@@ -30,6 +30,7 @@ def add_pd_to_gnd(gnd_to_pd):
 
         if not pd_id:
             n_missing += 1
+            
         d['pd_id'] = pd_id
         gnd_data_list2.append(d)
     _basic.store_basic_data(
