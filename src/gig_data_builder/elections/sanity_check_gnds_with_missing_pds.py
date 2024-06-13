@@ -55,6 +55,7 @@ def main():
         )
         top_pd_id = pd_to_n[0][0]
         gnd_id_to_pd_id[gnd.id] = top_pd_id
+        log.debug(f'{gnd.id} -> {top_pd_id}')
 
     json_file_path = os.path.join(
         '_variables', 'missing_gnd_id_to_pd_id.json'
