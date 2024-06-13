@@ -50,7 +50,8 @@ def normalize_points(points):
 
 def save_geo(region_type, region_id, shape):
     if isinstance(shape, Polygon):
-        geo_data = [list(shape.exterior.coords)]
+        polygon = shape
+        geo_data = [normalize_points(list(polygon.exterior.coords))]
     elif isinstance(shape, MultiPolygon):
         geo_data = list(
             map(
