@@ -28,7 +28,12 @@ _ = print_title
 
 
 def testMain():
-    sanity_check_geos.main()
+    _(
+        "gig2/government-elections-[presidential|parliamentary]"
+        + ".regions-ec.{year}.tsv"
+    )
+    elections_results.main()
+    sanity_check_pop_per_elector.main()
 
 
 def main():

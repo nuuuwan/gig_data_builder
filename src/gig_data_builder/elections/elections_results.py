@@ -14,7 +14,7 @@ ELECTION_CONFIGS = {
             'nuuuwan/elections_lk/data',
         ),
         'func_get_file': lambda year: f'elections_lk.presidential.{year}.json',
-        'year_list': [1982, 1988, 1994, 1999, 2005, 2010, 2015, 2019],
+        'year_list': [1982, 1988, 1994, 1999, 2005, 2010, 2015, 2019, 2024],
         'field_key_votes': 'votes',
     },
     'parliamentary': {
