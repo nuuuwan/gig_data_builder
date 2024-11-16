@@ -104,6 +104,8 @@ def get_election_data(d):
     ed_code = ed_id[3:]
 
     return dict(
+        type="RP_V",
+        level="POLLING-DIVISION",
         pd_code=pd_code,
         ed_code=ed_code,
         by_party=by_party,
