@@ -142,7 +142,7 @@ def get_election_data_file(election_type, year):
     )
 
 
-def main():
+def main():  # noqa
     ed_data_index = _basic.get_basic_data_index(os.path.join("ents", ""), "ed")
     gnd_data_index = _basic.get_basic_data_index(
         os.path.join("ents", ""), "gnd"
