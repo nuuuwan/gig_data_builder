@@ -6716,8 +6716,10 @@
       "valid": 27012,
       "rejected": 267,
       "polled": 27279,
-      "electors": 3145
-    }
+      "electors": 31145
+    },
+    "comment": "Corrected Manually 2024-10-23", 
+    "source": "https://elections.gov.lk/web/wp-content/uploads/pdf/admin_reports/AR1985_E.pdf"
   },
   {
     "type": "PRESIDENTIAL-FIRST",

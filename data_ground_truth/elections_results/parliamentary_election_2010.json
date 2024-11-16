@@ -113,10 +113,10 @@
       }
     ],
     "summary": {
-      "electors": 0,
-      "polled": 0,
+      "electors": 1,
+      "polled": 1,
       "rejected": 0,
-      "valid": 0,
+      "valid": 1,
       "percent_polled": "-",
       "percent_valid": "-",
       "percent_rejected": "-"
@@ -8645,16 +8645,17 @@
         "vote_percentage": "0.00%",
         "party_name": "Independent Group 1D"
       }
-    ],
+    ], 
     "summary": {
-      "electors": 0,
-      "polled": 0,
-      "rejected": 0,
-      "valid": 0,
+      "electors": 16760,
+      "polled": 16329,
+      "rejected": 855,
+      "valid": 15474,
       "percent_polled": "-",
       "percent_valid": "-",
       "percent_rejected": "-"
-    }
+    },
+    "comment": "Corrected Manually 2024-10-23"
   },
   {
     "sequence_number": "0054",
@@ -22317,14 +22318,15 @@
       }
     ],
     "summary": {
-      "electors": 1,
-      "polled": 2,
-      "rejected": 1,
-      "valid": 37096,
+      "electors": 66135,
+      "polled": 39135,
+      "rejected": 1766,
+      "valid": 37369,
       "percent_polled": "200.00%",
       "percent_valid": "1854800.00%",
       "percent_rejected": "50.00%"
-    }
+    },
+    "comment": "Corrected Manually 2024-10-23"
   },
   {
     "sequence_number": "0142",
@@ -31475,14 +31477,15 @@
       }
     ],
     "summary": {
-      "electors": 1,
-      "polled": 4,
-      "rejected": 2,
-      "valid": 43134,
+      "electors": 71442,
+      "polled": 45536,
+      "rejected": 2149,
+      "valid": 43387,
       "percent_polled": "400.00%",
       "percent_valid": "1078350.00%",
       "percent_rejected": "50.00%"
-    }
+    },
+    "comment": "Corrected Manually 2024-10-23"
   },
   {
     "sequence_number": "0200",
@@ -67922,14 +67925,15 @@
       }
     ],
     "summary": {
-      "electors": 4,
-      "polled": 8,
-      "rejected": 4,
-      "valid": 75669,
+      "electors": 137779,
+      "polled": 80524,
+      "rejected": 4408,
+      "valid": 76116,
       "percent_polled": "200.00%",
       "percent_valid": "945862.50%",
       "percent_rejected": "50.00%"
-    }
+    },
+    "comment":"Corrected Manually 2024-10-23"
   },
   {
     "sequence_number": "0400",
@@ -74730,14 +74734,15 @@
       }
     ],
     "summary": {
-      "electors": 2,
-      "polled": 5,
-      "rejected": 2,
-      "valid": 84352,
+      "electors": 145479,
+      "polled": 90937,
+      "rejected": 6338,
+      "valid": 84599,
       "percent_polled": "250.00%",
       "percent_valid": "1687040.00%",
       "percent_rejected": "40.00%"
-    }
+    },
+    "comment": "Corrected Manually 2024-10-23"
   },
   {
     "sequence_number": "0430",
