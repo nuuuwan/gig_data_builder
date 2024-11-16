@@ -1,6 +1,7 @@
 import os
 
-from utils import WWW, JSONFile, TSVFile
+from utils import WWW, JSONFile
+from utils_future import TSVFile
 
 from gig_data_builder import _basic
 from gig_data_builder._constants import DIR_DATA_GIG2, DIR_ELECTIONS_RESULTS
