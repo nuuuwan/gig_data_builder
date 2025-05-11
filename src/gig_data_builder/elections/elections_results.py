@@ -227,6 +227,7 @@ def main():  # noqa
                     "gnd",
                     "ed",
                     "pd",
+                    "lg",
                 ]:
                     if parent_type == "country":
                         parent_id = "LK"
