@@ -11,17 +11,18 @@ SUMMARY_STAT_KEYS = ["valid", "rejected", "polled", "electors"]
 ELECTION_CONFIGS = {
     "local-government": {
         "year_list": [2025],
-        "field_key_votes": "votes",
+        "value_field_key_list": ["votes", "seats"],
     },
     "parliamentary": {
         "year_list": [1989, 1994, 2000, 2001, 2004, 2010, 2015, 2020, 2024],
-        "field_key_votes": "vote_count",
+        "value_field_key_list": ["vote_count"],
     },
     "presidential": {
         "year_list": [1982, 1988, 1994, 1999, 2005, 2010, 2015, 2019, 2024],
-        "field_key_votes": "votes",
+        "value_field_key_list": ["votes"],
     },
 }
+EXTRA_KEY_DELIM = ":"
 
 
 def cmp_key(k):
@@ -44,7 +45,7 @@ def expand_keys(idx):
                         idx["LK"].items(),
                     )
                 ),
-                key=lambda x: -x[1],
+                key=lambda x: (1 if EXTRA_KEY_DELIM in x[0] else 0, -x[1]),
             ),
         )
     )
@@ -154,7 +155,7 @@ def main():  # noqa
         lg_to_pop[lg_id] += gnd_pop
 
     for election_type, config in ELECTION_CONFIGS.items():
-        field_key_votes = config["field_key_votes"]
+        value_field_key_list = config["value_field_key_list"]
         for year in config["year_list"]:
             data_list = get_election_data_ground_truth(election_type, year)
             table = []
@@ -183,9 +184,14 @@ def main():  # noqa
                     row[k] = (int)(data["summary"][k])
 
                 for for_party in data["by_party"]:
-                    row[for_party["party_code"]] = (int)(
-                        for_party[field_key_votes]
-                    )
+                    for i, value_field_key in enumerate(value_field_key_list):
+                        value = (int)(for_party[value_field_key])
+                        if value == 0:
+                            continue
+                        output_key = for_party["party_code"]
+                        if i > 0:
+                            output_key += EXTRA_KEY_DELIM + value_field_key
+                        row[output_key] = value
                 table.append(row)
 
             # Expand to GNDs
