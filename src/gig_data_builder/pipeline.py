@@ -4,18 +4,23 @@ import init_dirs
 from _utils import log
 from census import add_census_info_to_regions, census, census_pdf
 from elections import elections_results, sanity_check_pop_per_elector
-from regions import (add_lg_to_gnd, add_moh_to_gnd, add_pd_to_gnd,
-                     build_geo_for_admin_regions,
-                     build_geo_for_nonadmin_regions,
-                     build_precensus_ent_for_admin_regions,
-                     build_precensus_ent_for_country,
-                     build_precensus_pregeo_ent_for_election_regions,
-                     build_precensus_pregeo_lg, build_precensus_pregeo_moh,
-                     sanity_check_geos)
+from regions import (
+    add_lg_to_gnd,
+    add_moh_to_gnd,
+    add_pd_to_gnd,
+    build_geo_for_admin_regions,
+    build_geo_for_nonadmin_regions,
+    build_precensus_ent_for_admin_regions,
+    build_precensus_ent_for_country,
+    build_precensus_pregeo_ent_for_election_regions,
+    build_precensus_pregeo_lg,
+    build_precensus_pregeo_moh,
+    sanity_check_geos,
+)
 
 
 def print_line():
-    log.info('-' * 64)
+    log.info("-" * 64)
 
 
 def print_title(text):
@@ -29,7 +34,8 @@ _ = print_title
 
 def testMain():
     _(
-        "gig2/government-elections-[presidential|parliamentary]"
+        "gig2/government-elections"
+        + "-[presidential|parliamentary|local-government]"
         + ".regions-ec.{year}.tsv"
     )
     elections_results.main()
@@ -87,12 +93,12 @@ def main():
     sanity_check_pop_per_elector.main()
 
 
-if __name__ == '__main__':
-    is_prod_mode = len(sys.argv) > 1 and sys.argv[1] == 'prod'
-    log.debug(f'{is_prod_mode=}')
+if __name__ == "__main__":
+    is_prod_mode = len(sys.argv) > 1 and sys.argv[1] == "prod"
+    log.debug(f"{is_prod_mode=}")
     if is_prod_mode:
-        log.warning('🏭 Running in prod mode')
+        log.warning("🏭 Running in prod mode")
         main()
     else:
-        log.debug('🧪 Running in test mode')
+        log.debug("🧪 Running in test mode")
         testMain()

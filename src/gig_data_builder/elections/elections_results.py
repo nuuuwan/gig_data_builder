@@ -9,13 +9,17 @@ from gig_data_builder._utils import log
 
 SUMMARY_STAT_KEYS = ["valid", "rejected", "polled", "electors"]
 ELECTION_CONFIGS = {
-    "presidential": {
-        "year_list": [1982, 1988, 1994, 1999, 2005, 2010, 2015, 2019, 2024],
+    "local-government": {
+        "year_list": [2025],
         "field_key_votes": "votes",
     },
     "parliamentary": {
         "year_list": [1989, 1994, 2000, 2001, 2004, 2010, 2015, 2020, 2024],
         "field_key_votes": "vote_count",
+    },
+    "presidential": {
+        "year_list": [1982, 1988, 1994, 1999, 2005, 2010, 2015, 2019, 2024],
+        "field_key_votes": "votes",
     },
 }
 
@@ -124,17 +128,27 @@ def main():  # noqa
     gnd_data_index = _basic.get_basic_data_index(
         os.path.join("ents", ""), "gnd"
     )
+    lg_data_index = _basic.get_basic_data_index(os.path.join("ents", ""), "lg")
     pd_to_region_id_index = {}
     pd_to_pop = {}
+    lg_to_region_id_index = {}
+    lg_to_pop = {}
     for gnd_id, gnd in gnd_data_index.items():
+        gnd_pop = (float)(gnd["population"]) if gnd["population"] else 0
+
         pd_id = gnd["pd_id"]
         if pd_id not in pd_to_region_id_index:
             pd_to_region_id_index[pd_id] = {}
             pd_to_pop[pd_id] = 0
         pd_to_region_id_index[pd_id][gnd_id] = gnd
-        pd_to_pop[pd_id] += (
-            (float)(gnd["population"]) if gnd["population"] else 0
-        )
+        pd_to_pop[pd_id] += gnd_pop
+
+        lg_id = gnd["lg_id"]
+        if lg_id not in lg_to_region_id_index:
+            lg_to_region_id_index[lg_id] = {}
+            lg_to_pop[lg_id] = 0
+        lg_to_region_id_index[lg_id][gnd_id] = gnd
+        lg_to_pop[lg_id] += gnd_pop
 
     for election_type, config in ELECTION_CONFIGS.items():
         field_key_votes = config["field_key_votes"]
@@ -146,16 +160,21 @@ def main():  # noqa
             for data in data_list:
                 if election_type == "parliamentary" and data["type"] != "RP_V":
                     continue
-                # PD
                 row = {}
-                if data["pd_code"] == "PV":
-                    pd_id = "EC-%s%s" % (data["ed_code"], "P")
-                elif data["pd_code"] == "DV":
-                    pd_id = "EC-%s%s" % (data["ed_code"], "D")
+                if election_type in ["presidential", "parliamentary"]:
+                    if data["pd_code"] == "PV":
+                        election_region_id = "EC-%s%s" % (data["ed_code"], "P")
+                    elif data["pd_code"] == "DV":
+                        election_region_id = "EC-%s%s" % (data["ed_code"], "D")
+                    else:
+                        election_region_id = "EC-%s" % (data["pd_code"])
+                    election_region_id = election_region_id[:6]
+                    row["entity_id"] = election_region_id
+                elif election_type == "local-government":
+                    lg_id = data["lg_id"]
+                    row["entity_id"] = lg_id
                 else:
-                    pd_id = "EC-%s" % (data["pd_code"])
-                pd_id = pd_id[:6]
-                row["entity_id"] = pd_id
+                    raise ValueError(f"Unknown election type: {election_type}")
 
                 for k in SUMMARY_STAT_KEYS:
                     row[k] = (int)(data["summary"][k])
@@ -170,18 +189,33 @@ def main():  # noqa
             gnd_index = {}
             postal_and_displaced_rows = []
             for row in table:
-                pd_id = row["entity_id"]
-                pd_pop = pd_to_pop.get(pd_id)
-                if pd_pop is None:
+                election_region_id = row["entity_id"]
+
+                if election_type in ["presidential", "parliamentary"]:
+                    election_region_to_pop = pd_to_pop
+                    election_region_to_region_id_index = pd_to_region_id_index
+                elif election_type == "local-government":
+                    election_region_to_pop = lg_to_pop
+                    election_region_to_region_id_index = lg_to_region_id_index
+                else:
+                    raise ValueError(f"Unknown election type: {election_type}")
+
+                election_region_pop = election_region_to_pop.get(
+                    election_region_id
+                )
+                if election_region_pop is None:
                     postal_and_displaced_rows.append(row)
                     continue
-                for gnd_id, regions in pd_to_region_id_index[pd_id].items():
+
+                for gnd_id, regions in election_region_to_region_id_index[
+                    election_region_id
+                ].items():
                     pop = (
                         (float)(regions["population"])
                         if regions["population"]
                         else 0
                     )
-                    p_gnd = pop / pd_pop
+                    p_gnd = pop / election_region_pop
 
                     gnd_row = {"entity_id": gnd_id}
                     for k, v in row.items():
@@ -221,28 +255,32 @@ def main():  # noqa
             # Add Postal and Displaced Votes to
             #   province, district, ed
 
-            for row in postal_and_displaced_rows:
-                pd_id = row["entity_id"]
-                ed_id = pd_id[:5]
-                ed = ed_data_index[ed_id]
-                province_id = ed["province_id"]
-                country_id = "LK"
+            if election_type in ["presidential", "parliamentary"]:
 
-                assert pd_id not in parent_index
-                parent_index[pd_id] = {"entity_id": pd_id}
+                for row in postal_and_displaced_rows:
+                    election_region_id = row["entity_id"]
+                    ed_id = election_region_id[:5]
+                    ed = ed_data_index[ed_id]
+                    province_id = ed["province_id"]
+                    country_id = "LK"
 
-                for k, v in row.items():
-                    if k in ["entity_id"]:
-                        continue
-                    parent_index[pd_id][k] = v
-                    for parent_id in [
-                        country_id,
-                        province_id,
-                        ed_id,
-                    ]:
-                        if k not in parent_index[parent_id]:
-                            parent_index[parent_id][k] = 0
-                        parent_index[parent_id][k] += v
+                    assert election_region_id not in parent_index
+                    parent_index[election_region_id] = {
+                        "entity_id": election_region_id
+                    }
+
+                    for k, v in row.items():
+                        if k in ["entity_id"]:
+                            continue
+                        parent_index[election_region_id][k] = v
+                        for parent_id in [
+                            country_id,
+                            province_id,
+                            ed_id,
+                        ]:
+                            if k not in parent_index[parent_id]:
+                                parent_index[parent_id][k] = 0
+                            parent_index[parent_id][k] += v
 
             # Combine and Save
             table = expand_keys(parent_index)
