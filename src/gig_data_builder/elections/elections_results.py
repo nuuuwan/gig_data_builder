@@ -186,7 +186,7 @@ def main():  # noqa
                 for for_party in data["by_party"]:
                     for i, value_field_key in enumerate(value_field_key_list):
                         value = (int)(for_party[value_field_key])
-                        if value == 0:
+                        if value == 0 and i > 0:
                             continue
                         output_key = for_party["party_code"]
                         if i > 0:
