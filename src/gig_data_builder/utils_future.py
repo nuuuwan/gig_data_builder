@@ -14,8 +14,6 @@ class TSVFile:
                 for d in data_list:
                     f.write("\t".join(map(str, d.values())) + "\n")
 
-        log.debug(f"Wrote {len(data_list)} rows to {self.file_path}")
-
     def read(self):
         with open(self.file_path, "r", encoding="utf8") as f:
             lines = f.readlines()
