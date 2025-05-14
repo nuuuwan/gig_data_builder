@@ -61,7 +61,7 @@ def get_election_data_ground_truth_file(election_type, year):
     )
 
 
-def get_election_data(d):
+def get_election_data_from_tsv_row(d):
 
     by_party = []
     for k, v in d.items():
@@ -100,7 +100,7 @@ def get_election_data_ground_truth_from_tsv(election_type, year):
         f"government-elections-{election_type}.regions-ec.{year}.tsv",
     )
     d_list = TSVFile(tsv_path).read()
-    return [get_election_data(d) for d in d_list]
+    return [get_election_data_from_tsv_row(d) for d in d_list]
 
 
 def get_election_data_ground_truth(election_type, year):
