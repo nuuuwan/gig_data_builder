@@ -10,20 +10,11 @@ from gig_data_builder._utils import log
 SUMMARY_STAT_KEYS = ["valid", "rejected", "polled", "electors"]
 ELECTION_CONFIGS = {
     "presidential": {
-        "dir_remote": os.path.join(
-            "https://raw.githubusercontent.com",
-            "nuuuwan/elections_lk/data",
-        ),
         "func_get_file": lambda year: f"elections_lk.presidential.{year}.json",
         "year_list": [1982, 1988, 1994, 1999, 2005, 2010, 2015, 2019, 2024],
         "field_key_votes": "votes",
     },
     "parliamentary": {
-        "dir_remote": os.path.join(
-            "https://raw.githubusercontent.com",
-            "nuuuwan/gen_elec_sl/master/elections_lk_react",
-            "public/data/elections",
-        ),
         "func_get_file": lambda year: f"gen_elec_sl.ec.results.{year}.json",
         "year_list": [1989, 1994, 2000, 2001, 2004, 2010, 2015, 2020, 2024],
         "field_key_votes": "vote_count",
@@ -70,21 +61,6 @@ def get_election_data_ground_truth_file(election_type, year):
         DIR_ELECTIONS_RESULTS,
         f"{election_type}_election_{year}.json",
     )
-
-
-def reverse_download():
-    for election_type, config in ELECTION_CONFIGS.items():
-        dir_remote = config["dir_remote"]
-        func_get_file = config["func_get_file"]
-        for year in config["year_list"]:
-            remote_url = os.path.join(
-                dir_remote,
-                func_get_file(year),
-            )
-            data = WWW(remote_url).readJSON()
-            data_file = get_election_data_ground_truth_file(election_type, year)
-            JSONFile(data_file).write(data)
-            log.info(f"Downloaded from {remote_url} to {data_file}")
 
 
 def get_election_data(d):
