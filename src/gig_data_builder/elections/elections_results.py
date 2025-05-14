@@ -53,7 +53,10 @@ def expand_keys(idx):
     for d in idx.values():
         expanded_d = {}
         for k in NON_PARTY_KEYS + sorted_party_list:
-            expanded_d[k] = d.get(k, 0)
+            v = d.get(k, 0)
+            if k != "entity_id":
+                v = int(round(v, 0))
+            expanded_d[k] = v
         expanded_data_list.append(expanded_d)
     return expanded_data_list
 
