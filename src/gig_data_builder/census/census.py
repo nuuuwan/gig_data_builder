@@ -106,12 +106,10 @@ def main():
             table_data_list,
             key=lambda d: d["entity_id"],
         )
-        n_table_data_list = len(table_data_list)
 
         table_name = String(table_metadata["Title"]).snake
         table_file = table_name_to_file_name[table_name]
         TSVFile(table_file).write(table_data_list)
-        log.debug(f"Writing {n_table_data_list} rows to {table_file}")
 
 
 if __name__ == "__main__":

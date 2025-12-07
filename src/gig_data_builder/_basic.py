@@ -30,5 +30,3 @@ def get_basic_data_index(prefix, region_type):
 def store_basic_data(prefix, region_type, data_list):
     basic_data_file = get_basic_data_file(prefix, region_type)
     TSVFile(basic_data_file).write(data_list)
-    n_data_list = len(data_list)
-    log.info(f"Wrote {n_data_list} rows to {basic_data_file}")

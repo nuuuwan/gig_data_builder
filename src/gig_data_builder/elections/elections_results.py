@@ -1,11 +1,11 @@
 import os
 
 from utils import WWW, JSONFile
-from utils_future import TSVFile
 
 from gig_data_builder import _basic
 from gig_data_builder._constants import DIR_DATA_GIG2, DIR_ELECTIONS_RESULTS
 from gig_data_builder._utils import log
+from utils_future import TSVFile
 
 SUMMARY_STAT_KEYS = ["valid", "rejected", "polled", "electors"]
 ELECTION_CONFIGS = {
@@ -297,8 +297,6 @@ def main():  # noqa
 
             table_file = get_election_data_file(election_type, year)
             TSVFile(table_file).write(table)
-            n_data_list = len(table)
-            log.info(f"Wrote {n_data_list} rows to {table_file}")
 
 
 if __name__ == "__main__":
