@@ -1,10 +1,17 @@
 import sys
 
-import init_dirs
-from _utils import log
-from census import add_census_info_to_regions, census, census_pdf
-from elections import elections_results, sanity_check_pop_per_elector
-from regions import (
+from gig_data_builder import _utils, init_dirs
+from gig_data_builder._utils import log
+from gig_data_builder.census import (
+    add_census_info_to_regions,
+    census,
+    census_pdf,
+)
+from gig_data_builder.elections import (
+    elections_results,
+    sanity_check_pop_per_elector,
+)
+from gig_data_builder.regions import (
     add_lg_to_gnd,
     add_moh_to_gnd,
     add_pd_to_gnd,

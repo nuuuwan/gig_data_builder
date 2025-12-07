@@ -2,11 +2,11 @@ import os
 import random
 
 import matplotlib.pyplot as plt
-from _utils import log
 from shapely.geometry import Polygon
 from utils import JSONFile
 
 from gig_data_builder._constants import DIR_DATA_CHECKS, DIR_DATA_GEO
+from gig_data_builder._utils import log
 
 random.seed(1)
 
@@ -39,57 +39,55 @@ def save_geo_image(region_type, func_filter=None, image_file_prefix=None):
             x, y = polygon.exterior.xy
             plt.fill(x, y, color=color)
 
-    image_file_prefix = (
-        image_file_prefix if image_file_prefix else region_type
-    )
+    image_file_prefix = image_file_prefix if image_file_prefix else region_type
     image_file = os.path.join(
-        DIR_DATA_CHECKS, f'sanity_check_geos.{image_file_prefix}.png'
+        DIR_DATA_CHECKS, f"sanity_check_geos.{image_file_prefix}.png"
     )
     plt.title(image_file_prefix)
     plt.savefig(image_file)
-    log.debug(f'Wrote {image_file}')
+    log.debug(f"Wrote {image_file}")
     plt.close()
 
 
 def main():
     save_geo_image(
-        'pd',
-        lambda file_name: 'EC-01' in file_name,
+        "pd",
+        lambda file_name: "EC-01" in file_name,
         image_file_prefix="pd-Colombo",
     )
     save_geo_image(
-        'pd',
-        lambda file_name: 'EC-14' in file_name,
+        "pd",
+        lambda file_name: "EC-14" in file_name,
         image_file_prefix="pd-Trinco",
     )
     save_geo_image(
-        'pd',
-        lambda file_name: 'EC-10' in file_name,
+        "pd",
+        lambda file_name: "EC-10" in file_name,
         image_file_prefix="pd-Jaffna",
     )
     save_geo_image(
-        'pd',
-        lambda file_name: 'EC-11' in file_name,
+        "pd",
+        lambda file_name: "EC-11" in file_name,
         image_file_prefix="pd-Vanni",
     )
     save_geo_image(
-        'gnd',
-        lambda file_name: 'LK-1103' in file_name,
+        "gnd",
+        lambda file_name: "LK-1103" in file_name,
         image_file_prefix="gnd-Colombo-DSD",
     )
 
     for region_type in [
-        'province',
-        'ed',
-        'district',
-        'dsd',
-        'pd',
-        'lg',
-        'moh',
-        'gnd',
+        "province",
+        "ed",
+        "district",
+        "dsd",
+        "pd",
+        "lg",
+        "moh",
+        "gnd",
     ]:
         save_geo_image(region_type)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
